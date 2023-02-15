@@ -1,0 +1,67 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Koala",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://getkoala.com"
+  },
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#4D32E4",
+    "light": "#A393FE",
+    "dark": "#4D32E4",
+    "anchors": { "from": "#BA27BA", "to": "#4D32E4" }
+  },
+  "topbarCtaButton": {
+    "name": "Sign Up",
+    "url": "https://app.getkoala.com/signup"
+  },
+  "topbarLinks": [
+    {
+      "name": "Log in",
+      "url": "https://app.getkoala.com/login"
+    }
+  ],
+  "anchors": [
+    {
+      "name": "Changelog",
+      "icon": "list-timeline",
+      "url": "https://getkoala.com/changelog"
+    },
+    {
+      "name": "Status",
+      "icon": "wave-pulse",
+      "url": "https://koala.instatus.com"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Get Started",
+      "pages": [
+        "get-started/introduction",
+        "get-started/quick-start",
+        "get-started/identifying-users"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "pages": [
+        "integrations/clearbit",
+        "integrations/google-tag-manager",
+        "integrations/segment",
+        "integrations/slack"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "website": "https://getkoala.com/",
+    "twitter": "https://twitter.com/getkoala_com",
+    "linkedin": "https://www.linkedin.com/company/getkoala/"
+  },
+  "analytics": {
+    "koala": {
+      "projectId": "koala"
+    }
+  }
+}

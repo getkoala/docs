@@ -1,0 +1,31 @@
+---
+title: "Segment integration"
+description:
+  "Segment is the easiest way to install Koala. If you've already got Segment
+  running on your website, we recommend this approach. With Segment, you can
+  instrument Koala easily without code."
+---
+
+<Note>
+  Segment's Analytics 2.0 is required for this client-side destination.
+</Note>
+
+---
+
+### Step 1: Connect your source to the Koala destination
+
+Navigate to **Connections > Destinations > Add Destination** in the Segment app.
+Search for "Koala" and add it to a source.
+
+### Step 2: Enter your destination settings
+
+You'll need to enter your "Koala Slug" which is the same url slug you set up
+when first creating your workspace on Koala. Navigate in the Koala app to
+[Settings > General](https://app.getkoala.com/users/login) to find your
+workspace slug.
+
+### Step 3: Configure which events to send from Segment (Optional)
+
+Once connected, you can configure how you want to send data to Koala. By
+default, Segment will forward track events and identify events to Koala. We
+recommend sticking with the defaults!
