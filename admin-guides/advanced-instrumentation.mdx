@@ -28,8 +28,15 @@ Koala has similar semantics to most product analytics tools (eg., Segment, Rudde
 
 Here is a quick compatibility table if you're already using one of these tools client-side:
 
-TODO
-
+| Tool | Codeless install? | Events & identifies picked up? |
+| -------------------- | ------------------------------ | ------------------------------- |
+| Segment			   | ✅						 | ✅ |
+| Google Tag Manager   | ✅						 | ❌ |
+| Rudderstack          | ❌ - requires Koala SDK | ✅ |
+| Heap |  ❌ - no integration | ❌ - copy `ko.track` / `ko.identify` |
+| Amplitude |  ❌ - no integration | ❌ - copy `ko.track` / `ko.identify` |
+| Mixpanel |  ❌ - no integration | ❌ - copy `ko.track` / `ko.identify` |
+| Posthog |  ❌ - no integration | ❌ - copy `ko.track` / `ko.identify` |
 
 The most important things to ensure a successful implementation are as follows:
 
