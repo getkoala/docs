@@ -3,7 +3,7 @@ title: "Advanced instrumentation"
 description: "Setting up an advanced instrumentation will help you get the most out of Koala!"
 ---
 
-## Advanced instrumentation
+# Product analytics overview
 Most customers start by instrumenting their public site properties, including their homepage, technical docs, and blog. However, a lot more can be unlocked with Koala with a full instrumentation. There are two critical pieces to a full instrumentation:
 
 * Sending **product analytics** from your app
@@ -21,7 +21,7 @@ This will turn an instrumentation that looks like this:
 
 ![](/images/admin-guides/advanced-instrumentation/koala-single-account.png)
 
-## Setting up product analytics
+# Setting up product analytics
 Typically, this is a task that a **full-stack engineering team** will need to spend **2-4 hrs** on, depending on how mature the product analytics stack is and what tools you're already using. 
 
 Koala has similar semantics to most product analytics tools (eg., Segment, Rudderstack, Heap, Amplitude, Mixpanel, Posthog, etc.). The main difference with Koala and some tools is that Koala does a few things automatically on the client-side, including accurate tracking of session time and automatic pageview detecting (single-page apps supported!). Thus, we recommend installing Koala client-side (we try to keep the SDK as thin as possible — it is about 20kb). However, if you prefer to only install server-side, we have documentation on the server-side API.
@@ -48,7 +48,7 @@ The most important things to ensure a successful implementation are as follows:
 If you are interested in this but need help with this, please get in touch with support@getkoala.com. We have lots of experience getting product analytics stacks spun up and happy to lend our expertise!
 </Note>
 
-## Sending account-level traits [ALPHA]
+# Setting up account traits [ALPHA]
 In order to set triggers on your main consumption metric (eg., bandwidth used if you're Vercel, # of licenses consumed if you're Salesforce, or number of API calls if you're a usage-based developer tool), you'll want to send those consumption metrics to Koala. We'll track the history of the consumption metric and allow you to alert when user-defined thresholds are reached.
 
 There are three primary architectures for doing this:
