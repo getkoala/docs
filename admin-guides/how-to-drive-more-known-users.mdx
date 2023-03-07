@@ -1,0 +1,39 @@
+---
+title: "How to drive more known users"
+description: "If you are seeing a lot of anonymous profiles and would like to drive more known usage, this is the guide for you!"
+---
+
+## Why all the anonymous visitors?
+First, let's level-set on *why* you're seeing anonymous visitors. When a user first comes to your website, all you can know about them is a set of technical metadata about them — their IP address, what browser they are using, what website they came from, the exact URL they requested, etc.
+
+Koala partners with two different providers to help you get a guess at who this visitor might be:
+
+* Clearbit Reveal (the best-in-class IP -> company data) helps decode what company they are from. Clearbit Reveal is designed to respect the privacy of the end-user, so the most information you can get at this point is a guess at which company is mapped to the IP address of the user. Other tools have similar design.
+
+* Cloudflare (the best-in-class IP -> geolocation decoder) helps give a guess at what City, State, Country they are from.
+
+Until the user opts to give you more information, this is the most you can know about the user — and this by design. Once the user does opt in to giving their email, Koala will record that email address and the browser session will be associated with that user going forward — even if it wasn't a formal "log in".
+
+## Koala-specific suggestions
+Koala offers some unique ways to better understand intent signals from known users:
+
+**Set up intent signals happening in your application.** When a user signs up or logs in to your app, they are identifying themselves, so you'll be able to know exactly who is doing what in your app. We also find that some of the best intent is happening in your app — maybe you have a user paying you a little bit, but they are showing intent that they need something more sophisticated. 
+
+*Note: leveraging this requires the Advanced Instrumentation.*
+
+**ID Links.** When you send outbound emails, you can embed a special identification parameter that will allow you to know when that specific person clicks on your link. Koala will allow you to track more than just email opens and clicks, enabling you to see the true interest of your prospects and respond to their intent in real-time.
+
+*Coming soon: email support@getkoala.com for early access.*
+
+## Common marketing site tactics
+
+In addition to these two unique ways, we're also including some common marketing tactics for driving email submissions directly on your website. Once the email submission happens, Koala is unique in that it will associate the full session that happened before and all the activities afterward until cookies are cleared — making the email that much more valuable!
+
+**Email gate a product demo.** If you have a product demo, best practice is to gate this product demo behind an email submission. If the Koala pixel is installed wherever your demo is hosted, we can report on which pieces of the demo were most interesting to the customer, using the session time and pageviews to help you understand how to craft a message. 
+
+**Email gate your best content.** If you have a great piece of content that delivers lots of value on its own (eg., an E-Book, Industry Survey, or set of recipes), you may want to consider gating all or some of the content. Often it's a good idea to give a sample of the high-quality content for free and then put the email gate in a little later.
+
+**Host webinars.** If you host high-value webinars, you'll have a natural place to collect an email address — upon webinar registration! Make sure the Koala pixel is installed wherever these registrations happen.
+
+**Offer a mailing list subscription.** If you have a great blog or other piece of content that repeats, this is another natural place to collect an email address! Make sure the Koala pixel is installed wherever subscriptions happen.
+

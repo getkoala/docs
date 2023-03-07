@@ -45,6 +45,22 @@
       ]
     },
     {
+      "group": "Guides for Reps",
+      "pages": [
+        "rep-guides/use-koala-for-research",
+        "rep-guides/send-great-sales-messages"        
+      ]
+    },
+    {
+      "group": "Guides for Admins",
+      "pages": [
+        "admin-guides/advanced-instrumentation",
+        "admin-guides/advanced-intent-signals",        
+        "admin-guides/how-to-drive-more-known-users",
+        "admin-guides/larger-sales-teams"
+      ]
+    },
+    {
       "group": "Integrations",
       "pages": [
         "integrations/clearbit",
@@ -61,7 +77,7 @@
   },
   "analytics": {
     "koala": {
-      "projectId": "koala"
+      "projectId": "koala-web"
     }
   }
 }

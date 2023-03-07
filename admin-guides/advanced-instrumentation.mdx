@@ -1,0 +1,100 @@
+---
+title: "Advanced instrumentation"
+description: "Setting up an advanced instrumentation will help you get the most out of Koala!"
+---
+
+## Advanced instrumentation
+Most customers start by instrumenting their public site properties, including their homepage, technical docs, and blog. However, a lot more can be unlocked with Koala with a full instrumentation. There are two critical pieces to a full instrumentation:
+
+* Sending **product analytics** from your app
+* Sending important **account-level traits** from your database or warehouse
+
+This will turn an instrumentation that looks like this:
+
+TODO
+
+...into a workspace that looks like this:
+
+TODO
+
+...with account level traits that look like this (right):
+
+TODO
+
+## Setting up product analytics
+Typically, this is a task that a **full-stack engineering team** will need to spend **2-4 hrs** on, depending on how mature the product analytics stack is and what tools you're already using. 
+
+Koala has similar semantics to most product analytics tools (eg., Segment, Rudderstack, Heap, Amplitude, Mixpanel, Posthog, etc.). The main difference with Koala and some tools is that Koala does a few things automatically on the client-side, including accurate tracking of session time and automatic pageview detecting (single-page apps supported!). Thus, we recommend installing Koala client-side (we try to keep the SDK as thin as possible — it is about 20kb). However, if you prefer to only install server-side, we have documentation on the server-side API.
+
+Here is a quick compatibility table if you're already using one of these tools client-side:
+
+TODO
+
+
+The most important things to ensure a successful implementation are as follows:
+
+* ensuring that `identify()` (with an email address!) happens upon sign-up and login
+* ensuring that the Koala pixel is on every page
+* ensuring that key events that map to buying intent are instrumented and sent to Koala
+
+If you are interested in this but need help with this, please get in touch with support@getkoala.com — we have lots of experience getting product analytics stacks spun up and happy to lend our expertise!
+
+## Sending account-level traits [ALPHA]
+In order to set triggers on your main consumption metric (eg., bandwidth used if you're Vercel, # of licenses consumed if you're Salesforce, or number of API calls if you're a usage-based developer tool), you'll want to send those consumption metrics to Koala. We'll track the history of the consumption metric and allow you to alert when user-defined thresholds are reached.
+
+There are three primary architectures for doing this:
+
+* Sending data directly to Koala's API
+* Syncing nightly from Salesforce or Hubspot
+* Using Reverse ETL (Hightouch, Census, Polytomic, etc.)
+
+## Sending data directly to Koala's API
+You can send account traits directly to Koala. This can be done directly on the website, as you do with your other analytics tracking. Alternatively, this can be run in a nightly asynchronous script (eg., if you have a nightly script that computes billing consumption and sends alerts, that would be a good place to add these calls).
+
+The following script includes a sample identify call that can be issued at any time where user data is available.
+
+```
+/**
+* Identify calls can be issued at any time, on any page where the koala
+* pixel is instrumented.
+**/
+
+// email is how koala ties this user to a specific contact
+ko.identify(email, {
+   // You can send any javascript object here.
+   // Each field will be associated as a user trait
+  ...userObjectTraits,
+  $account: {
+     // You can send any javascript object here.
+     // Each field will be associated as an Account Trait
+    ...accountObjectTraits
+  }
+})
+
+// Example:
+ko.identify('tido@getkoala.com', {
+  // These are user specific traits
+  vip_user: true,
+  finished_onboarding: true,
+  invited_teammate: true,
+  
+  // These are company specific traits
+  $account: {
+    name: 'Koala',
+    domain: 'getkoala.com',
+    pricing_plan: 'enterprise',
+    is_trialing: true,
+    trial_end_at: '2023-03-03',
+    num_team_members: 4
+  }
+})
+```
+
+
+## Syncing hourly from Salesforce or Hubspot [Coming Soon]
+You can sync traits hourly from Salesforce or Hubspot. Anything available on the account object can be pulled into Koala. After it's set up, Koala will maintain a changelog of the events, so it can be displayed as timeseries data for reps and reps can see when a boolean was flipped (eg., when is_onboarded went from false to true).
+
+## Using Reverse ETL [Coming Soon]
+You can use a Reverse ETL tool to pull data directly from your data warehouse into Koala. If this is of interest, please let us know which Reverse ETL tool you're using, so we can prioritize support for the right tools.
+
+*This feature is currently in Alpha, so if you'd like to give it a spin, please contact us directly support@getkoala.com and we'll get you early access.*
