@@ -1,7 +1,13 @@
 ---
 title: "Quick start"
-description: "There are a few ways you can add Koala to your website or app."
+description: "A step-by-step guide to get Koala set up in under an hour."
 ---
+
+*Note: we have a step-by-step welcome experience in the product that will walk you through these steps in detail. If you'd prefer that, you can simply create an account and the product will guide you through the process. 
+
+That said, we know that some folks like to review the entire process in docs first; this article is for you!*
+
+## Step 1: Install the pixel
 
 <CardGroup cols={3}>
   <Card title="JavaScript" icon="js" href="#step-1-copy-the-snippet">
@@ -94,38 +100,28 @@ It'll look something this:
   these surface areas.
 </Note>
 
-### Step 2: Identify users
+## Step 2: Connect your CRM (optional)
 
-The `identify` method is how you tell Koala who the current visitor is. Koala
-uses `email` as the primary identifier for identity merging. Until Koala knows a
-visitor's email, they will be considered anonymous. After users have logged in,
-you can identify them by passing their email along with any other attributes you
-would like to see in Koala — for instance, their name.
+This is an optional step, but strongly recommended if you're using Salesforce or Hubspot. (No worries if you're still operating out of a spreadsheet – we support you too!)
 
-Here's a basic example of what `identify` might look like:
+Connecting your CRM will:
 
-```js
-ko.identify("mbolton@example.com");
-```
+* allow Koala to figure out who owns which accounts, so that each of your teammates will be receive relevant Weekly Digests, notifications, and individual lists
+* be able to differentiate between prospects and customers, so that you can focus your time on prospects
+* help Koala build a scoring model to find accounts that look like your Closed Won customers
 
-You can also specify additional traits beyond just the email:
+## Step 3: Set up an intent signal
 
-```js
-// specify multiple traits
-ko.identify("mbolton@example.com", {
-  name: "Michael Bolton",
-  registered: true,
-});
+Set up your first intent signal — we recommend **a pricing page visit that lasts for at least 15 seconds**! Better yet, setting up 3-5 is even better. Here are a few common first intent signals, other than pricing page:
 
-// equivalent to:
-ko.identify({
-  email: "mbolton@example.com",
-  name: "Michael Bolton",
-  registered: true,
-});
-```
+* reading technical docs about paid features
+* reading a blog post for 2+ minutes 
+* ensuring you are notified about form submits / content downloads  
 
-<Note>
-  If you're using Segment to install Koala, it will automatically send
-  `identify` calls to Koala by default (unless you've explicitly disabled it).
-</Note>
+That said, you know your business best, so be sure to set up things that your sales development team and AEs will be most interested in!
+
+## Step 4: Setting up a Slack Alert
+
+Keep things simple by sending all the intent signals to a single channel for now. If you have a larger sales team, you can read our guide on <a href="/admin-guides/larger-sales-teams">larger sales teams</a>, but to start things off we always recommend watching a single channel for a few business days to see what kind of intent you're working with all in one place.
+
+Reps will love getting pinged about intent signals on their accounts. You can enable this by checking the box that says "@mention Account Owners in Slack"!
