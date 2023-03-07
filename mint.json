@@ -77,7 +77,7 @@
   },
   "analytics": {
     "koala": {
-      "projectId": "koala-web"
+      "publicApiKey": "koala-web"
     }
   }
 }
