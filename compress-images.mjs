@@ -8,6 +8,9 @@ import imageminJpegtran from "imagemin-jpegtran";
 import imageminOptipng from "imagemin-optipng";
 import imageminSvgo from "imagemin-svgo";
 import parseFilepath from "parse-filepath";
+import sharp from "sharp";
+
+const MAX_IMAGE_SIZE = 1200;
 
 const plugins = [
   imageminGifsicle({}),
@@ -20,12 +23,9 @@ let savedSize = 0;
 
 const run = async () => {
   const regex = new RegExp(/\.gif|\.jpeg|\.jpg|\.png$/);
-
   const files = find.fileSync(regex, "images/");
 
-  for (const file of files) {
-    await optimized(file);
-  }
+  await Promise.all(files.map((file) => optimized(file)));
 
   if (savedSize > 0) {
     console.info(`\n🎉 You saved ${readableSize(savedSize)}.`);
@@ -40,6 +40,27 @@ const size = (filename) => {
 
 const readableSize = (size) => {
   return filesize(size, { round: 5 });
+};
+
+const resize = async (filename) => {
+  const image = await sharp(filename);
+  const { width, height } = await image.metadata();
+  let resized = false;
+
+  if (width >= MAX_IMAGE_SIZE) {
+    resized = true;
+    image.resize(MAX_IMAGE_SIZE, null);
+  }
+
+  if (height >= MAX_IMAGE_SIZE) {
+    resized = true;
+    image.resize(null, MAX_IMAGE_SIZE);
+  }
+
+  if (resized) {
+    const outputFile = await image.toBuffer();
+    fs.writeFileSync(filename, outputFile);
+  }
 };
 
 const optimized = async (filename) => {
@@ -61,6 +82,10 @@ const optimized = async (filename) => {
 
   const filenameBackup = `${filename}.bak`;
   fs.copyFileSync(filename, filenameBackup);
+
+  if (/\.(jpeg|jpg|png)$/.test(filename)) {
+    await resize(filename);
+  }
 
   try {
     await imagemin([filename], pluginsOptions);
