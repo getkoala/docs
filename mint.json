@@ -55,7 +55,7 @@
       "group": "Guides for Admins",
       "pages": [
         "admin-guides/advanced-instrumentation",
-        "admin-guides/advanced-intent-signals",        
+        "admin-guides/find-hottest-intent",
         "admin-guides/how-to-drive-more-known-users",
         "admin-guides/larger-sales-teams"
       ]
