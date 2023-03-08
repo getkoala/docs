@@ -45,32 +45,26 @@ before proceeding. If you don't have an account,
 
 ### Introduction
 
-There are three ways that you can send messages from Koala to Slack.
+There are two ways that you can receive messages from Koala in Slack.
 
-- Automatic notifications for high-intent activities
+- Real-time notifications about intent via Slack Alerts
 - Share an account to a channel
-- Subscribe to list updates
 
 Each is discussed more in detail below.
 
-### Automatic notifications for high-intent activities
+### Real-time notifications about intent via Slack Alerts
 
-If you'd like to receive automatic notifications when high-intent activities
-happen, you can enable them to Slack. The easiest way to get started is in the
-[Notifications tab](https://app.getkoala.com/users/login).
+If you'd like to automatically receive notifications whenever high-intent activities
+happen, use Slack Alerts. The easiest way to get started is in the
+[Slack Alerts tab](https://app.getkoala.com/goto/slack-alerts).
 
-After you've set up your triggers, here's an example of the Slack Integration
+After you've set up your intent trigger(s), here's an example of the Slack Integration
 setup. You can send via **direct message**, an **existing channel**, or a **new
 channel you create inline**. Here's how you configure it:
 
-![Slack Configuration GIF](/images/slack-configuration.gif)
+![Slack Alerts configuration](/images/integrations/slack/slack-alerts.png)
 
-On the other side, once the intent is triggered, you'll get a notification via
-Direct Message:
-
-![Direct Message Notification](/images/direct-message-notif.png)
-
-Or into a public channel:
+On the other side, once the intent is triggered, you'll get a notification in Slack:
 
 ![Public Channel Notification](/images/public-channel-notif.png)
 
@@ -78,35 +72,23 @@ Or into a public channel:
 
 If you'd like to manually share an interesting account to start a discussion
 with the team, you can easily share any account with any channel. Navigate to
-any **account profile page** in Koala and find this on the right:
+any **account profile page** in Koala and look for the Slack icon at the top:
 
-![Share Account 1](/images/share-account-1.png)
+![Share Account 1](/images/integrations/slack/share-in-slack.png)
 
 In the Slack channel, it will appear like this:
 
 ![Share Account 2](/images/share-account-2.png)
 
-### Subscribe to list updates
+### Subscribe to specific audiences
 
-If you'd like a more automated notification when people enter or exit a smart
-list, you can subscribe to a feed that triggers whenever a contact or account
-"matches" or "unmatches" a smart list definition.
+You can also create Slack Alerts that notify you about intent for specific audiences. You can configure these directly from the Slack Alerts creation flow, or from an audience page.
 
-![List Update Message](/images/list-update-message.png)
-
-To set this up, follow these steps:
-
-- To create a Smart List in Koala:
-  - From the main navigation menu, select
-    [Accounts](https://app.getkoala.com/users/login) to create a list of
-    companies, or [Vistors](https://app.getkoala.com/users/login) to create a
-    list of people
-  - Define the filters for your list and "Save Smart List..."
-- Navigate to your list's notifications via
-  [Lists > [List Name] > Notifications](https://app.getkoala.com/users/login)
-- Select **"Slack"** and configure the channel you'd like to send notifications
-  to
-- You're all set! Now whenever a new company or person enters your list, you'll
+To set one up, follow these steps:
+- Select (or create) an audience [here](https://app.getkoala.com/goto/views)
+- Once you have navigated to the audience, click the **"Slack Alerts"** button at the top of the page
+- Configure the channel you'd like to send notifications to, and the Intent Signals you want to know about.
+- You're all set! Now whenever a new company or person shows the intent you wanted to know about, you'll
   get notified.
 
 ### Support
