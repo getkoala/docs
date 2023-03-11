@@ -66,6 +66,7 @@
         "integrations/clearbit",
         "integrations/google-tag-manager",
         "integrations/mintlify",
+        "integrations/readme",
         "integrations/segment",
         "integrations/slack"
       ]
