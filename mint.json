@@ -65,6 +65,7 @@
       "pages": [
         "integrations/clearbit",
         "integrations/google-tag-manager",
+        "integrations/mintlify",
         "integrations/segment",
         "integrations/slack"
       ]
