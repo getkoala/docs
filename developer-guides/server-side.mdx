@@ -1,0 +1,89 @@
+---
+title: "Sending events server-side"
+description: "When you need to integrate Koala with your server-side application."
+---
+
+Sometimes you'll need to send events from your backend application in addition to or instead of using Koala's client-side SDK. This guide will show you how to do that.
+
+**What can it do?**
+- ❌ Autocapture (pageviews, forms, active session time)
+- ❌ Sessions
+- ✅ Custom Events
+- ✅ Visitor Identification
+- ✅ Account Traits
+
+### Identifying visitors
+
+If you've already got the Koala snippet installed client-side on the same top domain as your server you can identify visitors with known email addresses server-side. For example, if your website (www.example.com) has the JavaScript snippet installed, and your app (app.example.com) does not, you can enrich the data Koala is collecting across both.
+
+Whenever users do something identifiable in your app, like logging in, you can identify them manually. This enables you to:
+- Track a visitor across browsers or devices
+- Differentiate truly anonymous visitors from known users
+- Combine all activity from a visitor before and after they've logged in
+- Associate visitors with company data
+
+To identify anonymous visitors with an email, send a request to your workspace's public API for collection:
+
+```sh Tracking API Endpoint
+https://api.getkoala.com/web/projects/<your public api key>/batch
+```
+
+Here's an example request:
+```sh Example Request
+curl --request POST \
+  --url https://api.getkoala.com/web/projects/my-public-api-key/batch \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "profile_id": "3e6a2c18-3b02-40c4-b8d2-1842c193d3ba",
+  "email": "person@example.com"
+}'
+```
+
+You should ensure all websites sharing the same top domain also share the Koala anonymous `profile_id` by respecting one if it's already there, or setting it yourself if it isn't there. You can read and modify the `ko_id` cookie value in the request to do this.
+
+*Note: when setting your own randomly generated `profile_id`, you should use a UUID v4 format.*
+
+Here's an example of parsing the Koala cookie for a `profile_id` using Express in Node.js:
+
+
+```js Node.js Express Example
+const cookieParser = require('cookie-parser')
+const express = require('express')
+const app = express();
+
+app.use(cookieParser())
+
+app.get('/', (req, res) => {
+  // use `profile_id` from cookie, else send a randomly generated one
+  // and set it in the cookie yourself
+  let profile_id = req.cookies.ko_id
+  if (!profile_id) {
+    profile_id = uuid.v4()
+    res.cookie('ko_id', profile_id, { domain: '.example.com' })
+  }
+
+  // send http request to Koala with the `profile_id`
+})
+```
+
+### Sending events
+
+You can also send custom events to Koala using the same `/batch` endpoint for your workspace.
+
+```sh Example Request
+curl --request POST \
+  --url https://api.getkoala.com/web/projects/my-public-api-key/batch \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "profile_id": "3e6a2c18-3b02-40c4-b8d2-1842c193d3ba",
+  "events": [{
+    "message_id": "any idempotent id (can be a uuid or anything unique)",
+    "type": "track",
+    "event": "Created Account",
+    "properties": {},
+    "sent_at": "2022-11-09T23:57:14.776Z"
+  }]
+}'
+```
+
+You can send multiple events at once. You can omit the `message_id` if you do not require it, but note that the event could potentially be captured more than once (if retries are needed). The `message_id` acts as an idempotency key to dedupe replayed/retried events.
