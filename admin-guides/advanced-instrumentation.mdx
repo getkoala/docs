@@ -28,21 +28,21 @@ Koala has similar semantics to most product analytics tools (eg., Segment, Rudde
 
 Here is a quick compatibility guide if you're already using one of these tools client-side:
 
-### Segment
-- **Can I do a codeless install?** ✅ Yes! You can read more <a href="/docs/integrations/segment">here</a>.
-- **How do I get `track` and `identify` calls?** ✅ They will be automatically picked up!
+### Segment (✅ - full integration)
+- **Can I do a codeless install?** Yes! You can read more <a href="/docs/integrations/segment">here</a>.
+- **How do I get `track` and `identify` calls?** They will be automatically picked up!
 
-### Google Tag Manager
-- **Can I do a codeless install?** ✅ Yes! You can read more <a href="/docs/integrations/google-tag-manager">here</a>.
-- **How do I get `track` and `identify` calls?** ❌ You'll need to do a manual implementation, since these aren't sent with GTM.
+### Google Tag Manager (✅ - full integration)
+- **Can I do a codeless install?** Yes! You can read more <a href="/docs/integrations/google-tag-manager">here</a>.
+- **How do I get `track` and `identify` calls?** You'll need to do a manual implementation, since these aren't sent with GTM.
 
-### Rudderstack
-- **Can I do a codeless install?** ❌ No, it's required that you install the Koala SDK directly on the site.
-- **How do I get `track` and `identify` calls?** ✅ They will be automatically picked up once the Koala SDK is manually installed!
+### Rudderstack (✅❌ - partial integration)
+- **Can I do a codeless install?** No, it's required that you install the Koala SDK directly on the site.
+- **How do I get `track` and `identify` calls?** They will be automatically picked up once the Koala SDK is manually installed!
 
-### Heap, Amplitude, Mixpanel, Posthog, and others
-- **Can I do a codeless install?** ❌ No integration support.
-- **How do I get `track` and `identify` calls?** ❌ You'll need add `ko.track` and `ko.identify` to any relevant places of code.
+### Heap, Amplitude, Mixpanel, Posthog, and others (❌ - no integration)
+- **Can I do a codeless install?** No integration support.
+- **How do I get `track` and `identify` calls?** You'll need add `ko.track` and `ko.identify`. We recommend searching through your codebase for your exisiting tracking and adding new `ko` tracking. (If you have a large analytics implementation and would like us to support this, please email support@getkoala.com.)
 
 The most important things to ensure a successful implementation are as follows:
 
