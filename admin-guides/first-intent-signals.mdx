@@ -1,0 +1,86 @@
+---
+title: "First intent signals"
+description: "This guide walks you through our most common starting intent signals"
+---
+
+Excited about the idea of sending intent signals to your sales team, but have no idea how to get started? Not seeing your intent signals firing as expected? This guide is for you!
+
+## Anatomy of an intent signal
+
+Before we dig into our suggestions, we want to give you a bit of technical foundation for what is actually happening with an intent signal. Here is what is happening:
+
+- a prospect or customer takes some action on your marketing site, blog, or technical docs
+- Koala asks: _does this action "match" an intent signal that has been configured?_
+	- if yes: deliver that notification to the correct rep
+	- if no: store the activity in the core platform, but don't highlight it to the Sales team
+
+When you set up an intent signal, you're effectively telling Koala what types of activity are worth highlighting to your Sales team. There are several types of behavior you can highlight, but for the purposes of this guide, we'll be focused on the simplest type of intent signals — signals that are triggered from a pageview.
+
+### Configuration
+
+An intent signal based on a pageview typically consists of two things:
+
+* What URL(s) should trigger the intent signal?
+* How much time spent on the page is needed?
+
+**What the configuration looks like**
+
+![](/images/admin-guides/first-intent-signals/intent-signal-config.png)
+
+**What the matching marketing page looks like**
+
+![](/images/admin-guides/first-intent-signals/docs-page-window.png)
+
+**A note on timing**
+
+| Timing | What is it? | When to use? |
+| --- | --- | --- |
+| 5+ seconds | short page view | Recommend making this minimum threshold for intent signals |
+| 30+ seconds | short-form content | Good for 1-pager type content or shorter tech docs |
+| 2+ minutes | long-form content | Good for longer blog posts or very long tech docs |
+
+Koala's session times (while accurate) sometimes are “less” than most people expect to see because we filter out all non-active time. If in doubt, use your phone as a stopwatch and sit on the page for _X_ seconds and see what makes sense!
+
+### Recommended first intent signals
+With that foundation established, let's get into the playbook! For each of these intent signals, you'll want to: 
+
+- navigate to the page
+- look at what the URL bar says
+- figure out how to encode. 
+
+In this guide, we've included common naming practices we see, but **this will only work if it exactly matches your URLs**!
+
+**Pricing page**
+- **Why?** This shows pretty explicit buying intent
+- **URL:** URL contains `/pricing` or `/plans`
+- **Timing:** session time `greater than 5 seconds`
+
+**Us vs. competitor**
+- **Why?** Someone researching you vs. a competitor is often a great sign that they are seriously evaluating a vendor
+- **URL:** sometimes people have this on their blog, sometimes a dedicated landing page
+- **Timing:** session time `greater than 5 seconds`
+
+**Technical docs**
+- **Why?** This is some of the best intent; it shows that someone is fairly deep in the consideration process as they are consuming deeper technical material about your product
+- **URL:** contains `/docs` or `docs.acmecorp.com`
+- **Timing:** session time `greater than 30 seconds` (or `greater than 2 minutes`, depending on the length of your docs)
+
+**Blog**
+- **Why?** A full content read shows consideration
+- **URL:** URL contains `/blog`
+- **Timing:** session time `greater than 2 minutes`
+
+**Case study**
+- **Why?** Reading a case study often shows someone making a business case internally
+- **URL:** Look for URL commonalities on your case studies; no standard pattern here
+- **Timing:** session time `greater than 30 seconds`
+
+**Product pages**
+- **Why?** Reading a product splash page often signifies that someone is digging deeper into how the product works and can be a good time for a Sales rep to offer a demo with a product expert
+- **URL:** Look for URL commonalities on your case studies; no standard pattern here
+- **Timing:** session time `greater than 30 seconds`
+
+**Solution pages**
+- **Why?** Reading a solution splash page often signifies that someone is looking for a top-to-bottom solution (and tends to be an indicator of a bit more of a sales-led buying journey)
+- **URL:** Look for URL commonalities on your case studies; no standard pattern here
+- **Timing:** session time `greater than 30 seconds`
