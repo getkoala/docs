@@ -63,7 +63,9 @@
     },
     {
       "group": "Guides for Developers",
-      "pages": ["developer-guides/server-side"]
+      "pages": [
+        "developer-guides/server-side"
+      ]
     },
     {
       "group": "Integrations",

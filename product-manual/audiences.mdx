@@ -1,0 +1,69 @@
+---
+title: "Audiences"
+description: "Learn more about Audiences"
+---
+
+## What is an Audience?
+
+An audience is a collection of visitors or accounts. To understand how to create an audience, it's important to first understand a bit about how Koala thinks about visitors and accounts.
+
+## Accounts and visitors
+
+An account is a company that is on your website (eg., Koala). We uniquely identify each account using the company's domain (eg., `getkoala.com`). For companies that have multiple domains (eg., `getdropbox.com` and `dropbox.com`), we use enrichment data to merge duplicative domains into one company.
+
+A visitor is a person that is on your website (eg., Tido Carriero). We uniquely identify each visitor using their email address (eg., `tido@getkoala.com`).
+
+Note that a visitor can also be anonymous and still map to an account — that user will remain anonymous unless they ever provide an email address, at which point they will become a known user.
+
+## Creating an audience
+
+Koala automatically joins together several data sources, enabling you quite a bit of flexibility in terms of audience creation. An audience is a set of filters, and you can see what the filters look like here:
+
+[[filters image]]
+
+Here are some commonly used filter types:
+
+### Last Seen
+In every audience you make there is an implicit filter — when the user or account was last seen. Koala only ever will show you people or accounts that have actively shown intent on your site at some point in the past. This is an important thing to realize — **every single person you see has come to your site and interacted with it in some way**!
+
+### CRM Data
+- Salesforce Account data (eg., account owner)
+- Salesforce Opportunity data (eg., current stage name)
+- Salesforce Contact data (eg., title)
+- Hubspot Account data (eg., account owner)
+- Hubspot Deal data (eg., current stage name)
+- Hubspot Contact data (eg., title)
+
+### Enrichment Data
+- Clearbit Account data (eg., # of employees, industry, etc.)
+
+### Koala Data
+- Fit grade (eg., 'A' or 'D')
+- Intent score (eg., Very high)
+- Have they visited a specific page? (eg., /blog/us-vs-competitor-teardown)
+- Have they done an intent signal? (eg., Read blog)
+- Have they spent a certain amount of time on the site? (eg., 10+ minutes session time)
+
+## Common audiences
+
+Here are a few audience ideas to get you started:
+
+- **Not in CRM**: believe it or not, even if you have a fairly developed CRM, you probably have 2-3x more accounts on your website than are in your CRM. Make sure you're staying on top of these accounts! (You may want to add in some other enrichment filters - eg., filtering toward your ICP, since you will probably also have some accounts not in your ICP on your site.)
+
+- **Known users not in your CRM**: you can create an audience of all known users on your site that are not contacts in your CRM. This gives you a sense of all the people actively engaging with your marketing materials and/or your app that you aren't currently thinking of contacts in Salesforce.
+
+- **Unowned accounts in a particular Segment/territory**: if you're <a href="/docs/admin-guides/larger-sales-teams">setting up Koala for a larger sales team</a>, these types of audiences are going to be the bread and butter of your strategy. Make sure that each team in your org structure has a corresponding list of unowned accounts that they can work.
+
+This is just scraping the surface — learning to use filters and creat audiences is hard, but can lead to some incredibly powerful outcomes. Start simple, but keep iterating and don't settle for a view that has junk (there's always a filter that can help you get rid of the junk!).
+
+## Audiences for Slack Alerts
+
+Here's how audiences can be used to filter Slack Alerts:
+
+[[slack alerts image]]
+
+## Audiences and Koala Weekly
+
+Here's what an audience looks like in Koala Weekly:
+
+[[koala weekly image]]
