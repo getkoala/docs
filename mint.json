@@ -63,7 +63,11 @@
     },
     {
       "group": "Guides for Developers",
-      "pages": ["developer-guides/server-side"]
+      "pages": [
+      	"developer-guides/recommended-setup",
+      	"developer-guides/server-side",
+      	"developer-guides/custom-proxy-setup"
+      ]
     },
     {
       "group": "Integrations",
