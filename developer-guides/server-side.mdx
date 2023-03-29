@@ -25,18 +25,16 @@ Whenever users do something identifiable in your app, like logging in, you can i
 To identify anonymous visitors with an email, send a request to your workspace's public API for collection:
 
 ```sh Tracking API Endpoint
-https://api.getkoala.com/web/projects/<your public api key>/batch
+https://api2.getkoala.com/web/projects/<your public api key>/batch
 ```
 
 Here's an example request:
 ```sh Example Request
-curl --request POST \
-  --url https://api.getkoala.com/web/projects/my-public-api-key/batch \
-  --header 'Content-Type: application/json' \
-  --data '{
-  "profile_id": "3e6a2c18-3b02-40c4-b8d2-1842c193d3ba",
-  "email": "person@example.com"
-}'
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{ "profile_id": "3e6a2c18-3b02-40c4-b8d2-1842c193d3ba", "email": "person@example.com" }' \
+  https://api2.getkoala.com/web/projects/my-public-api-key/batch
 ```
 
 You should ensure all websites sharing the same top domain also share the Koala anonymous `profile_id` by respecting one if it's already there, or setting it yourself if it isn't there. You can read and modify the `ko_id` cookie value in the request to do this.
@@ -71,19 +69,20 @@ app.get('/', (req, res) => {
 You can also send custom events to Koala using the same `/batch` endpoint for your workspace.
 
 ```sh Example Request
-curl --request POST \
-  --url https://api.getkoala.com/web/projects/my-public-api-key/batch \
-  --header 'Content-Type: application/json' \
-  --data '{
-  "profile_id": "3e6a2c18-3b02-40c4-b8d2-1842c193d3ba",
-  "events": [{
-    "message_id": "any idempotent id (can be a uuid or anything unique)",
-    "type": "track",
-    "event": "Created Account",
-    "properties": {},
-    "sent_at": "2022-11-09T23:57:14.776Z"
-  }]
-}'
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "profile_id": "3e6a2c18-3b02-40c4-b8d2-1842c193d3ba",
+    "events": [{
+      "message_id": "any idempotent id (can be a uuid or anything unique)",
+      "type": "track",
+      "event": "Created Account",
+      "properties": {},
+      "sent_at": "2022-11-09T23:57:14.776Z"
+    }]
+  }' \
+  https://api2.getkoala.com/web/projects/my-public-api-key/batch
 ```
 
 You can send multiple events at once. You can omit the `message_id` if you do not require it, but note that the event could potentially be captured more than once (if retries are needed). The `message_id` acts as an idempotency key to dedupe replayed/retried events.
