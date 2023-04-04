@@ -16,7 +16,7 @@ We've designed the plans to roughly work as follows:
 We hope you find that the default base packages are pretty reasonable and a good starting point. 
 
 Working from the base package, you may need too add: 
-* Extra **Workspace Members** (each license allows for access to the platform, Slack mentions when your account is active, and a subscription to Koala Weekly)
+* Extra **Billable Members** (each license allows for access to the platform, Slack mentions when your account is active, and a subscription to Koala Weekly)
 * Extra **Koala Accounts** (each pack allows for 250 more companies)
 
 This is more rare and only typically applies to high-traffic websites or high-volume product analytics implementations, but you may also need:
@@ -31,7 +31,7 @@ Below is an overview of the pricing grid. All prices are **per month**, but we o
 | **Price** | | | |
 | Per month | Free forever | $175 | $750 |
 | **Base packages** | | | |
-| **Workspace Members**<br/>*Additional licenses* | **3 licenses**<br/>*Refer someone* | **3 licenses**<br/>*$15 / user* | **10 licenses**<br/>*$50 / user* |
+| **Billable Members**<br/>*Additional licenses* | **3 licenses**<br/>*Refer someone* | **3 licenses**<br/>*$15 / user* | **10 licenses**<br/>*$50 / user* |
 | **Koala Accounts**<br/>*Additional accounts* | **250 accounts**<br/>*Refer someone* | **1,000 accounts**<br/>*$15 / 250 accounts* | **Unlimited accounts**<br/>&nbsp; |
 | **Events / mo**<br/>*Additional events* | **100k events**<br/>*Not available* | **500k events**<br/>*$45 / 100k events* | **1M events**<br/>*Volume discounts available* |
 | **Features** | | | |
@@ -66,11 +66,11 @@ Typically, we see customers upgrade to Business when one of the following occurs
 - (3) they want 90d data retention for all events
 - (4) they prefer to do budgeting around a seats-based model
 
-## Koala Accounts, Workspace Members, and Events
+## Koala Accounts, Billable Members, and Events
 Koala is a hybrid of an efficiency tool for sales reps and a powerful data platform. To understand the total Koala bill, you'll need to understand three metrics:
 - Koala Accounts
-- Workspace Members
-- Events
+- Billable Members
+- Events / mo
 
 We provide a deep-dive into each of the three metrics below.
 
@@ -89,21 +89,21 @@ Koala guides toward Free, Team, or Business plans based on the number of account
 While Koala collects all data automatically, you can exclude any account that is not valuable to you with <a href="https://app.getkoala.com/goto/settings/excluded-accounts">excluded account filters</a>. 
 </Note>
 
-### Workspace Members
+### Billable Members
 
-Like any CRM or other sales app, Koala charges for licenses. 
+Like any CRM or other sales app, Koala charges for reps to use it. Admin and Member roles are billable — Developer roles are not. 
 
-| Plan | Workspace Members | Extra |
+| Plan | Billable Members | Extra |
 | ---- | ----------------- | ------------------ |
 | Free | 3 | Refer a company | 
 | Team | 3 | $15 per user per month |
 | Business | 10 | $50 per user per month |
 
-A license entitles a rep to do three things:
+Admin and Member roles are entitled to do three things:
 
 - full access to the Koala app
-- subscribing to a personalized Koala Weekly email
-- receiving @-mentions in Slack when your account is showing intent
+- receive Koala Weekly
+- receive @-mentions in Slack when your their account hits an intent signal
 
 ### Event volume per month
 <Note>
@@ -125,7 +125,7 @@ You can estimate your event cost by adding the number of pageviews, identifies, 
 </Note>
 
 
-## Calculating total cost
+## Estimating total cost
 
 <Note>
 If you already have a trial going, we can give very accurate quotes based on current usage! Just ping us: support@getkoala.com.
@@ -133,20 +133,25 @@ If you already have a trial going, we can give very accurate quotes based on cur
 
 Ultimately you'll want to answer four questions:
 
-**1. How many licenses do I need?**
+**1. How many billable members do I need?**
 
 - Who at the company would benefit from real-time notifications about their accounts and Koala Weekly?
 - Who at the company would benefit from visibility into what our customers and prospects are doing on our site?
 
-**2. How many accounts do I need?**
+**2. How many Koala Accounts do I need?**
 
-- How many accounts are in Koala? (Find the gray number on your <a href="https://app.getkoala.com/goto/accounts">accounts page</a>.)
-- Can I cut some of the less interesting ones using <a href="https://app.getkoala.com/goto/settings/excluded-accounts">excluded account filters</a>?
+Very rough rules of thumb:
+- Seed: ~250 - 500 Koala Accounts
+- Series A: ~500 - 5,000 Koala Accounts
+- Series B: ~2,500 - 10,000 Koala Accounts
+- Series C and beyond: 10,000+ Koala Accounts 
+
+The best way to get an accurate estimate is to start a trial and visit your <a href="https://app.getkoala.com/goto/billing">billing page</a> after 1-3 weeks. Here, you'll be able to setup Hidden Accounts, so you aren't paying for any accounts you don't need.
 
 **3. How many events do I want to send?**
 
 - If you plan to do the basic instrumentation only, you can likely get a good proxy from your Google Analytics.
-- If you plan to do the <a href="/docs/admin-guides/advanced-instrumentation">advanced instrumentation</a>, you will need to look at your product analytics tool to get the total number of identifies, custom events, and pageviews.
+- If you plan to do the <a href="/docs/admin-guides/advanced-instrumentation">advanced instrumentation</a>, you will need to look at your product analytics tool to get the total number of page views, identifies, custom events, and form fills.
 
 **4. Do I need CRM Automations?**
 
