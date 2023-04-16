@@ -1,6 +1,6 @@
 ---
 title: "Send events"
-description: "Learn how to intall the Koala JavaScript SDK."
+description: "Learn how to capture key events with the Koala JavaScript SDK."
 ---
 
 You can capture events that signify important actions in your product or marketing site. For example, you could send an event when a user clicks a certain call-to-action button or when a user signs up for your product.
@@ -12,6 +12,8 @@ ko.track('Signed Up', {
   source: 'Pricing Page'
 })
 ```
+
+If you are using Segment, Koala can be configured to automatically hook into Segment events without any code.
 
 You can use custom events like this to define [Intent Signals](/product-manual/intent-signals) and send real-time [Slack Alert](/product-manual/slack-alerts).
 
