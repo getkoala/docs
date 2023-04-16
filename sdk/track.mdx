@@ -1,0 +1,28 @@
+---
+title: "Send events"
+description: "Learn how to intall the Koala JavaScript SDK."
+---
+
+You can capture events that signify important actions in your product or marketing site. For example, you could send an event when a user clicks a certain call-to-action button or when a user signs up for your product.
+
+```js
+ko.track('Signed Up', {
+  plan: 'Team Plan',
+  frequency: 'monthly',
+  source: 'Pricing Page'
+})
+```
+
+You can use custom events like this to define [Intent Signals](/product-manual/intent-signals) and send real-time [Slack Alert](/product-manual/slack-alerts).
+
+<Tip>
+    When enabled, Koala's SDK will autotrack most form submissions. You can often model Intent Signals without sending custom events for things like demo requests or registrations unless Koala is not able to see those forms. In those cases, it's recommended to send custom events in lieu of the autotracked form submission.
+</Tip>
+
+```js
+ko.track('Requested Demo', {
+  team_size: '10-50',
+  how_did_you_hear_about_us: 'Google Search'
+})
+```
+

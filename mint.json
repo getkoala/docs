@@ -63,9 +63,7 @@
     },
     {
       "group": "Guides for Developers",
-      "pages": [
-        "developer-guides/server-side"
-      ]
+      "pages": ["developer-guides/server-side"]
     },
     {
       "group": "Product Manual",
@@ -74,7 +72,11 @@
         "product-manual/intent-signals",
         "product-manual/slack-alerts",
         "product-manual/koala-weekly"
-       ]
+      ]
+    },
+    {
+      "group": "JavaScript SDK",
+      "pages": ["sdk/installation", "sdk/identify", "sdk/track"]
     },
     {
       "group": "Integrations",
