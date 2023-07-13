@@ -82,6 +82,7 @@
     {
       "group": "Integrations",
       "pages": [
+        "integrations/apollo",
         "integrations/clearbit",
         "integrations/google-tag-manager",
         "integrations/mintlify",
