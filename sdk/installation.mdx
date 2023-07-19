@@ -3,4 +3,27 @@ title: "Install Koala"
 description: "Learn how to install the Koala JavaScript SDK."
 ---
 
-See [the Quick Start](/get-started/quick-start#copy-the-snippet)
+See [the Quick Start](/get-started/quick-start#copy-the-snippet) for general installation instructions.
+
+## Troubleshooting
+
+### Using a strict Content Security Policy
+
+Koala asynchronously loads different parts of the library as needed. If your site uses a strict Content Security Policy (CSP) that specifies which locations can download JavaScript or use Websockets, then you'll need to update the CSP to handle those pieces used for Koala. 
+
+<Note>
+You may see client-side errors about a "Content Security Policy" directive if you are using a strict CSP and Koala has not be added to it.
+</Note>
+
+Depending on your CSP configuration, you may need various CSP directives like `connect-src` or `script-src` to allow Koala to work properly.
+
+You may need to add the following to your CSP:
+
+If you have a strict `connect-src`, add these endpoints to it:
+- `https://*.getkoala.com`
+- `wss://*.getkoala.com`
+
+If you have a strict `script-src`, add this endpoint to it:
+- `https://*.getkoala.com`
+
+It's likely you can find it in your codebase if you do a case-insensitive search for `script-src`, but if you need to learn more about it, use this resource to learn more: https://content-security-policy.com
