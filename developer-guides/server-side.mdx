@@ -86,3 +86,33 @@ curl -X POST \
 ```
 
 You can send multiple events at once. You can omit the `message_id` if you do not require it, but note that the event could potentially be captured more than once (if retries are needed). The `message_id` acts as an idempotency key to dedupe replayed/retried events.
+
+### Sending Traits
+
+You can send custom traits that can be attached to a Koala visitor using the `/batch` endpoint for your workspace.
+
+<Note>
+You must either pass a `profile_id` or `email` key in the body of a request in order for it to be attached to an existing visitor in Koala.
+
+- You can find the `profile_id` for a visitor by reading the `ko_id` cookie that is set by the Koala pixel client side.
+- Alternatively, you can attach an `email` field to your `/batch` call, and Koala will associate the traits to an existing user that has been previously identified using the same email.
+</Note>
+
+```sh Example Request
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "profile_id": "3e6a2c18-3b02-40c4-b8d2-1842c193d3ba",
+    "email": "user@example.org",
+    "identifies": [{
+      "type": "identify",
+      "traits": {
+        "billing_plan": "pro",
+        "vip": true,
+        "is_current_customer": true
+      },
+    }]
+  }' \
+  https://api2.getkoala.com/web/projects/my-public-api-key/batch
+```
