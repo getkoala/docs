@@ -97,18 +97,19 @@ The following script includes a sample identify call that can be issued at any t
 
 ```javascript
 /**
-* Identify calls can be issued at any time, on any page where the koala
-* pixel is instrumented.
-**/
+ * Identify calls can be issued at any time, on any page where the koala
+ * pixel is instrumented.
+ */
 
 // email is how koala ties this user to a specific contact
 ko.identify(email, {
-   // You can send any javascript object here.
-   // Each field will be associated as a user trait
+  // You can send any javascript object here.
+  // Each field will be associated as a user trait
   ...userObjectTraits,
   $account: {
-     // You can send any javascript object here.
-     // Each field will be associated as an Account Trait
+    group_id: 'your-unique-grouping-id',
+    // You can send any javascript object here.
+    // Each field will be associated as an Account Trait
     ...accountObjectTraits
   }
 })
@@ -124,6 +125,7 @@ ko.identify('tido@getkoala.com', {
   $account: {
     name: 'Koala',
     domain: 'getkoala.com',
+    group_id: 'your-unique-grouping-id'
     pricing_plan: 'enterprise',
     is_trialing: true,
     trial_end_at: '2023-03-03',
