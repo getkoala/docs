@@ -28,26 +28,16 @@ You should use the `identify` method whenever a visitor:
 ko.identify('jane.doe@example.com')
 ```
 
-You can also provide additional properties about the visitor when you identify them. This information can help you better understand traits about your visitors.
+## Setting visitor traits
 
-```js
-ko.identify('jane.doe@example.com', {
-  name: 'Jane Doe',
-  plan: 'Team Plan',
-  logins: 5
-})
-```
-
-## Setting visitor properties
-
-You can use the `properties` (2nd argument) to supply additional details about the anonymous or known visitor. This can include any relevant information that helps you understand your visitors better. Some examples of visitor properties are:
+You can use the `traits` (2nd parameter) to supply additional details about the anonymous or known visitor. This can include any relevant information that helps you understand your visitors better. You can use this data to filter and segment your visitors in Koala. Some examples of visitor traits are:
 
 - `name`: The visitor's full name
 - `title`: The visitor's job title
 - `role`: The visitor's role
 - and whatever else is important to your business
 
-Here is an example of using the `identify` method to set visitor properties:
+Here is an example of using the `identify` method to set visitor traits:
 
 ```js
 ko.identify('jane.doe@example.com', {
@@ -55,3 +45,58 @@ ko.identify('jane.doe@example.com', {
   title: 'Product Manager'
 })
 ```
+
+We recommend sending traits along with every `identify` call to make sure your visitor's profile is up to date.
+
+## Setting account traits
+
+In addition to capturing visitor traits, you can also specify _account-level_ traits. This is any data about the company or organization you want Koala to know about. You can use account traits to set up filters and lists in Koala.
+
+Here is an example of using the `identify` method to set account traits:
+
+```js
+ko.identify('jane.doe@example.com', {
+  $account: {
+    name: 'Acme Inc.',
+    domain: 'example.com',
+    plan: 'Enterprise'
+  }
+})
+```
+
+When you specify the `$account.domain`, Koala will automatically associate that company with the visitor, if not already associated. If `domain` is not a unique value for your account-level data, for instance if you have multiple Teams or Workspaces that all link back to the same `domain`, you can specify the `group_id` to distinguish them. It's recommended to always include a `group_id` that is a unique id for the group of data.
+
+```js
+ko.identify('jane.doe@example.com', {
+  $account: {
+    group_id: '<replace-with-unique-id-for-acme-inc>',
+    name: 'Acme Inc.',
+    domain: 'example.com',
+    plan: 'Enterprise'
+  }
+})
+```
+
+You can link multiple sets of `group_id` traits to the same domain, but you cannot do it in a single `identify` call:
+
+```js
+// ✅ Allowed
+ko.identify('jane.doe@example.com', {
+  $account: {
+    group_id: 'acme-production-id',
+    name: 'Acme Inc.',
+    domain: 'example.com',
+    plan: 'Enterprise'
+  }
+})
+ko.identify('jane.doe@example.com', {
+  $account: {
+    group_id: 'acme-test-environment-id',
+    name: 'Acme Inc.',
+    domain: 'example.com',
+    plan: 'Free'
+  }
+})
+```
+
+Unlike some product analytics tools that have a `group` concept, we do not support capturing `group_id`s for events/pageviews. Instead, they are only used for collecting sets of traits you want to associate with a given account (company/domain).
