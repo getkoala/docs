@@ -64,7 +64,11 @@ ko.identify('jane.doe@example.com', {
 })
 ```
 
-When you specify the `$account.domain`, Koala will automatically associate that company with the visitor, if not already associated. If `domain` is not a unique value for your account-level data, for instance if you have multiple Teams or Workspaces that all link back to the same `domain`, you can specify the `group_id` to distinguish them. It's recommended to always include a `group_id` that is a unique id for the group of data.
+When you specify the `$account.domain`, Koala will automatically associate that company with the visitor, if not already associated. 
+
+If `domain` is not a unique value for your account-level data, for instance if you have multiple Teams or Workspaces that all link back to the same `domain`, you can specify the `group_id` to distinguish them. It's recommended to always include a `group_id` that is a unique id for the group of data.
+
+<Info>You can pass account traits as camelCase or snake_case. Koala will treat them the same. Use whatever is most comfortable or familiar for your environment/language.</Info>
 
 ```js
 ko.identify('jane.doe@example.com', {
