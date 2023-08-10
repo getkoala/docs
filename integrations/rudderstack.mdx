@@ -1,0 +1,26 @@
+---
+title: "Rudderstack Integration"
+description:
+  "Koala integrates natively with Rudderstack in the browser."
+---
+
+### Setup
+Koala can detect the Rudderstack browser SDK natively without any extra code. All you need to do is to make sure both Koala and Rudderstack have been instrumented on your Website.
+
+## How does the integration work?
+Koala will automatically detect any `track` or `identify` events that have been issued by Rudderstack, so you don't need to instrument the same events multiple times in your Website or Web App.
+
+### Track Calls
+Any client side `rudderanalytics.track` calls will be forward to Koala automatically via `ko.track` calls. Track calls are compatible across both platforms.
+
+<Note>
+You can manage all your existing events in the [Event Management Page](https://app.getkoala.com/goto/events/custom) in Koala.
+</Note>
+
+### Identify Calls
+Any client side `rudderanalytics.identify` call will also be forwarded to Koala along with all traits that are being sent into Rudderstack.
+Email traits will be used to pair an Koala Visitor to an existing person in the Koala app, so your team can see more identified prospects.
+
+<Note>
+You can manage all your existing Visitor Traits in the [Traits Management Page](https://app.getkoala.com/goto/events/visitor-traits) in Koala.
+</Note>
