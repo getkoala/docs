@@ -42,8 +42,8 @@ The most effective way to do first-party identification is to instrument a
 `ko.identify(email)` call using the [client-side SDK](/get-started/quick-start).
 
 <Note>
-  If you're using Segment, Koala will automatically detect and send `identify`
-  calls from Segment's analytics.js library by default (unless you've explicitly
+  If you're using Segment, Koala will automatically detect and forward `identify`
+  calls from Segment's analytics.js library to `ko.identify` by default (unless you've explicitly
   disabled it).
 </Note>
 

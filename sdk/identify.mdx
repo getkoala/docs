@@ -28,6 +28,10 @@ You should use the `identify` method whenever a visitor:
 ko.identify('jane.doe@example.com')
 ```
 
+<Note>
+  Using Google Sign In or other login methods? Check out more details below: [Identifying with Google Sign In](#identifying-with-google-sign-in-passwordless-magic-links-or-others)
+</Note>
+
 ## Setting visitor traits
 
 You can use the `traits` (2nd parameter) to supply additional details about the anonymous or known visitor. This can include any relevant information that helps you understand your visitors better. You can use this data to filter and segment your visitors in Koala. Some examples of visitor traits are:
@@ -104,3 +108,24 @@ ko.identify('jane.doe@example.com', {
 ```
 
 Unlike some product analytics tools that have a `group` concept, we do not support capturing `group_id`s for events/pageviews. Instead, they are only used for collecting sets of traits you want to associate with a given account (company/domain).
+
+## Identifying with Google Sign In, Passwordless Magic Links (or others)
+
+Typically, the Koala pixel autocaptures emails from form submissions, which works great for traditional login forms. However, for more advanced login methods, like Google Sign-In, GitHub Sign-In, or Single Sign-On (SSO), manual intervention is required. 
+
+If you use these types of sign-in methods, you'll need to manually call `ko.identify` _after_ the user has successfully logged in. We recommend installing the Koala pixel on the landing page of your logged-in site, and then calling `ko.identify` from there with the user's email. You can also provide any other relevant traits you want to see or use in Koala.
+
+```js
+ko.identify('jane.doe@example.com', {
+  name: 'Jane Doe', 
+  title: 'Product Manager'
+})
+```
+
+<Note>
+  If you cannot manually call `ko.identify` from the client-side of your logged-in site (after successful login/signup), it is possible to identify users server-side, but a bit more complex. We strongly recommend installing the Koala pixel and calling `ko.identify` on page load of your logged-in site, but if this is not possible you can read more about [Identifying server-side](/developer-guides/server-side#identifying-visitors).
+</Note>
+
+## Reset after logout
+
+When a user logs out on your frontend, you should call `ko.reset()`. This will prevent future events from that device from being linked with that user. This is especially important when a device is shared by multiple users.
