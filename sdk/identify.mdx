@@ -111,7 +111,7 @@ Unlike some product analytics tools that have a `group` concept, we do not suppo
 
 ## Identifying with Google Sign In, Passwordless Magic Links (or others)
 
-Typically, the Koala pixel autocaptures emails from form submissions, which works great for traditional login forms. However, for more advanced login methods, like Google Sign-In, Github Sign-In, or Single Sign-On (SSO), manual intervention is required. 
+Typically, the Koala pixel autocaptures emails from form submissions, which works great for traditional login forms. However, for more advanced login methods, like Google Sign-In, GitHub Sign-In, or Single Sign-On (SSO), manual intervention is required. 
 
 If you use these types of sign-in methods, you'll need to manually call `ko.identify` _after_ the user has successfully logged in. We recommend installing the Koala pixel on the landing page of your logged-in site, and then calling `ko.identify` from there with the user's email. You can also provide any other relevant traits you want to see or use in Koala.
 
@@ -123,7 +123,7 @@ ko.identify('jane.doe@example.com', {
 ```
 
 <Note>
-  If you cannot manually call `ko.identify` from the client-side of your logged-in site (after successful login/signup), it is possible to identify users server-side, but a bit more complex. We strongly recommend installing the Koala pixel and calling `ko.identify` on page load of your logged-in site, but if this is not possible please reach out to support@getkoala.com.
+  If you cannot manually call `ko.identify` from the client-side of your logged-in site (after successful login/signup), it is possible to identify users server-side, but a bit more complex. We strongly recommend installing the Koala pixel and calling `ko.identify` on page load of your logged-in site, but if this is not possible you can read more about [Identifying server-side](/developer-guides/server-side#identifying-visitors).
 </Note>
 
 ## Reset after logout
