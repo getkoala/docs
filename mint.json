@@ -75,6 +75,7 @@
       "group": "Product Manual",
       "pages": [
         "product-manual/audiences",
+        "product-manual/content-reports",
         "product-manual/intent-signals",
         "product-manual/slack-alerts",
         "product-manual/koala-weekly"
