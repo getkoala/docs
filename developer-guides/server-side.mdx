@@ -28,7 +28,7 @@ To identify anonymous visitors with an email, send a request to your workspace's
 https://api2.getkoala.com/web/projects/<your public api key>/batch
 ```
 
-Here's an example request:
+Here's an example bare-bones request:
 ```sh Example Request
 curl -X POST \
   -H "Content-Type: application/json" \
@@ -36,6 +36,10 @@ curl -X POST \
   -d '{ "profile_id": "3e6a2c18-3b02-40c4-b8d2-1842c193d3ba", "email": "person@example.com" }' \
   https://api2.getkoala.com/web/projects/my-public-api-key/batch
 ```
+
+<Note>
+  If you want to explicitly collect `identify` calls and see them appear in the debugger in the Koala app, you'll need to include the `identifies` array in the body of the request. See an [example below](#sending-traits).
+</Note>
 
 You should ensure all websites sharing the same top domain also share the Koala anonymous `profile_id` by respecting one if it's already there, or setting it yourself if it isn't there. You can read and modify the `ko_id` cookie value in the request to do this.
 
@@ -107,11 +111,13 @@ curl -X POST \
     "email": "user@example.org",
     "identifies": [{
       "type": "identify",
+      "sent_at": "2023-11-30T02:51:36.840Z",
       "traits": {
+        "email": "user@example.org",
         "billing_plan": "pro",
         "vip": true,
         "is_current_customer": true
-      },
+      }
     }]
   }' \
   https://api2.getkoala.com/web/projects/my-public-api-key/batch
