@@ -1,0 +1,60 @@
+---
+title: "HubSpot"
+description:
+  "Connect HubSpot's CRM to enable a two-way sync with Koala's data."
+---
+
+## Installation
+
+You must have an active account and project in [Koala](https://app.getkoala.com)
+before proceeding. If you don't have an account,
+[sign up for free](https://app.getkoala.com/signup).
+
+## Reading from HubSpot
+
+### What data will Koala sync?
+
+Upon connecting Koala to HubSpot's CRM, Koala will sync all Accounts, Deals, and Contacts. Koala will automatically refresh HubSpot CRM every hour, so we always have fresh data about who owns which accounts and which accounts are in active deal cycles.
+
+### Matching accounts
+
+For every account on your site, Koala has a list of a domain (eg., `dropbox.com`) and all associated domain aliases (eg., `getdropbox.com`, `dropbox.jp`, `dash.ai`, etc.). We will search your CRM for the primary domain and all aliases, trying to find matches to the Account object's `domain` field. If that isn't set, Koala will use `website` instead.
+
+If Koala finds multiple Account objects matching a domain, we'll tiebreak according to the following rules:
+
+1. Pick the account with most Deals
+2. Pick the account with most Contacts
+3. Pick the account modified most recently
+
+### Matching contacts
+
+Contacts will be matched when an example email match happens between the Contact object and the Koala profile email.
+
+## Importing to HubSpot
+
+There are three actions you can take from Koala to manually write data to HubSpot's CRM:
+
+1. Import Accounts
+2. Import Contacts
+3. Claim Account (rewrite the account owner to be the current Koala user)
+
+These actions can be enabled/disabled by a Koala admin if you don't wish to enable writing to HubSpot.
+
+## Automating actions into HubSpot (Business Plan)
+
+Every time an intent signal happens for a qualifying list that you specify, there are five actions Koala can automate in HubSpot:
+
+1. **Import Company.** Import an Account as a Company in Hubspot if it doesn't already exist. Supports custom field mappings.
+
+2. **Import Contact.** Import a Visitor as a Contact in Hubspot if it doesn't already exist. (Supports custom field mappings.)
+
+3. **Adding to a Contact List.** Adds a Contact to a Contact List.
+
+4. **Create Task.** Assign a task to a specific person. (Supports custom subjects, types, priority, due date, and task owner.)
+
+5. **Add Timeline Entry.** Create a Timeline Entry for the current Visitor or Account.
+
+### Support
+
+Having issues with the HubSpot integration? Email the Koala team with your
+questions at support@getkoala.com!
