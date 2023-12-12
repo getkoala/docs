@@ -6,15 +6,15 @@ description:
 
 ## Installation
 
-You must have an active account and project in [Koala](https://app.getkoala.com)
-before proceeding. If you don't have an account,
+You must have an active Koala account [Koala](https://app.getkoala.com)
+before proceeding. If you don't have a Koala account,
 [sign up for free](https://app.getkoala.com/signup).
 
 ## Reading from HubSpot
 
 ### What data will Koala sync?
 
-Upon connecting Koala to HubSpot's CRM, Koala will sync all Accounts, Deals, and Contacts. Koala will automatically refresh HubSpot CRM every hour, so we always have fresh data about who owns which accounts and which accounts are in active deal cycles.
+Upon connecting Koala to HubSpot's CRM, Koala will sync all Companies, Deals, and Contacts. Koala will automatically refresh HubSpot CRM every hour, so we always have fresh data about who owns which Companies and which Companies have active Deals attached.
 
 ### Matching contacts
 
@@ -24,9 +24,9 @@ Contacts will be matched when an example email match happens between the Contact
 
 There are three actions you can take from Koala to manually write data to HubSpot's CRM:
 
-1. Import Accounts
+1. Import Companies
 2. Import Contacts
-3. Claim Account (rewrite the account owner to be the current Koala user)
+3. Claim Account (rewrite the Company owner to be the current Koala user)
 
 These actions can be enabled/disabled by a Koala admin if you don't wish to enable writing to HubSpot.
 
@@ -50,7 +50,7 @@ Every time an intent signal happens for a qualifying list that you specify, ther
 
 For every account on your site, Koala has a list of a domain (eg., `dropbox.com`) and all associated domain aliases (eg., `getdropbox.com`, `dropbox.jp`, `dash.ai`, etc.). We will search your CRM for the primary domain and all aliases, trying to find matches to the Account object's `domain` field. If that isn't set, Koala will use `website` instead.
 
-If Koala finds multiple Company objects matching a domain, we'll pick the account that was modified most recently.
+If Koala finds multiple Company objects matching a domain, we'll pick the Company that was modified most recently.
 
 ## Support
 
