@@ -1,7 +1,7 @@
 ---
 title: "HubSpot"
 description:
-  "Connect HubSpot's CRM to enable a two-way sync with Koala's data."
+  "Connect HubSpot's CRM to see HubSpot Companies, Deals, and Contacts in Koala. Optionally, write intent signals back to HubSpot."
 ---
 
 ## Installation
@@ -15,16 +15,6 @@ before proceeding. If you don't have an account,
 ### What data will Koala sync?
 
 Upon connecting Koala to HubSpot's CRM, Koala will sync all Accounts, Deals, and Contacts. Koala will automatically refresh HubSpot CRM every hour, so we always have fresh data about who owns which accounts and which accounts are in active deal cycles.
-
-### Matching accounts
-
-For every account on your site, Koala has a list of a domain (eg., `dropbox.com`) and all associated domain aliases (eg., `getdropbox.com`, `dropbox.jp`, `dash.ai`, etc.). We will search your CRM for the primary domain and all aliases, trying to find matches to the Account object's `domain` field. If that isn't set, Koala will use `website` instead.
-
-If Koala finds multiple Account objects matching a domain, we'll tiebreak according to the following rules:
-
-1. Pick the account with most Deals
-2. Pick the account with most Contacts
-3. Pick the account modified most recently
 
 ### Matching contacts
 
@@ -54,7 +44,15 @@ Every time an intent signal happens for a qualifying list that you specify, ther
 
 5. **Add Timeline Entry.** Create a Timeline Entry for the current Visitor or Account.
 
-### Support
+## FAQ
+
+### How do you match Koala accounts to HubSpot Companies?
+
+For every account on your site, Koala has a list of a domain (eg., `dropbox.com`) and all associated domain aliases (eg., `getdropbox.com`, `dropbox.jp`, `dash.ai`, etc.). We will search your CRM for the primary domain and all aliases, trying to find matches to the Account object's `domain` field. If that isn't set, Koala will use `website` instead.
+
+If Koala finds multiple Company objects matching a domain, we'll pick the account that was modified most recently.
+
+## Support
 
 Having issues with the HubSpot integration? Email the Koala team with your
 questions at support@getkoala.com!
