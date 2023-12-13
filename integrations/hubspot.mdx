@@ -12,13 +12,7 @@ before proceeding. If you don't have a Koala account,
 
 ## Reading from HubSpot
 
-### What data will Koala sync?
-
 Upon connecting Koala to HubSpot's CRM, Koala will sync all Companies, Deals, and Contacts. Koala will automatically refresh HubSpot CRM every hour, so we always have fresh data about who owns which Companies and which Companies have active Deals attached.
-
-### Matching contacts
-
-Contacts will be matched when an example email match happens between the Contact object and the Koala profile email.
 
 ## Importing to HubSpot
 
@@ -51,6 +45,10 @@ Every time an intent signal happens for a qualifying list that you specify, ther
 For every account on your site, Koala has a list of a domain (eg., `dropbox.com`) and all associated domain aliases (eg., `getdropbox.com`, `dropbox.jp`, `dash.ai`, etc.). We will search your CRM for the primary domain and all aliases, trying to find matches to the Account object's `domain` field. If that isn't set, Koala will use `website` instead.
 
 If Koala finds multiple Company objects matching a domain, we'll pick the Company that was modified most recently.
+
+### How do you match Koala contacts to HubSpot Contacts?
+
+Contacts will be matched when an example email match happens between the Contact object and the Koala profile email.
 
 ## Support
 

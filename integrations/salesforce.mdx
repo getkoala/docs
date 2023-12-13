@@ -1,0 +1,62 @@
+---
+title: "Salesforce"
+description:
+  "Connect Salesforce's CRM to see Salsforce Accounts, Opportunities, Contacts, and Leads in Koala. Optionally, write intent signals back to Salesforce."
+---
+
+## Installation
+
+You must have an active Koala account [Koala](https://app.getkoala.com)
+before proceeding. If you don't have a Koala account,
+[sign up for free](https://app.getkoala.com/signup).
+
+## Reading from Salesforce
+
+Upon connecting Koala to Salesforce's CRM, Koala will sync all Accounts, Opportunities, Contacts, and Leads. Koala will automatically refresh Salesforce CRM every hour, so we always have fresh data about who owns which Accounts and which Accounts have active Opportunities attached.
+
+No data will be written to Salesforce by default, and you can use a read-only user if you'd like. However, there are optional ways to write data back into Salesforce.
+
+## Importing to Salesforce
+
+There are four actions you can take from Koala to manually write data to Salesforce's CRM:
+
+1. Import Accounts
+2. Import Contacts
+3. Import Leads
+4. Claim Account (rewrite the Account owner to be the current Koala user)
+
+These actions can be enabled/disabled by a Koala admin if you don't wish to enable writing to Salesforce. You can also issue custom field mappings for imports.
+
+## Automating actions into Salesforce (Business Plan)
+
+Every time an intent signal happens for a qualifying list that you specify, there are six actions Koala can automate in Salesforce:
+
+1. **Import Account.** Import an Account as an Account in Salesforce if it doesn't already exist. Supports custom field mappings.
+
+2. **Import Contact.** Import a Visitor as a Contact in Salesforce if it doesn't already exist. (Supports custom field mappings.)
+
+3. **Import Lead.** Import a Visitor as a Contact in Salesforce if it doesn't already exist. (Supports custom field mappings.)
+
+4. **Adding to a Campaign.** Add the current Visitor as a Lead or Contact to a campaign in Salesforce.
+
+5. **Create Task.** Creates a task in Salesforce. (Supports custom subjects, priority, due date, and reminder.)
+
+6. **Create Record.** Create a custom object.
+
+## FAQ
+
+### How do you match Koala accounts to Salesforce Accounts?
+
+For every account on your site, Koala has a list of a domain (eg., `dropbox.com`) and all associated domain aliases (eg., `getdropbox.com`, `dropbox.jp`, `dash.ai`, etc.). We will search your CRM for the primary domain and all aliases, trying to find matches to the Account object's `domain` field. If that isn't set, Koala will use `website` instead.
+
+1. Pick the account with most Opportunities
+2. Pick the account with most Contacts
+3. Pick the account modified most recently
+
+### How do you match Koala Visitors to Salesforce Contacts & Leads?
+
+Contacts will be matched when an example email match happens between the Contact/Lead object and the Koala profile email.
+
+## Support
+
+Having issues with the Salesforce integration? Email the Koala team with your questions at support@getkoala.com!
