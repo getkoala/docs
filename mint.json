@@ -97,6 +97,7 @@
       "pages": [
         "integrations/apollo",
         "integrations/arcade",
+        "integrations/calendly",
         "integrations/clearbit",
         "integrations/google-tag-manager",
         "integrations/hubspot",
