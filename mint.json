@@ -82,6 +82,13 @@
       ]
     },
     {
+      "group": "Identity Layer",
+      "pages": [
+        "identity-layer/intro",
+        "identity-layer/identify-email-recipients"
+      ]
+    },
+    {
       "group": "JavaScript SDK",
       "pages": ["sdk/installation", "sdk/identify", "sdk/track"]
     },
