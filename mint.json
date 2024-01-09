@@ -96,14 +96,15 @@
       "group": "Integrations",
       "pages": [
         "integrations/apollo",
+        "integrations/arcade",
         "integrations/clearbit",
         "integrations/google-tag-manager",
         "integrations/hubspot",
         "integrations/mintlify",
         "integrations/readme",
-        "integrations/segment",
-        "integrations/salesforce",
         "integrations/rudderstack",
+        "integrations/salesforce",
+        "integrations/segment",
         "integrations/slack"
       ]
     }
