@@ -46,6 +46,45 @@ If there are other URL params
 
 *💡 Note: Koala UTMs also work with your snippets. We recommend creating a handful of snippets that you can use for one-off emails.*
 
+## Hubspot (using base64 emails and utm_id)
+You can choose to send emails using the `utm_id` parameter, as opposed to the `ko_e` param.
+
+The main difference between the two is that `ko_e` takes an email address as is, and the `utm_id` takes a base64 representation of an email, which obfuscates
+the email field, as well as compacts the size of the URL for long emails.
+
+You can use all the same steps above, but instead use a `{{contact.base64_email}}` property in your templates.
+
+### Instructions:
+1. Create a `base64_email` property in your Contact Object Schema
+
+2. Create a Hubspot Workflow with the following steps:
+    - a) Set the enrollment trigger to:
+        - `Email` is known
+        - `Email` has been updated in the last 1 day
+
+    - b) Add a custom code step with the following script:
+```javascript
+exports.main = async (event, callback) => {
+  const email = event.inputFields['email'];
+
+  let binary = Buffer.from(email);
+  let base64Encoded = binary.toString("base64");
+
+  callback({
+    outputFields: {
+      base64_email: base64Encoded
+    }
+  });
+}
+```
+
+![Hubspot Workflow](/images/identity-layer/hubspot-workflow.jpg)
+
+    - c) Set the `base64_email` output variable to the contact `base64_email` property
+
+3. Update your templates to use the `{{contact.base64_email}}` template property in all links to your website.
+
+
 ## Apollo.io
 Update your sequence templates to add Koala UTM IDs to your links.
 
