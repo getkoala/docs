@@ -1,0 +1,68 @@
+---
+title: "Koala Identity Layer"
+description: "Understand how to get more identified traffic flowing into Koala"
+---
+
+Koala automatically deanonymizes the company behind a website visitor via our partnership with Clearbit Reveal,
+however, knowing the company behind a visitor will only take your Sales team so far.
+
+
+Typical analytics tools often fail to connect the dots between website and in-app sessions,
+Koala uses identity tracking in order to close the gap between website intent and in-product intent.
+
+We find that our Identity Layer is able to track higher than average identities than the average analytics or website intent tool.
+Some of our PLG customers have an identified traffic match rate of close to 50% of their website visitors, while some of our Sales Led and
+heavy outbound customers report a close to 30% match rate for emails.
+
+Company deanonymization combined with Koala's sophisticated Identity Layer can help you reach significance performance in your outbound motion,
+as well as help accelerate existing deal cycles.
+
+*Note: Koala does not use 3rd party cookies or any kind of 3rd party data in our Identify Layer*.
+
+## Tracking Identities with Identify Calls
+
+We recommend that you instrument your logged in and sign up experiences in order to detect
+logged in users from your app that are return visitors to your website.
+
+This helps bridge intent that happens in-product as well as research that is being done on
+your marketing website and documentation.
+
+You can learn more about how to [Instrument Identify calls in our Identify Guides](/docs/sdk/identify).
+
+## Segment and RudderStack Integrations
+
+Koala automatically integrates with CDPs such as Segment and RudderStack in order to leverage any existing website or in-product
+instrumentation that is done client and server side.
+
+Any `analytics.identify` call that happens in the browser will be forwarded to Koala automatically.
+
+Note: You can disable the Segment / RudderStack integration on the Settings page in the Koala app.
+
+## Automatic Form Tracking
+
+Koala automatically tracks Form Submissions that happen on your website in order to collect your visitor's
+email address when they submit it.
+
+You can see all Form Submissions in the Koala app under the [Form Submissions](https://getkoala.com/goto/forms/reports) tab.
+
+Note: You can toggle Automatic Form Submission on and off on the Settings page in the Koala app.
+
+## Identify Email Recipients
+
+Koala is able to detect when a user clicks a link to your website from an outbound or marketing email.
+You can use this feature to collect identities from any clicks to your outreach messages.
+
+This integration often leads to a boost of 20~30% net new identities to your Koala workspace, allowing you to
+understand how your email prospects are interacting with your content and product.
+
+Koala will also report all UTMs that drove the user to interact with your website from an email.
+
+You can learn more about how to get started with [Koala Email Links here](/docs/admin-guides/identify-email-recipients)
+
+## Hubspot Tracking Pixel
+
+Koala automatically integrates with the Hubspot tracking pixel when both Hubspot and Koala are loaded onto the 
+same page, allowing you to track how a Hubspot Contact interacts with all your web properties that are instrumented
+with Koala.
+
+Note: You need to instrument your website with the Hubspot Pixel Tracking in order to connect identities between Koala and Hubspot.
