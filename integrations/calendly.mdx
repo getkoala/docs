@@ -1,0 +1,50 @@
+---
+title: 'Calendly'
+description: 'Capture events coming from your embedded Calendly booking.'
+---
+
+## Overview
+
+Koala can integrate with [Calendly](https://calendly.com?ref=koala) to capture events coming from your embedded Calendly booking iframe.
+
+With a small bit of code you can capture key events in Koala as visitors interact with Calendly.
+
+## Setup
+
+1. [Install the Koala snippet](/get-started/quick-start) on the site where you are also embedding the Calendly booking iframe.
+2. Anywhere *after* the Koala snippet, within the `<body>` tag of your html add this code snippet:
+
+```html
+<script>
+  function isCalendlyEvent(e) {
+    return (
+      e.origin === "https://calendly.com" &&
+      e.data.event &&
+      e.data.event.indexOf("calendly.") === 0
+    );
+  }
+
+  const eventNames = {
+    "calendly.profile_page_viewed": "Calendly Profile Page Viewed",
+    "calendly.event_type_viewed": "Calendly Event Type Viewed",
+    "calendly.date_and_time_selected": "Calendly Date and Time Selected",
+    "calendly.event_scheduled": "Calendly Event Scheduled",
+  };
+
+  window.addEventListener("message", function (event) {
+    if (isCalendlyEvent(event) && window.ko) {
+      const eventName = eventNames[event.data.event] || event.data.event;
+
+      if (eventName) {
+        window.ko.track(eventName, event.data.payload);
+      }
+    }
+  });
+</script>
+```
+
+This will start capturing all events bubbled from the Calendly widget in Koala, prefixed with the name "Calendly" (e.g. "Calendly Event Scheduled" or "Calendly Date and Time Selected"). 
+
+<Note>
+  Calendly does not currently support passing any details about the booking to the parent window where Koala is installed, other than the event that a booking happened.
+</Note>
