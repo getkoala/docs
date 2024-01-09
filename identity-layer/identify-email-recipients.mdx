@@ -3,34 +3,137 @@ title: "Identify Email Recipients"
 description: "This guide helps ensure your email recipients will be identified in Koala"
 ---
 
-When you send an email, Koala can be notified of the identity of every click to a link to a website that is instrumented with Koala on your email.
+Koala is able to detect when a user clicks a link to your website from an outbound or marketing email.
+You can use this feature to collect identities from any clicks to your outreach messages.
 
-## HubSpot
+This integration often leads to a boost of 20~30% net new identities to your Koala workspace, allowing you to
+understand how your email prospects are interacting with your content and product.
 
-No action is necessary — Koala will automatically parse the HubSpot cookie to ensure any identities tracked in HubSpot will also be tracked in Koala.
+Koala will also report all UTMs that drove the user to interact with your website from an email.
 
 ## Outreach.io
 
-Koala offers an out of the box solution that allows you to track any clicks automatically. You can install the [Koala Outreach Plugin](https://marketplace.outreach.io/apps/koala-id-links?store=unlisted) in the Outreach Marketplace. All links in your email will be automatically decorated with a `utm_id`.
+Koala offers an out of the box solution that allows you to track any clicks automatically. All links will be wrapped with a special param that is able to identify
+your users when they click any links from an Outreach message that points to your website.
 
-## Custom links
+You can install the [Koala Outreach Plugin](https://marketplace.outreach.io/apps/koala-id-links?store=unlisted) in the Outreach Marketplace. All links in your email will be automatically decorated with a `utm_id`.
 
-If you're not using HubSpot or Outreach.io, you can still get this behavior by adding a `utm_id` parameter onto any link you send. Here's how you do it:
+## HubSpot
 
-1. Start with your email address
+Koala offers Hubspot specific URL params that can be added to your Marketing and Sales email templates.
+Adding these URL params will enable you to track any clicks from when your Marketing or Sales Contacts click a link to your website.
+
+### Instructions:
+1. Open the email template editor:
+
+    - 1.a) For Sales templates: Select Conversations, then Templates
+    - 1.b) For Marketing templates: Select Marketing, then Emails
+
+2. Copy one of the following UTM Links:
+
+If there are no other URL params
+```
+?ko_e={{contact.email}}&k_is=hs
+```
+
+If there are other URL params
+```
+&ko_e={{contact.email}}&k_is=hs
+```
+
+3. Add the Koala UTMs to links in your templates:
+![Hubspot](https://app.getkoala.com/images/koala_utms/hubspot.jpeg)
+
+*💡 Note: Koala UTMs also work with your snippets. We recommend creating a handful of snippets that you can use for one-off emails.*
+
+## Apollo.io
+Update your sequence templates to add Koala UTM IDs to your links.
+
+### Instructions:
+1. Open the Sequences email template editor:
+    - a) Select Engage, then Sequences
+
+2. Copy one of the following UTM Links:
+
+If there are no other URL params
+```
+?ko_e={{email}}&k_is=apl
+```
+
+If there are other URL params
+```
+&ko_e={{email}}&k_is=apl
+```
+
+3. Add the Koala UTMs to links in your templates:
+![Apollo](https://app.getkoala.com/images/koala_utms/apollo.jpg)
+
+*💡 Note: Koala UTMs also work with your snippets. We recommend creating a handful of snippets that you can use for one-off emails.*
+
+
+## Salesloft
+Update your templates to add Koala UTM IDs to your links.
+
+### Instructions:
+1. Open the email template editor:
+    - a) As described in the docs here.
+
+2. Copy one of the following UTM Links:
+
+If there are no other URL params
+```
+?ko_e={{email}}&k_is=sl
+```
+
+If there are other URL params
+```
+&ko_e={{email}}&k_is=sl
+```
+
+*💡 Note: Koala UTMs also work with your snippets. We recommend creating a handful of snippets that you can use for one-off emails.*
+
+
+## Koala Email Params
+
+You can tag any outbound links on any platform using the Koala Email param. All you need to is add ko_e or utm_id to any URL you'd like to be tracked when a prospect clicks it:
+
+
+1. Start with an email address
 
 ```
 tido@getkoala.com
 ```
 
-2. Run a base64_encode on that email address
+2. Choose one of two flavors:
+
+- a) A simple `ko_e` email param:
+
+If there are no other URL params
+```
+?ko_e=email@example.com&k_is=dir
+```
+
+If there are other URL params
+```
+&ko_e=email@example.com&k_is=dir
+```
+
+- b) Or use `utm_id` with a base64 email parameter:
+```javascript
+let binary = Buffer.from(email);
+let base64Encoded = binary.toString("base64");
+```
+
+3. Construct your URL:
+```
+https://getkoala.com/docs?ko_e=netto@getkoala.com
+```
+
+or if using option b
 
 ```
-dGlkb0BnZXRrb2FsYS5jb20=
+https://getkoala.com/docs?utm_id=${base64Encoded}
 ```
 
-3. Add a `utm_id` parameter on a link to the website where Koala is installed:
+*Note: Option b is recommended for use cases where you're generating your URLs with a programing environment where you can base64 emails into IDs*
 
-```
-https://getkoala.com/pricing?utm_id=dGlkb0BnZXRrb2FsYS5jb20=
-```
