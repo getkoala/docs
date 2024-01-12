@@ -132,10 +132,30 @@ If there are other URL params
 *💡 Note: Koala UTMs also work with your snippets. We recommend creating a handful of snippets that you can use for one-off emails.*
 
 
+## Amplemarket
+Update your sequence templates to add Koala UTM IDs to your links.
+
+### Instructions:
+1. Open the Sequences email template editor.
+
+2. For all high-volume sequences, you'll want to change your links to contain the following UTM parameters:
+
+If there are no other URL params
+```
+?ko_e={{email}}&k_is=am
+```
+
+If there are other URL params
+```
+&ko_e={{email}}&k_is=am
+```
+
+3. Add the Koala UTMs to links in your templates:
+![Amplemarket](/images/koala_utms/amplemarket.jpg)
+
 ## Koala Email Params
 
 You can tag any outbound links on any platform using the Koala Email param. All you need to is add ko_e or utm_id to any URL you'd like to be tracked when a prospect clicks it:
-
 
 1. Start with an email address
 
