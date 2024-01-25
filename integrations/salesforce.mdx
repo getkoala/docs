@@ -56,15 +56,13 @@ For every account on your site, Koala has a list of a domain (eg., `dropbox.com`
 
 Contacts will be matched when an example email match happens between the Contact/Lead object and the Koala profile email.
 
-## Troubleshooting & Support
-
-Having issues with the Salesforce integration? Email the Koala team with your questions at support@getkoala.com!
-
-### Common issues with your Salesforce connection
+## Troubleshooting
 
 If you've received an email that your Salesforce connection had an error or needs to be reauthorized, here are some common errors and how to fix them.
 
-#### API_DISABLED_FOR_ORG: API is not enabled for this Organization or Partner
+If you are still having issues with the Salesforce integration, email the Koala team with your questions at support@getkoala.com.
+
+### API_DISABLED_FOR_ORG: API is not enabled for this Organization or Partner
 
 This error means that your Salesforce organization either does not have API access.
 
@@ -72,7 +70,7 @@ This error means that your Salesforce organization either does not have API acce
 
 Make sure that your Salesforce organization has API access. Koala will be unable to sync with Salesforce without API access.
 
-#### API_DISABLED_FOR_ORG: limits resource is not enabled
+### API_DISABLED_FOR_ORG: limits resource is not enabled
 
 This error means that your Salesforce organization does not have API access properly configured.
 
@@ -80,7 +78,7 @@ This error means that your Salesforce organization does not have API access prop
 
 Reach out to your Salesforce admin to ensure your Salesforce organization has both the API enabled and "View Setup and Configuration" system permission enabled. The Salesforce user authorizing the connection with Koala must have the "View Setup and Configuration" system permission enabled on their Salesforce user profile.
 
-#### API_CURRENTLY_DISABLED
+### API_CURRENTLY_DISABLED: API is disabled for this User
 
 This error means that Koala is unable to sync with Salesforce because the User that authenticated Salesforce does not have API access in Salesforce.
 
