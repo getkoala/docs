@@ -1,0 +1,68 @@
+---
+title: "Slack Alerts"
+description: "Get notified in Slack when a new intent signal is detected.."
+---
+
+## What are Slack Alerts?
+Slack Alerts allow your team to get notified in Slack when a new intent signal is detected.
+
+You can send alerts into a shared Slack channel, or send alerts directly to
+a sales rep when someone in their territory is showing intent.
+
+Slack messages can be customized to include the Intent, Firmographic data from our extensive companies database, as well
+as your own CRM and custom fields.
+
+## What do the Slack messages look like?
+
+![](/images/product-manual/slack-alerts/example.png)
+
+## How do I create, edit, and delete Slack Alerts?
+
+<Note>
+    In order to use Slack Alerts, you'll first need to connect your Slack workspace to Koala. Read more about the <a href="/docs/integrations/slack">Slack integration</a>.
+</Note>
+
+
+---
+
+# Slack Alerts for larger teams
+Your Slack channels can get noisy with intent alerts when you have too much traffic,
+or a larger sales team with many territories.
+
+Koala team alerts allow you to send alerts to a specific channel that is owned by the owner of the account or territory.
+
+## How do I set up Koala team alerts?
+
+1. Go to the [Teams](https://app.getkoala.com/goto/settings/teams) page in the Koala app.
+2. Create your first team and give it a name such as "AEs", "SDRs", or "Sales".
+3. Add your list of team members to the team.
+
+![](/images/automations/slack-alerts/team-members.png)
+
+4. Create a new Team Saved List for your newly created team
+![](/images/automations/slack-alerts/team-list.png)
+
+5. Make sure to select the "Account Owner" field in Salesforce, or "Company Owner" field in Hubspot, and set the
+value to "Current User".
+
+This will ensure that the alerts are sent to the correct channel for each team member based on ownership in your CRM.
+
+![](/images/automations/slack-alerts/team-list-by-owner.png)
+
+<Note>Pro and Business plan workspaces can use any custom field from their CRM that is a lookup to a user.</Note>
+
+6. Create a new Slack Alert and select the Team Saved List you created in the previous step.
+- Make sure to select the Team List you created in the previous step.
+- Then select "Route messages to Team Member". This will ensure each team member have their own Slack channel for alerts.
+- Select "@mention Account Owners in Slack". This will automatically invite your team members to their channel. 
+
+![](/images/automations/slack-alerts/team-alert-configuration.png)
+
+
+7. Save your new Slack Alert and you're done!
+Team member specific Slack channels will be named after their email handle in your CRM.
+e.g. `netto@getkoala.com` becomes `#koala-netto` in Slack.
+
+<Note>
+  If you have a large team, you can create multiple teams and team lists to segment your alerts.
+</Note>
