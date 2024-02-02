@@ -198,3 +198,31 @@ https://getkoala.com/docs?utm_id=${base64Encoded}
 
 *Note: Option b is recommended for use cases where you're generating your URLs with a programing environment where you can base64 emails into IDs*
 
+## Adding extra identification traits
+
+You can add additional traits to enrich the identification of your email recipients. Koala detects any URL param that follows the pattern `ko_trait_<property>` and includes it in the traits list.
+
+1. Start with the list of tratis you want to include
+```
+{
+  first_name: 'Netto',
+  last_name: `Farah`
+}
+```
+
+2. Build the URL params
+
+If there are no other URL params
+```
+?ko_trait_first_name=Netto&ko_trait_last_name=Farah
+```
+
+3. Construct your URL:
+```
+https://getkoala.com/docs?ko_trait_first_name=Netto&ko_trait_last_name=Farah
+```
+
+If there are other URL params
+```
+&ko_trait_first_name=Netto&ko_trait_last_name=Farah
+```
