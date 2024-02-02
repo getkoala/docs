@@ -18,10 +18,10 @@ as your own CRM and custom fields.
 Learn more about [Slack Alerts](/docs/automations/slack-alerts) in our guides.
 
 
-## Automations
+## Actions
 Trigger workflows in your CRM, Sales Engagement Platform, or third party tools when a new intent signal is detected.
 
-Koala's Automations engine allows you to create custom workflows that are triggered by intent signals.
+Koala's Actions engine allows you to create custom workflows that are triggered by intent signals.
 You can use these workflows to update your CRM, Sales Engagement Platform such as Outreach and Apollo,
 or any other third party tool that accepts Webhooks.
 
@@ -32,7 +32,7 @@ Some examples of workflows include:
 - Enriching your CRM with firmographic data from our extensive companies database
 - Tracking prospects and companies in lists, campaigns, or sequences
 
-Learn more about [Automations](/docs/automations/automations) in our guides.
+Learn more about [Actions](/docs/automations/actions) in our guides.
 
 ## Auto Outbound
 2x~5x your reply rate by automatically sending an email to a prospect when a new intent signal is detected.
@@ -58,3 +58,34 @@ Auto Prospected prospects can be automatically enrolled in your Auto Outbound ca
 
 Auto Prospecting is currently in private beta, and will be available to all customers soon.
 Reach out to us at support@getkoala.com if you'd like to join the beta program.
+
+---
+
+## When to use Actions vs Auto Outbound?
+While both Actions and Auto Outbound have some overlap, they are used in different scenarios.
+
+### When to use Actions
+You should choose Actions when you want to trigger a workflow in response to an intent signal, or update your CRM, and you don't need to send an email.
+The Actions engine is designed to be flexible and react to intent signals in a Trigger / Action fashion for both Accounts and Visitors.
+
+### When to use Auto Outbound
+Auto Outbound is focused on enrolling Prospects in the right sequence or campaign, and sending highly relevant emails at the right time.
+
+This means the enrollment criteria will be different for Auto Outbound when compared to Actions. You don't want to trigger the same workflow multiple times
+for the same Prospects, or send an email to a Prospect that is already in a sequence or in an existing deal.
+
+Auto Outbound includes more strict rules to make sure you're not spamming your Prospects and Accounts.
+
+
+### Cheatsheet
+Use the following table to help you decide when to use Actions vs Auto Outbound.
+
+Use Case | Actions | Auto Outbound
+--- | --- | ---
+Updating CRM data | ✅ | ❌
+Account Level Actions | ✅ | ❌
+Visitor Level Actions | ✅ | ✅
+Email and Sequence Enrollment | ❌ | ✅
+Strict enrollment rules | ❌ | ✅
+Evergreen workflows that are run multiple times per Visitor / Account | ✅ | ❌
+Advanced Intent to Campaign mapping | ❌ | ✅
