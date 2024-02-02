@@ -82,6 +82,15 @@
       ]
     },
     {
+      "group": "Automations",
+      "pages": [
+        "automations/intro",
+        "automations/slack-alerts",
+        "automations/actions",
+        "automations/auto-outbound"
+      ]
+    },
+    {
       "group": "Identity Layer",
       "pages": [
         "identity-layer/intro",
