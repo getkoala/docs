@@ -1,0 +1,82 @@
+---
+title: "Automations"
+description: "Trigger workflows in your CRM, Sales Engagement Platform, or third party tools when a new intent signal is detected."
+---
+
+## What are Automations?
+
+Koala's Automations engine allows you to create custom workflows that are triggered by intent signals.
+
+You can use these workflows to update your CRM, Sales Engagement Platform such as Outreach and Apollo,
+or sync data into third party tools.
+
+## What can you do with Automations?
+The primary use case for Automations is triggering an Action in a third party tool in response to an intent signal.
+
+Some examples of workflows include:
+
+### Automatically importing Contacts and Companies
+
+You can import net new Companies and Contacts to your Salesforce, Hubspot, Outreach, and Apollo, making sure 
+that your CRM is always up with the visitors and companies browsing your website.
+
+In addition to importing new Companies and Contacts, you can also update existing records with new information as 
+it becomes available in the Koala Companies Database.
+
+### Syncing intent data into your CRM
+A common use case for Automations is syncing intent data into your CRM.
+
+This can include updating a Contact or Company record with intent signals are they take place.
+
+Advanced use cases include creating a new Intent Signals object that is related to a Contact or Company record in your CRM, which allow you
+to architect your CRM to be aware of the intent signals that are being detected by Koala.
+
+
+### Enriching your CRM with firmographic data
+Similar to syncing intent data into your CRM, you can also enrich your CRM with firmographic data from Koala, such as industry, employee count, revenue, tech stack
+and many other fields.
+
+### Tracking prospects and companies in lists, campaigns, or sequences
+You can add prospects and companies to lists, campaigns, or sequences in your CRM, and Sales Engagement Platform when they exhibit intent signals.
+
+Examples include mapping intent signals to a Campaign in Salesforce, a list in Apollo or Hubspot.
+
+### Creating Tasks based on intent signals
+Create new tasks in your CRM or Sales Engagement Platform when intent signals are detected, so your sales team can follow up with prospects and companies that are showing intent.
+
+### Triggering external workflows
+You can also trigger an external workflow in an external tool, such as Zapier, Clay, Tray.io or any other tool that accepts webhooks.
+
+Some of the most creative use cases for Automations involve triggering a workflow in a third party tool such as enriching a table with intent in Clay, or
+triggering complex workflows in Tray.io.
+
+## When to use Automations vs Auto Outbound?
+While both Automations and Auto Outbound have some overlap, they are used in different scenarios.
+
+### When to use Automations
+You should choose Automations when you want to trigger a workflow in response to an intent signal, or update your CRM, and you don't need to send an email.
+The Automations engine is designed to be flexible and react to intent signals in a Trigger / Action fashion for both Accounts and Visitors.
+
+### When to use Auto Outbound
+Auto Outbound is focused on enrolling Prospects in the right sequence or campaign, and sending highly relevant emails at the right time.
+
+This means the enrollment criteria will be different for Auto Outbound when compared to Automations. You don't want to trigger the same workflow multiple times
+for the same Prospects, or send an email to a Prospect that is already in a sequence or in an existing deal.
+
+Auto Outbound includes more strict rules to make sure you're not spamming your Prospects and Accounts.
+
+
+### Cheatsheet
+Use the following table to help you decide when to use Automations vs Auto Outbound.
+
+Use Case | Automations | Auto Outbound
+--- | --- | ---
+Updating CRM data | ✅ | ❌
+Account Level Actions | ✅ | ❌
+Visitor Level Actions | ✅ | ✅
+Email and Sequence Enrollment | ❌ | ✅
+Strict enrollment rules | ❌ | ✅
+Evergreen workflows that are run multiple times per Visitor / Account | ✅ | ❌
+Advanced Intent to Campaign mapping | ❌ | ✅
+
+
