@@ -87,7 +87,7 @@ In order to set triggers on your main consumption metric (e.g., bandwidth used i
 There are three primary architectures for doing this:
 
 * Sending data directly to Koala's API
-* Syncing nightly from Salesforce or Hubspot
+* Syncing nightly from Salesforce or HubSpot
 * Using Reverse ETL (Hightouch, Census, Polytomic, etc.)
 
 ## Sending data directly to Koala's API
@@ -135,8 +135,8 @@ ko.identify('tido@getkoala.com', {
 ```
 
 
-## Syncing hourly from Salesforce or Hubspot [Coming Soon]
-You can sync traits hourly from Salesforce or Hubspot. Anything available on the account object can be pulled into Koala. After it's set up, Koala will maintain a changelog of the events, so it can be displayed as timeseries data for reps and reps can see when a boolean was flipped (e.g., when is_onboarded went from false to true).
+## Syncing hourly from Salesforce or HubSpot [Coming Soon]
+You can sync traits hourly from Salesforce or HubSpot. Anything available on the account object can be pulled into Koala. After it's set up, Koala will maintain a changelog of the events, so it can be displayed as timeseries data for reps and reps can see when a boolean was flipped (e.g., when is_onboarded went from false to true).
 
 ## Using Reverse ETL [Coming Soon]
 You can use a Reverse ETL tool to pull data directly from your data warehouse into Koala. If this is of interest, please let us know which Reverse ETL tool you're using, so we can prioritize support for the right tools.
