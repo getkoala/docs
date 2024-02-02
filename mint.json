@@ -82,6 +82,21 @@
       ]
     },
     {
+      "group": "Automations",
+      "pages": [
+        "automations/intro",
+        "automations/slack-alerts",
+        "automations/actions",
+        "automations/auto-outbound",
+        "automations/auto-outbound/outreach",
+        "automations/auto-outbound/salesforce",
+        "automations/auto-outbound/hubspot",
+        "automations/auto-outbound/apollo",
+        "automations/auto-outbound/clay",
+        "automations/auto-outbound/webhooks"
+      ]
+    },
+    {
       "group": "Identity Layer",
       "pages": [
         "identity-layer/intro",

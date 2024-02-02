@@ -22,7 +22,7 @@ Note: You need to be logged in to Outreach in order to be able to install the pl
 
 ## HubSpot
 
-Koala offers Hubspot specific URL params that can be added to your Marketing and Sales email templates.
+Koala offers HubSpot specific URL params that can be added to your Marketing and Sales email templates.
 Adding these URL params will enable you to track any clicks from when your Marketing or Sales Contacts click a link to your website.
 
 ### Instructions:
@@ -44,11 +44,11 @@ If there are other URL params
 ```
 
 3. Add the Koala UTMs to links in your templates:
-![Hubspot](https://app.getkoala.com/images/koala_utms/hubspot.jpeg)
+![HubSpot](https://app.getkoala.com/images/koala_utms/hubspot.jpeg)
 
 *💡 Note: Koala UTMs also work with your snippets. We recommend creating a handful of snippets that you can use for one-off emails.*
 
-## Hubspot (using base64 emails and utm_id)
+## HubSpot (using base64 emails and utm_id)
 You can choose to send emails using the `utm_id` parameter, as opposed to the `ko_e` param.
 
 The main difference between the two is that `ko_e` takes an email address as is, and the `utm_id` takes a base64 representation of an email, which obfuscates
@@ -59,7 +59,7 @@ You can use all the same steps above, but instead use a `{{contact.base64_email}
 ### Instructions:
 1. Create a `base64_email` property in your Contact Object Schema
 
-2. Create a Hubspot Workflow with the following steps:
+2. Create a HubSpot Workflow with the following steps:
     - a) Set the enrollment trigger to:
         - `Email` is known
         - `Email` has been updated in the last 1 day
@@ -80,7 +80,7 @@ exports.main = async (event, callback) => {
 }
 ```
 
-![Hubspot Workflow](/images/identity-layer/hubspot-workflow.jpg)
+![HubSpot Workflow](/images/identity-layer/hubspot-workflow.jpg)
 
     - c) Set the `base64_email` output variable to the contact `base64_email` property
 

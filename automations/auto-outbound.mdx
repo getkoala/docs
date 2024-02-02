@@ -1,0 +1,211 @@
+---
+title: "Auto Outbound"
+description: "2x~5x your opportunity creationg rate by automatically sending an email to a prospect when a new intent signal is detected."
+---
+
+# What is Auto Outbound
+
+Auto Outbound automatically enroll a prospect into a highly relevant Sequence when they show intent, and message them at the right time.
+
+Koala's Auto Outbound engine offers a variety of customization options that allow you to target the right
+prospects with the right message without interferring with existing deals, customers, or highjacking any existing conversations.
+
+# Why use Auto Outbound
+
+Auto Outbound is a powerful tool that can help you reach the right Prospect with the right message at the right time, leading to higher reply rates and more opportunities.
+Our customers have seen a significant increase in reply rates when using Auto Outbound, as well as 2x~5x more opportunities created.
+
+They achieve this by:
+- Mapping Website and Product usage data to Intent signals
+- Targeting the highest Fit prospects based on their Ideal Customer Profile
+- Using highly relevant messages that are tailored to the prospect's intent
+- Reliably tracking the performance of their Auto Outbound campaigns, and iterating on targeting and messaging
+
+Koala helps you with all of the above.
+
+- [Intent Signals](/docs/admin-guides/first-intent-signals) allow you to map your website and product usage to signals you Sales Team understands.
+- [Content Reports](/docs/product-manual/content-reports) help you track the conversion rate of each Intent Signal, and understand which Signals and Content drives most pipeline.
+- [Fit Scoring](https://app.getkoala.com/goto/scoring) allows you to define and score your Ideal Customer Profile based on firmographic and technographic data.
+- Auto Outbound allows you to map individual Intent Signals to Sequences, and send highly relevant messages based on Intent.
+- The Auto Outbound engine keeps all the receipts for every action it takes, and helps you understand who qualifies for your Auto Outbound campaigns, and who doesn't.
+
+# Creating an Auto Outbound Campaign
+Head over to the [Auto Outbound](https://app.getkoala.com/goto/auto-outbound) page in the Koala App to get started.
+
+## Getting Started
+You can create multiple campaigns and target different segments of your prospects based on their Intent and Fit.
+
+### 1. Give your Auto Outbound Campaign a name
+Give it a name that you can easily recognize, and that describes the purpose of the campaign.
+
+### 2. Define the Eligible Audience
+The next step to using Auto Outbound is to define who's eligible for your Auto Outbound campaign.
+
+We recommend using firmographic filters such as `# of Employees`, `Estimated Revenue`, or `Industry` to target the right prospects for your business.
+Customers on our Pro and Business plan can also use Koala firmographic Fit Scores to target the highest Fit prospects. We recommend targeting `A` and `B`
+Fit Accounts.
+
+For Visitors, we recommend checking the `Work Emails` option to screen out folks who have no intention of buying your product.
+
+![Eligible Audience](/images/automations/auto-outbound/eligibility.png)
+
+<Note>
+Koala will automatically calculate the size of the audience that matches your criteria, and show you how many prospects are eligible for your Auto Outbound campaign in real time as you update your filters.
+You can also use the `Preview` button to see a list of prospects that match your criteria.
+</Note>
+
+### 3. Handle Existing Customers
+The next step is to define how Koala should handle existing customers and conversations.
+You likely want to ignore any customer who's already in a conversation with your team, or has already purchased your product.
+
+Our recommended presets work out of the box for most standard HubSpot and Salesforce setups,
+but you can also customize the rules to fit your specific use case using Advanced Filters.
+
+![Existing Customers](/images/automations/auto-outbound/crm.png)
+
+### 4. Define the enrollment criteria
+Now that you have defined the audience for your Auto Outbound campaign, it's time to define the enrollment criteria.
+
+The criteria for your campaign should be based on the Intent Signals you're tracking in Koala, how often you want to enroll a Prospect.
+
+![Enrollment Criteria](/images/automations/auto-outbound/enrollment.png)
+
+<Note>
+You can also choose to set an artificial delay to your Auto Outbound campaign,
+to ensure that the prospect has enough time to engage with your product before you reach out to them.
+</Note>
+
+### 5. Select a Sender
+You can optionally select a specific user to send the Auto Outbound emails from.
+This helps you maintain your threads going when a prospect replies to your Auto Outbound email.
+
+We recommend that you pick the sales rep who owns the account, or the territory owner for your audience.
+
+![Select a Sender](/images/automations/auto-outbound/sender.png)
+
+You can choose from one of the presets available, or roll your own advanced Routing with the `Advanced Filters` option.
+
+### 6. Map Intent to Sequences
+You're now ready to map your Intent Signals to Sequences. This is where the magic happens.
+Our guidance here is that you should map each Intent Signal to a Sequence that is aligned with the prospect's intent.
+
+We'll use Outreach Sequences as an example, but you can use any other Sequence tool that you prefer.
+
+Learn more about how to use Auto Outbound with:
+- [Salesforce](/docs/automations/auto-outbound#using-salesforce-campaigns)
+- [HubSpot](/docs/automations/auto-outbound#using-hubspot-sequences-and-workflows)
+- [Apollo](/docs/automations/auto-outbound#using-outreach-sequences)
+- [Clay](/docs/automations/auto-outbound#using-clay-tables)
+- [Webhooks](/docs/automations/auto-outbound#extending-auto-outbound-with-webhooks)
+
+As you can see in the screenshot below, we have mapped the `Pricing Page` Intent Signal to a 
+`Pricing` specific Sequence, as well as the other Intent Signals to other specific sequences.
+
+This allows you to send highly relevant messages to your prospects based on their intent.
+
+![Map Intent to Sequences](/images/automations/auto-outbound/sequences.png)
+
+### 7. Keep track of your Auto Outbound with logs
+Koala keeps track of every time we evaluate or enroll a prospect into your Auto Outbound campaign, and every time we add them to a Sequence.
+You can follow the progress of your Auto Outbound campaign in the `Logs` tab, as well as watch as any new Prospect is enrolled into your campaign via Slack messages.
+
+Just toggle the Slack integration on, and you'll get a message every time a new prospect is enrolled into your Auto Outbound campaign in your channel of choice.
+
+### Put your Auto Outbound campaign on Autopilot
+Once you're feeling confident about your mapping, you can put your Auto Outbound campaign on Autopilot.
+
+Toggle the `Autopilot` option on, and Koala will start evaluating and enrolling prospects into your Auto Outbound campaign based on your criteria.
+
+---
+
+# Writing Good Sequences
+
+General tips for writing good sequences:
+- Try to be helpful. You should offer to help the prospect with their problem based on the signal, and not just sell them your product.
+It's better to send them a helpful article or a case study that's relevant to their problem, and then follow up with a call to action.
+
+- Do not offer to book a meeting right away. 
+
+- It's generally ok to mention that you noticed their intent, and that you're reaching out to help them with their problem.
+There are non creepy ways to mention you know they visited your website, and that you're reaching out to help them.
+
+
+Here's an example of a good sequence for a `Pricing` Intent Signal:
+```
+Subject: Pricing for [Company Name]
+
+Hey [First Name],
+My name is Netto, I'm a Sales Rep at Koala.
+
+I was checking out our analytics report and noticed that you were looking at our pricing page.
+I wanted to reach out to send you a helpful article that explains how our pricing works.
+
+Here's some more information about our pricing that you might find helpful:
+- [link to pricing guide]
+- [link to free trial]
+- [link to case study]
+
+```
+
+---
+
+# Auto Outbound Destinations
+Auto Outbound can be used with a variety of destinations.
+
+## Managed destinations
+Fully managed destinations allow you to map an Intent Signal to a Sequence, and send an email to the prospect when they show intent.
+Koala will manage the enrollment of the prospect into the Sequence directly via Outreach or Apollo.
+
+
+## Destinations
+You sometimes want to have more control over the enrollment process, or want to stage contacts in your CRM before enrolling them into a Sequence.
+In those cases, you can instead write an Intent Signal directly into your CRM, and then use your own enrollment logic.
+
+### Using Outreach Sequences
+The Outreach integration allows you to map Intent Signals to Sequences directly.
+You can choose to send the email from the owner of the account, or from a specific user in your Outreach account.
+
+Check out our [Outreach Auto Outbound guide](/docs/automations/auto-outbound/outreach) for more information
+
+
+### Using Salesforce Campaigns
+You can use Salesforce Campaigns to stage prospects before enrolling them into a Sequence.
+We also recommend writing an Intent Signal directly into a Salesforce Account, Contact/Lead records,
+or creating a Custom Object to store the Intent Signal.
+
+Check out our [Salesforce Auto Outbound guide](/docs/automations/auto-outbound/salesforce) for more information.
+
+### Using HubSpot Sequences and Workflows
+You can use HubSpot Workflows to stage prospects before enrolling them into a Sequence, or write an Intent Signal directly into a HubSpot
+Contact or Company record.
+
+Check out our [HubSpot Auto Outbound guide](/docs/automations/auto-outbound/hubspot) for more information.
+
+### Using Apollo Lists
+Apollo supports the use of Lists to stage prospects before enrolling them into a Sequence, or mapping a Signal to a Sequence directly.
+
+Check out our [Apollo Auto Outbound guide](/docs/automations/auto-outbound/apollo) for more information.
+
+### Using Clay Tables
+You can trigger complex enrichment and routing logic using Clay Tables. Examples include:
+
+- Enriching the prospect with additional data from LinkedIn, Clearbit, or other data providers
+- Using OpenAI to summarize the contents of the Intent Signal
+- Looking up more people at the same company to include in the Sequence
+
+Check out our [Clay Auto Outbound guide](/docs/automations/auto-outbound/clay) for more information.
+
+### Extending Auto Outbound with Webhooks
+You can use Webhooks to extend Auto Outbound to any other destination that you prefer that are not currently
+integrated with Koala directly.
+
+Auto Outbound will send a POST request to your Webhook URL every time a new prospect is enrolled into your Auto Outbound campaign.
+
+Check out our [Webhooks Auto Outbound guide](/docs/automations/auto-outbound/webhooks) for more information.
+
+---
+
+## When to use Actions vs Auto Outbound
+While both Actions and Auto Outbound have some overlap, they are used in different scenarios.
+
+We have a [cheatsheet](/docs/automations/intro#when-to-use-actions-vs-auto-outbound) that can help you decide when to use Actions vs Auto Outbound.
