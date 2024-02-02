@@ -92,11 +92,11 @@ Our guidance here is that you should map each Intent Signal to a Sequence that i
 We'll use Outreach Sequences as an example, but you can use any other Sequence tool that you prefer.
 
 Learn more about how to use Auto Outbound with:
-- [Salesforce](/docs/automations/auto-outbound#salesforce)
-- [HubSpot](/docs/automations/auto-outbound#hubspot)
-- [Apollo](/docs/automations/auto-outbound#outreach)
-- [Clay](/docs/automations/auto-outbound#clay)
-- [Webhooks](/docs/automations/auto-outbound#webhooks)
+- [Salesforce](/docs/automations/auto-outbound#using-salesforce-campaigns)
+- [HubSpot](/docs/automations/auto-outbound#using-hubspot-sequences-and-workflows)
+- [Apollo](/docs/automations/auto-outbound#using-outreach-sequences)
+- [Clay](/docs/automations/auto-outbound#using-clay-tables)
+- [Webhooks](/docs/automations/auto-outbound#extending-auto-outbound-with-webhooks)
 
 As you can see in the screenshot below, we have mapped the `Pricing Page` Intent Signal to a 
 `Pricing` specific Sequence, as well as the other Intent Signals to other specific sequences.
@@ -160,6 +160,13 @@ Koala will manage the enrollment of the prospect into the Sequence directly via 
 ## Destinations
 You sometimes want to have more control over the enrollment process, or want to stage contacts in your CRM before enrolling them into a Sequence.
 In those cases, you can instead write an Intent Signal directly into your CRM, and then use your own enrollment logic.
+
+### Using Outreach Sequences
+The Outreach integration allows you to map Intent Signals to Sequences directly.
+You can choose to send the email from the owner of the account, or from a specific user in your Outreach account.
+
+Check out our [Outreach Auto Outbound guide](/docs/automations/auto-outbound/outreach) for more information
+
 
 ### Using Salesforce Campaigns
 You can use Salesforce Campaigns to stage prospects before enrolling them into a Sequence.
