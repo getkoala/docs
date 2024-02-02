@@ -162,19 +162,39 @@ You sometimes want to have more control over the enrollment process, or want to 
 In those cases, you can instead write an Intent Signal directly into your CRM, and then use your own enrollment logic.
 
 ### Using Salesforce Campaigns
-TODO
+You can use Salesforce Campaigns to stage prospects before enrolling them into a Sequence.
+We also recommend writing an Intent Signal directly into a Salesforce Account, Contact/Lead records,
+or creating a Custom Object to store the Intent Signal.
+
+Check out our [Salesforce Auto Outbound guide](/docs/automations/auto-outbound/salesforce) for more information.
 
 ### Using Hubspot Sequences and Workflows
-TODO
+You can use HubSpot Workflows to stage prospects before enrolling them into a Sequence, or write an Intent Signal directly into a HubSpot
+Contact or Company record.
+
+Check out our [HubSpot Auto Outbound guide](/docs/automations/auto-outbound/hubspot) for more information.
 
 ### Using Apollo Lists
-TODO
+Apollo supports the use of Lists to stage prospects before enrolling them into a Sequence, or mapping a Signal to a Sequence directly.
+
+Check out our [Apollo Auto Outbound guide](/docs/automations/auto-outbound/apollo) for more information.
 
 ### Using Clay Tables
-TODO
+You can trigger complex enrichment and routing logic using Clay Tables. Examples include:
+
+- Enriching the prospect with additional data from LinkedIn, Clearbit, or other data providers
+- Using OpenAI to summarize the contents of the Intent Signal
+- Looking up more people at the same company to include in the Sequence
+
+Check out our [Clay Auto Outbound guide](/docs/automations/auto-outbound/clay) for more information.
 
 ### Extending Auto Outbound with Webhooks
-TODO
+You can use Webhooks to extend Auto Outbound to any other destination that you prefer that are not currently
+integrated with Koala directly.
+
+Auto Outbound will send a POST request to your Webhook URL every time a new prospect is enrolled into your Auto Outbound campaign.
+
+Check out our [Webhooks Auto Outbound guide](/docs/automations/auto-outbound/webhooks) for more information.
 
 ---
 
