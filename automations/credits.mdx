@@ -9,12 +9,19 @@ limited credits.
 
 
 ## Understanding Credits
-Each succesfull Automation run deducts 1 credit from your available credit pool.
+Each succesfull Automation run consumes 1 credit from your available credit pool.
 
 There are separate pools for Actions, Auto Outbound and Slack Alerts, so you can try
 all three products individually on your own time.
 
-Credits are deducted when any succesfull Automation is run. 
+### When are credits consumed?
+- **Action Credits**: Credits are deducted when any succesfull Automation is run. i.e. when Intent Data is delivered to your destination.
+
+- **Auto Outbound Credits**: Credits are deducted when any Auto Outbound prospect is sent to your destination. 
+  - Auto Outbound credits will not be consumed if the prospect is not sent due to a filter or a condition.
+  - Auto Outbound credits will not be consumed if Autopilot is off.
+
+- **Slack Alert Credits**: Credits are deducted when a Slack alert is sent to a slack channel.
 
 ## Credit Limits
 
