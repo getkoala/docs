@@ -12,6 +12,8 @@ Sometimes you'll need to send events from your backend application in addition t
 - ✅ Visitor Identification
 - ✅ Account Traits
 
+**Important**: Please make sure to always include the `User-Agent` header in your requests to Koala, or it may be flagged as a bot and not processed.
+
 ### Identifying visitors
 
 If you've already got the Koala snippet installed client-side on the same top domain as your server you can identify visitors with known email addresses server-side. For example, if your website (www.example.com) has the JavaScript snippet installed, and your app (app.example.com) does not, you can enrich the data Koala is collecting across both.
@@ -122,3 +124,74 @@ curl -X POST \
   }' \
   https://api2.getkoala.com/web/projects/my-public-api-key/batch
 ```
+
+### Sending Account Traits
+
+Sometimes you want to send traits that are associated with an account, rather than a visitor. You can do this by sending a `domain` along with the traits for the Account.
+Account traits will be associated with the `domain` and will be available to all visitors that have been identified with the same account.
+
+You should use the `/accounts/batch` endpoint for your workspace to send Account traits:
+
+```sh Example Request
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "domain": "getkoala.com",
+    "identifies": [{
+      "type": "identify",
+      "traits": {
+        "billing_plan": "pro",
+        "vip": true,
+        "headcount": 100
+      }
+    }]
+  }' \
+  https://api2.getkoala.com/web/projects/my-public-api-key/accounts/batch
+```
+
+The traits above will be visible in the Account page for `getkoala.com` in the Koala app.
+
+<Note>
+You must either pass an `account_id` or `domain` key in the body of a request in order for it to be attached to an existing Account in Koala.
+We recommend using the `domain` parameter to associate traits with an account.
+
+- Koala will automatically create a new Account if the `domain` hasn't been tracked in Koala yet.
+</Note>
+
+#### Deduplicating Account Traits
+There are scenarios where the same Account has multiple tenants in your App. For example, your customers may have a workspace for their development team and another for their marketing team.
+In this case, you can pass along a `group_id` parameter alongside your Account Traits, that way, Koala can disambiguate multiple groupings within the same company.
+
+```sh Example Request
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "domain": "getkoala.com",
+    "identifies": [
+      {
+        "type": "identify",
+        "traits": {
+          "group_id": "development-team",
+          "billing_plan": "free",
+          "vip": false
+        }
+      },
+      {
+        "type": "identify",
+        "traits": {
+          "group_id": "marketing-team",
+          "billing_plan": "pro",
+          "vip": true
+        }
+      }
+    ]
+  }' \
+  https://api2.getkoala.com/web/projects/my-public-api-key/accounts/batch
+```
+
+<Note>
+- The `group_id` parameter is optional, and you can use it to disambiguate multiple groupings within the same company.
+- Koala will group the traits by `group_id` and display them in the Account page in Koala under each individual grouping.
+</Note>
