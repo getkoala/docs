@@ -110,7 +110,12 @@
     },
     {
       "group": "JavaScript SDK",
-      "pages": ["sdk/installation", "sdk/identify", "sdk/track"]
+      "pages": [
+        "sdk/installation",
+        "sdk/identify",
+        "sdk/track",
+        "sdk/autocapture"
+      ]
     },
     {
       "group": "Integrations",
