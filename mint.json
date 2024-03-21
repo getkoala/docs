@@ -67,7 +67,8 @@
         "developer-guides/install-on-nextjs",
         "developer-guides/server-side",
         "developer-guides/using-npm",
-        "developer-guides/custom-proxy-setup"
+        "developer-guides/custom-proxy-setup",
+        "developer-guides/gdpr-endpoint"
       ]
     },
     {
