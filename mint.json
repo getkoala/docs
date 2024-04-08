@@ -131,6 +131,7 @@
         "integrations/readme",
         "integrations/rudderstack",
         "integrations/salesforce",
+        "integrations/salesloft",
         "integrations/segment",
         "integrations/slack",
         "integrations/zoominfo"
