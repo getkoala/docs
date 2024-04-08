@@ -132,7 +132,8 @@
         "integrations/rudderstack",
         "integrations/salesforce",
         "integrations/segment",
-        "integrations/slack"
+        "integrations/slack",
+        "integrations/zoominfo"
       ]
     }
   ],
