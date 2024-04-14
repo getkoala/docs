@@ -125,6 +125,7 @@
         "integrations/arcade",
         "integrations/calendly",
         "integrations/clearbit",
+        "integrations/gitbook",
         "integrations/google-tag-manager",
         "integrations/hubspot",
         "integrations/mintlify",
