@@ -131,3 +131,14 @@ That said, you know your business best, so be sure to set up things that your sa
 Keep things simple by sending all the intent signals to a single channel for now. If you have a larger sales team, you can read our guide on <a href="/admin-guides/larger-sales-teams">larger sales teams</a>, but to start things off we always recommend watching a single channel for a few business days to see what kind of intent you're working with all in one place.
 
 Reps will love getting pinged about intent signals on their accounts. You can enable this by checking the box that says "@mention Account Owners in Slack"!
+
+## FAQ
+
+<Accordion title="How do I to check that the pixel properly setup?">
+If you are comfortable with the browser inspector and need to check that the pixel is setup,
+open the inspector by right-clicking in the page you setup the pixel and select `Inspect`.
+You can then check these two things:
+
+* select the `console` tab and type `ko.version` and hit enter. It should return the pixel integration version.
+* select the `Elements` (Chrome / Safari), `Inspector`(Firefox) and search for `cdn.getkoala.com`. It should match two `<script>` tags.
+</Accordion>
