@@ -11,7 +11,7 @@ before proceeding. If you don't have a Koala account,
 
 ## Reading from Salesforce
 
-Upon connecting Koala to Salesforce's CRM, Koala will sync all Accounts, Opportunities, Contacts, and Leads. Koala will automatically refresh Salesforce CRM every hour, so we always have fresh data about who owns which Accounts and which Accounts have active Opportunities attached.
+Upon connecting Koala to Salesforce's CRM (Salesforce Sales Cloud), Koala will sync all Accounts, Opportunities, Contacts, and Leads. Koala will automatically refresh Salesforce CRM every hour, so we always have fresh data about who owns which Accounts and which Accounts have active Opportunities attached.
 
 No data will be written to Salesforce by default, and you can use a read-only user if you'd like. However, there are optional ways to write data back into Salesforce.
 
@@ -85,3 +85,13 @@ This error means that Koala is unable to sync with Salesforce because the User t
 **What can I do?**
 
 Reauthorize the Salesforce connection with a user that has API access, or you can have your Salesforce admin give your user API access in Salesforce.
+
+### INVALID TYPE ERROR: Object type 'Campaign' is not supported
+
+This error probably indicates that the integration was setup with Salesforce Data Cloud instead of Salesforce Sales Cloud. The former does not support `Campaign` as of the time of the error and therefore fails.
+
+![](/images/integrations/salesforce/invalid_type.png)
+
+**What can I do?**
+
+Koala integrates with Salesforce CRM for Campaign. If you need that data in Salesforce Data Cloud, it is necessary to integrate the Salesforce Sales Cloud (CRM) with Salesforce Data Cloud directly.
