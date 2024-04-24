@@ -34,7 +34,9 @@ send_server_side_identify(
 )
 ```
 
-<b>For this to achieve the desired outcome, you'll need to ensure that both the `email` property and the `profile_id` property are set (with those names!) and that the `profile_id` is read off the Koala cookie.</b>
+For this to achieve the desired outcome, you'll need to ensure that two things happen:
+- the `email` property is set with your user email
+- the `profile_id` property is set with the Koala cookie id, or a random UUID if one doesn't exist
 
 1. Lots of identify calls flowing here: <a href="https://app.getkoala.com/goto/instrumentation">Instrumentation Page</a>
 2. Lots of identified users flowing here: <a href="https://app.getkoala.com/goto/visitors?range=week&facets[identified][]=true&page=1&sort_by=last_seen">Visitors Page</a>
