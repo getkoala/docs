@@ -1,0 +1,66 @@
+---
+title: "Sending Identify Calls"
+description: "An introduction to identify calls into Koala"
+---
+
+## Background
+Koala's data model supports the entire first-party prospect/customer lifecycle, from deanonymizing the very first moment someone comes to the site through to education, consideration, becoming a customer, and expansion.
+
+Even if you're using Koala solely for pipeline generation (our most popular use case!), you'll find that first-party identity data has a number of benefits in that it's 100% accurate, privacy-friendly, has perfect match rate, and gives you prospect-level instead of company-level detail.
+
+In this guide, we'll walk you through the two recommended approaches (the "paved road" using our native API), but we support a multitude of tools and can integrate with your existing stack as necessary. Please email support@getkoala.com if you'd like help with a different approach.
+
+## Approach 1: Client-side install
+
+This is typically our recommend approach if you're open to having Koala's SDK in your app (it's fairly light at ~30kb).
+
+This is typically as simple as making sure we're installed in the client of your application and that you're sending `ko.identify()` calls. Be sure you're sending these calls for all forms of login, including Google OAuth, SSO, Github, etc.
+
+If you do it client-side, you'll get the following additional benefits:
+
+- fastest installation
+- accurate session time (optional - can disable)
+- pageview autocapture (optional - can disable)
+- form-fill autocapture (optional - can disable)
+
+## Approach 2: Server-side API call
+
+If you are set on a server-side implementation, you can do this as well. You won't get the additional benefits above, but the key here is we'll want to link the Koala Profile ID (`ko_id` in your cookies) to an email address. The pseudocode for this is:
+
+```
+ko_id = get_from_cookies('ko_id')
+send_server_side_identify(
+    { 'email': email_address, 'profile_id': ko_id }
+)
+```
+
+For this to achieve the desired outcome, you'll need to ensure that both the `email` property and the `profile_id` property are set (with those names!) and that the `profile_id` is read off the Koala cookie.
+
+1. Lots of identify calls flowing here: https://app.getkoala.com/goto/instrumentation
+2. Lots of identified users flowing here: https://app.getkoala.com/goto/visitors?range=week&facets[identified][]=true&page=1&sort_by=last_seen
+
+It will take a few days for your identity graph to fully warm up, but you should see a significant percentage of traffic be identified over the coming days.
+
+## Common questions
+
+### I'm only using Koala for website signals and have another tool for product analytics. Is there still a benefit to doing this?
+
+Yes, this will make your data in Koala more specific and more accurate. Even if just for this, we still recommend investing a few hours here for a much better data experience.
+
+However, more than anything, we see that having a cross-section across the entire customer journey unlocks "surprise" use-cases. Here are two that happen all the time:
+
+- an enterprise buyer is beginning their research for an upcoming project. In order to see the product, they sign up for a free account but cannot actually send data without an MSA in place. They read technical docs about advanced features. Now, you know both who is researching and what they are researching
+
+- an executive in a larger account is looking at a new module 2 months before the renewal; because they have logged into your platform in the past, you know exactly who they are
+
+### I don't allow any Javascript code to be added client-side to my app for performance or security reasons. Can I still do this?
+
+We've built Approach 2 with this concern in mind. It's slightly more involved, but shouldn't take more than 10-20 lines of code.
+
+### Can you do this via Segment?
+
+Yes, we have a client-side and a cloud mode destination.
+
+The client-side destination is simplest and will work out of the box (supports "Approach 1" above).
+
+If you want to use the cloud mode destination ("Approach 2" above), <b>you'll need to make a code change to send along the Koala cookie ID in the `analytics.identify()` call</b>. See the pseudocode in Approach 2 as a reference — without this, the identity linking will not work!
