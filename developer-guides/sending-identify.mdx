@@ -8,7 +8,7 @@ Koala's data model supports the entire first-party prospect/customer lifecycle, 
 
 Even if you're using Koala solely for pipeline generation (our most popular use case!), you'll find that first-party identity data has a number of benefits in that it's 100% accurate, privacy-friendly, has perfect match rate, and gives you prospect-level instead of company-level detail.
 
-In this guide, we'll walk you through the two recommended approaches (the "paved road" using our native API), but we support a multitude of tools and can integrate with your existing stack as necessary. Please email support@getkoala.com if you'd like help with a different approach.
+In this guide, we'll walk you through the two recommended approaches, but we support a multitude of tools and can integrate with your existing stack as necessary. Please email support@getkoala.com if you'd like help with a different approach.
 
 ## Approach 1: Client-side install
 
@@ -34,13 +34,14 @@ send_server_side_identify(
 )
 ```
 
-Link to our full <a href="/docs/developer-guides/server-side">server-side technical docs</a>.
-
 For this to achieve the desired outcome, you'll need to ensure that both the `email` property and the `profile_id` property are set (with those names!) and that the `profile_id` is read off the Koala cookie.
 
-1. Lots of identify calls flowing here: `https://app.getkoala.com/goto/instrumentation`
-2. Lots of identified users flowing here: `https://app.getkoala.com/goto/visitors?range=week&facets[identified][]=true&page=1&sort_by=last_seen`
+1. Lots of identify calls flowing here: <a href="https://app.getkoala.com/goto/instrumentation">Instrumentation Page</a>
+2. Lots of identified users flowing here: <a href="https://app.getkoala.com/goto/visitors?range=week&facets[identified][]=true&page=1&sort_by=last_seen">Visitors Page</a>
+
 It will take a few days for your identity graph to fully warm up, but you should see a significant percentage of traffic be identified over the coming days.
+
+If you'd like to do this approach, read our <a href="/docs/developer-guides/server-side">server-side technical docs</a>.
 
 ## Common questions
 
@@ -58,10 +59,10 @@ However, more than anything, we see that having a cross-section across the entir
 
 We've built Approach 2 with this concern in mind. It's slightly more involved, but shouldn't take more than 10-20 lines of code.
 
-### Can you do this via Segment?
+### Can I do this via Segment?
 
 Yes, we have a client-side and a cloud mode destination.
 
-The client-side destination is simplest and will work out of the box (supports "Approach 1" above).
+The client-side destination is simplest and will work out of the box. This is an easy way to get Approach 1.
 
-If you want to use the cloud mode destination ("Approach 2" above), <b>you'll need to make a code change to send along the Koala cookie ID in the `analytics.identify()` call</b>. See the pseudocode in Approach 2 as a reference — without this, the identity linking will not work!
+If you want to use the cloud mode destination (Approach 2), <b>you'll need to make a code change to send along the Koala cookie ID in the `analytics.identify()` call</b>. See the pseudocode in Approach 2 as a reference — without this, the identity linking will not work!
