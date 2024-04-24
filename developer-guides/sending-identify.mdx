@@ -34,11 +34,12 @@ send_server_side_identify(
 )
 ```
 
+Link to our full <a href="/docs/developer-guides/server-side">server-side technical docs</a>.
+
 For this to achieve the desired outcome, you'll need to ensure that both the `email` property and the `profile_id` property are set (with those names!) and that the `profile_id` is read off the Koala cookie.
 
-1. Lots of identify calls flowing here: https://app.getkoala.com/goto/instrumentation
-2. Lots of identified users flowing here: https://app.getkoala.com/goto/visitors?range=week&facets[identified][]=true&page=1&sort_by=last_seen
-
+1. Lots of identify calls flowing here: `https://app.getkoala.com/goto/instrumentation`
+2. Lots of identified users flowing here: `https://app.getkoala.com/goto/visitors?range=week&facets[identified][]=true&page=1&sort_by=last_seen`
 It will take a few days for your identity graph to fully warm up, but you should see a significant percentage of traffic be identified over the coming days.
 
 ## Common questions
