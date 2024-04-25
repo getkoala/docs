@@ -40,7 +40,7 @@ send_server_side_identify(
 
 For this to achieve the desired outcome, you'll need to ensure that two things happen:
 - the `email` property is set with your user email
-- the `profile_id` property is set with the Koala cookie id, or a random UUID if one doesn't exist
+- the `profile_id` property is set with the Koala cookie id (if no id, skip the call)
 
 After you set it up, you can tell that you were successful by seeing two things happen in Koala:
 
