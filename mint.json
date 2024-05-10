@@ -49,7 +49,9 @@
       "pages": [
         "rep-guides/use-koala-for-research",
         "rep-guides/send-great-sales-messages"
-      ]
+        {
+          "name": "Video Library",
+          "url": "https://vimeo.com/showcase/11156116"
     },
     {
       "group": "Guides for Admins",
