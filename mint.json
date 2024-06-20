@@ -138,7 +138,8 @@
         "integrations/salesloft",
         "integrations/segment",
         "integrations/slack",
-        "integrations/zoominfo"
+        "integrations/zoominfo",
+        "integrations/g2"
       ]
     }
   ],
