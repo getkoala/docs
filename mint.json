@@ -128,6 +128,7 @@
         "integrations/arcade",
         "integrations/calendly",
         "integrations/clearbit",
+        "integrations/g2",
         "integrations/gitbook",
         "integrations/google-tag-manager",
         "integrations/hubspot",
