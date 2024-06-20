@@ -1,0 +1,47 @@
+---
+title: "G2"
+description: "Connect G2 to sync their buyer intent data into Koala, which you can use to trigger automations, filter accounts, and more."
+---
+
+# Instalation
+ - You must have an active Koala account [Koala](https://app.getkoala.com)
+before proceeding. If you don't have a Koala account,
+[sign up for free](https://app.getkoala.com/signup).
+ - You must have an active G2 account [G2](https://www.g2.com) with the [Buyer Inent Subscrition](https://sell.g2.com/g2-buyer-intent-data). If you have an existent account you can talk
+with your account manager to anable it, or reach out at support@getkoala.com, we will happy to assist you.
+
+Than, you can manage you G2 integration from the [G2 settings page](https://app.getkoala.com/goto/apps/g2)
+
+# Reading from G2
+
+Upon connecting your G2 account to Koala, we will start to sync the buyer intent and page views from G2 into Koala, and transform it into events.
+
+# Intent signals
+
+Create intent signals from G2 events by acessing the [Intent Signals settings](https://app.getkoala.com/goto/signals) page.
+
+- Click on upper right corner on `New Intent Signal`
+- Select type of signal as `G2`
+- Configure the event matching rules
+- Give a name to your signal
+
+And you are good to go. You can use the signal for any notificaiton, automationn, or filter on Koala.
+
+# Koala & G2 - Keywords and event mappings
+
+Koala matches the [G2 Signal Types](https://documentation.g2.com/docs/buyer-intent) and translate it into events on our side, here is the mapping:
+
+| G2 Keywords | Koala Events | Description 
+| --- | --- | --- |
+| `*comparisons*` | Viewed a comparison | The user compared you with one of your competitors
+| `*categories*` | Viewed a category | The user viewed a category page
+| `*competitor*` | Featured as competitor alternative | Your product has been listed as alternative as one of your competitors
+| `*ad.sponsored*`| Listed as sponsored product | The user viewed a sponsored ad of your product
+| `*products.discss*` | Viewed discussions page | The user viewed a discussions page of your product
+| `*product_reference*`| Viewed product reference | The user viewed a product reference page
+| `products.features`| Viewed features page | The user viewed a features page of your product
+| `products.pricing`| Viewed pricing page | The user viewed a pricing page of your product
+| `products.reviews`| Viewed reviewes page | The user viewed a review page of your product
+| `reviewers.take_survey`| Survey taken | Someone took a survey about your product
+
+
