@@ -38,6 +38,27 @@ Every time an intent signal happens for a qualifying list that you specify, ther
 
 5. **Add Timeline Entry.** Create a Timeline Entry for the current Visitor or Account.
 
+## Account Score Sync into HubSpot (Business Plan) - BETA
+
+Each night Koala can send a snapshot of Account Scores into you CRM that includes: `Intent Score`, `Intent Strength`, `Intent Trend`, `ICP Score` and `ICP Grade`.
+This feature can be enabled in the settings page where the setup instructions give the directions.
+The fields can be automatically added to a Koala Managed Scores property group during the setup or they can be manually added following these definitions:
+
+# Koala Scores Fields Definitions
+
+| **Field Label**       | **Field Name**        | **Type (Field Type)** | **Details**                                   |
+|-----------------------|-----------------------|-----------------------|-----------------------------------------------|
+| Koala Intent Score    | koala_intent_score    | number (number)       |                                               |
+| Koala Intent Strength | koala_intent_strength | enumeration (select)  | Very High, High, Medium, Low, None            |
+| Koala Intent Trend    | koala_intent_trend    | enumeration (select)  | Surging, Heating, Neutral, Cooling, New, None |
+| Koala ICP Fit Score   | koala_icp_fit_score   | number (number)       |                                               |
+| Koala ICP Fit Grade   | koala_icp_fit_grade   | enumeration (select)  | A, B, C, D, --                                |
+
+If you want to use existing fields that are compatible, you can use the custom mapping in the settings to map each Koala Score into your CRM field.
+
+The integration sends scores to the CRM in groups of `~100_000` records, so you can see more than one entry per day if there are more than that amount of scores to send.
+You can access the `Import` page in the CRM (button is top right besides `Create Company`) to view the last sync information.
+
 ## FAQ
 
 ### How do you match Koala accounts to HubSpot Companies?
