@@ -42,6 +42,28 @@ Every time an intent signal happens for a qualifying list that you specify, ther
 
 6. **Create Record** Create a record as any custom object. You can also use this to write Koala Intent Signals as events into your CRM as custom objects linked to Contacts, Leads, and/or Accounts in your Salesforce instance.
 
+## Account Score Sync into Salesforce (Business Plan) - BETA
+
+Each night Koala can send a snapshot of Account Scores into you CRM that includes: `Intent Score`, `Intent Strength`, `Intent Trend`, `ICP Score` and `ICP Grade`.
+This feature can be enabled in the settings page where the setup instructions give the directions.
+The fields can be automatically added using the provided [Koala Managed Scores (1.1.0.0)](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tak0000001s6PAAQ) managed package
+or they can be manually added following these definitions:
+
+### Koala Scores Fields Definitions
+
+| **Field Label**       | **Field Name**  | **Namespace Prefix**             | **API Name**                 | **Data Type** | **Details**                                             |
+|-----------------------|-----------------|----------------------------------|------------------------------|---------------|---------------------------------------------------------|
+| Koala Intent Score    | intent_score    | getkoala (from the package only) | getkoala__intent_score__c    | Number        | Length: 3 Decimal Places: 2                             |
+| Koala Intent Strength | intent_strength | getkoala (from the package only) | getkoala__intent_strength__c | Picklist      | Very High, High, Medium, Low, None (default)            |
+| Koala Intent Trend    | intent_trend    | getkoala (from the package only) | getkoala__intent_trend__c    | Picklist      | Surging, Heating, Neutral, Cooling, New, None (default) |
+| Koala ICP Fit Score   | icp_fit_score   | getkoala (from the package only) | getkoala__icp_fit_score__c   | Number        | Length: 3 Decimal Places: 2                             |
+| Koala ICP Fit Grade   | icp_fit_grade   | getkoala (from the package only) | getkoala__icp_fit_grade__c   | Picklist      | A, B, C, D, -- (default)                                |
+
+If you want to use existing fields that are compatible, you can use the custom mapping in the settings to map each Koala Score into your CRM field.
+
+The integration sends scores to the CRM in groups of `~100_000` records, so you can see more than one entry per day in the Bulk Data jobs log (under `Setup > Environments > Jobs > Bulk Data Load Jobs`)
+if there are more than that amount of scores to send.
+
 ## FAQ
 
 ### How do you match Koala accounts to Salesforce Accounts?
