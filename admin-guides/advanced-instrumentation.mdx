@@ -84,11 +84,10 @@ If you are interested in this but need help with this, please get in touch with 
 # Setting up account traits [ALPHA]
 In order to set triggers on your main consumption metric (e.g., bandwidth used if you're Vercel, # of licenses consumed if you're Salesforce, or number of API calls if you're a usage-based developer tool), you'll want to send those consumption metrics to Koala. We'll track the history of the consumption metric and allow you to alert when user-defined thresholds are reached.
 
-There are three primary architectures for doing this:
+There are two primary architectures for doing this:
 
 * Sending data directly to Koala's API
-* Syncing nightly from Salesforce or HubSpot
-* Using Reverse ETL (Hightouch, Census, Polytomic, etc.)
+* Using Reverse ETL (Hightouch, Census, etc.)
 
 ## Sending data directly to Koala's API
 You can send account traits directly to Koala. This can be done directly on the website, as you do with your other analytics tracking. Alternatively, this can be run in a nightly asynchronous script (e.g., if you have a nightly script that computes billing consumption and sends alerts, that would be a good place to add these calls).
@@ -133,13 +132,8 @@ ko.identify('tido@getkoala.com', {
   }
 })
 ```
-
-
-## Syncing hourly from Salesforce or HubSpot [Coming Soon]
-You can sync traits hourly from Salesforce or HubSpot. Anything available on the account object can be pulled into Koala. After it's set up, Koala will maintain a changelog of the events, so it can be displayed as timeseries data for reps and reps can see when a boolean was flipped (e.g., when is_onboarded went from false to true).
-
-## Using Reverse ETL [Coming Soon]
-You can use a Reverse ETL tool to pull data directly from your data warehouse into Koala. If this is of interest, please let us know which Reverse ETL tool you're using, so we can prioritize support for the right tools.
+## Using Reverse ETL
+You can use a Reverse ETL tool to pull data directly from your data warehouse into Koala. Check out our <a href="/docs/integrations/hightouch">Hightouch</a> and <a href="/docs/integrations/census">Census</a> integrations.
 
 <Note>
 Account Traits is currently in Alpha. If you'd like to give it a spin, please contact us at support@getkoala.com for early access.
