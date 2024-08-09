@@ -46,9 +46,7 @@
     },
     {
       "group": "Guides for Sellers",
-      "pages": [
-        "rep-guides/explore-koalau"
-      ]
+      "pages": ["rep-guides/explore-koalau"]
     },
     {
       "group": "Guides for Admins",
@@ -132,6 +130,7 @@
         "integrations/hightouch",
         "integrations/hubspot",
         "integrations/mintlify",
+        "integrations/navattic",
         "integrations/readme",
         "integrations/rudderstack",
         "integrations/salesforce",
