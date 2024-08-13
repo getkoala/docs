@@ -65,7 +65,11 @@ You can access the `Import` page in the CRM (button is top right besides `Create
 
 For every account on your site, Koala has a list of a domain (eg., `dropbox.com`) and all associated domain aliases (eg., `getdropbox.com`, `dropbox.jp`, `dash.ai`, etc.). We will search your CRM for the primary domain and all aliases, trying to find matches to the Account object's `domain` field. If that isn't set, Koala will use `website` instead.
 
-If Koala finds multiple Company objects matching a domain, we'll pick the Company that was modified most recently.
+If Koala finds multiple Company objects matching a domain, we'll pick the Company in the following order:
+
+1. Pick the Company with most Deals
+2. Pick the Company with most Contacts
+3. Pick the Company modified most recently
 
 ### How do you match Koala contacts to HubSpot Contacts?
 

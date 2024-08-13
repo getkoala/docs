@@ -70,9 +70,11 @@ if there are more than that amount of scores to send.
 
 For every account on your site, Koala has a list of a domain (eg., `dropbox.com`) and all associated domain aliases (eg., `getdropbox.com`, `dropbox.jp`, `dash.ai`, etc.). We will search your CRM for the primary domain and all aliases, trying to find matches to the Account object's `domain` field. If that isn't set, Koala will use `website` instead.
 
-1. Pick the account with most Opportunities
-2. Pick the account with most Contacts
-3. Pick the account modified most recently
+If Koala finds multiple Account objects matching a domain, we'll pick the Account in the following order:
+
+1. Pick the Account with most Opportunities
+2. Pick the Account with most Contacts
+3. Pick the Account modified most recently
 
 ### How do you match Koala Visitors to Salesforce Contacts & Leads?
 
