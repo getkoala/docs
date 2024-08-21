@@ -14,8 +14,8 @@
     "anchors": { "from": "#BA27BA", "to": "#4D32E4" }
   },
   "topbarCtaButton": {
-    "name": "Sign Up",
-    "url": "https://app.getkoala.com/signup"
+    "name": "Book a demo",
+    "url": "https://getkoala.com/contact?utm_source=docs&utm_medium=internal&utm_campaign=book_demo"
   },
   "topbarLinks": [
     {
@@ -27,7 +27,7 @@
     {
       "name": "Changelog",
       "icon": "list-timeline",
-      "url": "https://getkoala.com/changelog"
+      "url": "https://getkoala.com/blog?type=product-updates"
     },
     {
       "name": "Status",
