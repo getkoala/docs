@@ -14,10 +14,14 @@
     "anchors": { "from": "#BA27BA", "to": "#4D32E4" }
   },
   "topbarCtaButton": {
-    "name": "Book a demo",
-    "url": "https://getkoala.com/contact?utm_source=docs&utm_medium=internal&utm_campaign=book_demo"
+    "name": "Get Started",
+    "url": "https://app.getkoala.com/signup?utm_source=docs&utm_medium=internal&utm_campaign=get_started"
   },
   "topbarLinks": [
+    {
+      "name": "Book a demo",
+      "url": "https://getkoala.com/contact?utm_source=docs&utm_medium=internal&utm_campaign=book_demo"
+    },
     {
       "name": "Log in",
       "url": "https://app.getkoala.com/login"
