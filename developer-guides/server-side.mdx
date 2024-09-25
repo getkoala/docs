@@ -14,6 +14,14 @@ Sometimes you'll need to send events from your backend application in addition t
 
 **Important**: Please make sure to always include the `User-Agent` header in your requests to Koala, or it may be flagged as a bot and not processed.
 
+<Note>
+The `/batch` endpoint has a few constraints/requirements: 
+  
+- you must send either a `profile_id` or `email` identifier as top-level properties in the request body
+- all events, identifies, or page_views collected are limited to up to 30 of each type
+- each request should only send events for the same person (all events are tied to the same `profile_id`/`email`)
+</Note>
+
 ### Identifying visitors
 
 If you've already got the Koala snippet installed client-side on the same top domain as your server you can identify visitors with known email addresses server-side. For example, if your website (www.example.com) has the JavaScript snippet installed, and your app (app.example.com) does not, you can enrich the data Koala is collecting across both.
