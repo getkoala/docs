@@ -42,10 +42,10 @@ Every time an intent signal happens for a qualifying list that you specify, ther
 
 6. **Create Record** Create a record as any custom object. You can also use this to write Koala Intent Signals as events into your CRM as custom objects linked to Contacts, Leads, and/or Accounts in your Salesforce instance.
 
-## Account Score Sync into Salesforce (Business Plan) - BETA
+## Account Score Sync into Salesforce (Business Plan)
 
-Each night Koala can send a snapshot of Account Scores into you CRM that includes: `Intent Score`, `Intent Strength`, `Intent Trend`, `ICP Score` and `ICP Grade`.
-This feature can be enabled in the settings page where the setup instructions give the directions.
+Each night Koala can send a snapshot of Account Scores into your CRM, that includes: `Intent Score`, `Intent Strength`, `Intent Trend`, `ICP Score` and `ICP Grade`.
+This feature can be enabled in the settings page where the setup instructions give you specific directions.
 The fields can be automatically added using the provided [Koala Managed Scores (1.1.0.0)](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tak0000001s6PAAQ) managed package
 or they can be manually added following these definitions:
 
@@ -59,10 +59,10 @@ or they can be manually added following these definitions:
 | Koala ICP Fit Score   | icp_fit_score   | getkoala (from the package only) | getkoala__icp_fit_score__c   | Number        | Length: 3 Decimal Places: 2                             |
 | Koala ICP Fit Grade   | icp_fit_grade   | getkoala (from the package only) | getkoala__icp_fit_grade__c   | Picklist      | A, B, C, D, -- (default)                                |
 
-If you want to use existing fields that are compatible, you can use the custom mapping in the settings to map each Koala Score into your CRM field.
+If you want to use existing fields that are compatible, you can use the custom mapping in the settings to map each Koala Score field to your CRM field.
 
-The integration sends scores to the CRM in groups of `~100_000` records, so you can see more than one entry per day in the Bulk Data jobs log (under `Setup > Environments > Jobs > Bulk Data Load Jobs`)
-if there are more than that amount of scores to send.
+The integration sends scores to the CRM in groups of `~100_000` records, so you can see more than one entry per day in the Bulk Data jobs log (under `Setup > Environments > Jobs > Bulk Data Load Jobs`) if there are more than that amount of scores to send.
+The sync happens in two modes: `full` and `delta` (incremental) syncs. The `full` sync is executed the first time the feature is enabled and all subsequent syncs are `delta` syncs. The `delta` sync only sends scores that changed during the day against what is already in your CRM. This generally accounts to `6-10%` of the full amount of scores sent in a `full` sync.
 
 ## FAQ
 
