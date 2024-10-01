@@ -38,10 +38,10 @@ Every time an intent signal happens for a qualifying list that you specify, ther
 
 5. **Add Timeline Entry.** Create a Timeline Entry for the current Visitor or Account.
 
-## Account Score Sync into HubSpot (Business Plan) - BETA
+## Account Score Sync into HubSpot (Business Plan)
 
-Each night Koala can send a snapshot of Account Scores into you CRM that includes: `Intent Score`, `Intent Strength`, `Intent Trend`, `ICP Score` and `ICP Grade`.
-This feature can be enabled in the settings page where the setup instructions give the directions.
+Each night Koala can send a snapshot of Account Scores into your CRM, that includes: `Intent Score`, `Intent Strength`, `Intent Trend`, `ICP Score` and `ICP Grade`.
+This feature can be enabled in the settings page where the setup instructions give you specific directions.
 The fields can be automatically added to a Koala Managed Scores property group during the setup or they can be manually added following these definitions:
 
 ### Koala Scores Fields Definitions
@@ -54,10 +54,11 @@ The fields can be automatically added to a Koala Managed Scores property group d
 | Koala ICP Fit Score   | koala_icp_fit_score   | number (number)       |                                               |
 | Koala ICP Fit Grade   | koala_icp_fit_grade   | enumeration (select)  | A, B, C, D, --                                |
 
-If you want to use existing fields that are compatible, you can use the custom mapping in the settings to map each Koala Score into your CRM field.
+If you want to use existing fields that are compatible, you can use the custom mapping in the settings to map each Koala Score field to your CRM field.
 
-The integration sends scores to the CRM in groups of `~100_000` records, so you can see more than one entry per day if there are more than that amount of scores to send.
-You can access the `Import` page in the CRM (button is top right besides `Create Company`) to view the last sync information.
+The integration sends scores to the CRM in groups of `~100_000` records, so you can see more than one entry per day in the `Import` page if there are more than that amount of scores to send.
+The sync happens in two modes: `full` and `delta` (incremental) syncs. The `full` sync is executed the first time the feature is enabled and all subsequent syncs are `delta` syncs. The `delta` sync only sends scores that changed during the day against what is already in your CRM. This generally accounts to `6-10%` of the full amount of scores sent in a `full` sync.
+You can access the `Import` page in the CRM (button in top right besides `Create Company`) to view the latest sync information.
 
 ## FAQ
 
