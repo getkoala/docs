@@ -121,6 +121,39 @@
       ]
     },
     {
+      "group": "Sources",
+      "pages": [
+        "sources/index",
+        {
+          "group": "Web & Product Data",
+          "pages": [
+            "integrations/segment",
+            "integrations/snowflake",
+            "integrations/rb2b",
+            "integrations/bigquery",
+            "integrations/mintlify",
+            "integrations/readme"
+          ]
+        },
+        {
+          "group": "Social / Community",
+          "pages": [
+            "integrations/linkedin-chrome-extension",
+            "integrations/github",
+            "integrations/slack-community",
+            "integrations/discord",
+            "integrations/discourse"
+          ]
+        },
+        {
+          "group": "Prospecting",
+          "pages": [
+            "integrations/job-tracking"
+          ]
+        }
+      ]
+    },
+    {
       "group": "Integrations",
       "pages": [
         "integrations/apollo",
