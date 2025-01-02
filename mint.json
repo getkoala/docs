@@ -117,7 +117,7 @@
         "sdk/installation",
         "sdk/identify",
         "sdk/track",
-        "sdk/autocapture"
+        "sdk/autotracking"
       ]
     },
     {
@@ -147,9 +147,7 @@
         },
         {
           "group": "Prospecting",
-          "pages": [
-            "integrations/job-tracking"
-          ]
+          "pages": ["integrations/job-tracking"]
         }
       ]
     },

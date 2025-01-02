@@ -111,7 +111,7 @@ Unlike some product analytics tools that have a `group` concept, we do not suppo
 
 ## Identifying with Google Sign In, Passwordless Magic Links (or others)
 
-Typically, the Koala pixel autocaptures emails from form submissions, which works great for traditional login forms. However, for more advanced login methods, like Google Sign-In, GitHub Sign-In, or Single Sign-On (SSO), manual intervention is required. 
+Typically, the Koala pixel automatically captures emails from form submissions, which works great for traditional login forms. However, for more advanced login methods, like Google Sign-In, GitHub Sign-In, or Single Sign-On (SSO), manual intervention is required. 
 
 If you use these types of sign-in methods, you'll need to manually call `ko.identify` _after_ the user has successfully logged in. We recommend installing the Koala pixel on the landing page of your logged-in site, and then calling `ko.identify` from there with the user's email. You can also provide any other relevant traits you want to see or use in Koala.
 
