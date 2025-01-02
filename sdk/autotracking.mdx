@@ -1,0 +1,76 @@
+---
+title: "Autotracking"
+description: "Learn about how the Koala pixel automatically tracks events."
+---
+
+# What is autotracking?
+
+By default, Koala will _automatically track_ certain events on your website. This includes:
+
+- pageviews
+- form submissions
+- active session time
+- presence (when a user is active on your site vs idle)
+
+This means that you don't need to write any code to track these events. Koala will automatically track them for you. Whether you have a single page app or a traditional website.
+
+## Disabling autotracking
+
+You can disable autotracking entirely by setting the `autocapture` option to `false` when you initialize the Koala pixel.
+
+When loading from the CDN/script tag, add this before your script:
+
+```javascript
+window.koalaSettings = {
+  sdk_settings: {
+    autocapture: false,
+  },
+};
+```
+
+When using the NPM package, add this to your initialization:
+
+```javascript
+import * as KoalaSDK from "@getkoala/browser";
+
+let ko = null;
+
+// returns a promise containing the ko namespace object
+KoalaSDK.load({
+  // add your project's public key here
+  project: "pk_...",
+  sdk_settings: {
+    autocapture: false,
+  },
+}).then((koalaSDK) => {
+  ko = koalaSDK;
+});
+```
+
+This will fully disable all autotracking of pageviews, form submissions, active session time, and presence.
+
+## Manually/programmatically enabling or disabling autotracking at runtime
+
+You may want to enable or disable autotracking temporarily on some pages, for instance, if you are using Koala in a SPA that navigates seamlessly across your marketing site and product dashboard.
+
+You can do this by calling `ko.startAutocapture()` and `ko.stopAutocapture()`.
+
+```javascript
+// start autocapture
+ko.startAutocapture();
+// now,
+// pageviews will automatically be tracked (including the current page immediately)
+// form submissions will be tracked
+// active session time will be tracked
+// presence will be tracked
+```
+
+```javascript
+// stop autocapture
+ko.stopAutocapture();
+// now,
+// pageviews will not be automatically tracked
+// form submissions will not be tracked
+// active session time will not be tracked
+// presence will not be tracked
+```
