@@ -32,3 +32,27 @@ If you have a strict `script-src-elem`, add this endpoint to it:
 - `https://*.getkoala.com`
 
 It's likely you can find it in your codebase if you do a case-insensitive search for `script-src`, but if you need to learn more about it, use this resource to learn more: https://content-security-policy.com
+
+### Installing the library under a custom global namespace
+
+When you load Koala through snippet code, by default, the SDK installs on window.ko global variable. If this causes a conflict with another library or code on your site, you can change the global variable used by Koala.
+
+Change the global variable in the beginning of your snippet code as shown below. In this case, Koala uses window.custom_key to load instead of window.ko.
+
+```diff
+  - !function(){var k="ko", ...
+  + !function(){var k="custom_key", ...
+```
+
+Alternatively, you can use the `window.globalKoalaKey` to set the global variable.
+
+```html
+<script>
+  // Koala will use this global key instead of window.ko, in this case window.custom_key
+  window.globalKoalaKey = "custom_key";
+</script>
+
+<script>
+  // paste your Koala snippet here
+</script>
+```
