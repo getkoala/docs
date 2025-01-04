@@ -35,9 +35,9 @@ It's likely you can find it in your codebase if you do a case-insensitive search
 
 ### Installing the library under a custom global namespace
 
-When you load Koala through snippet code, by default, the SDK installs on window.ko global variable. If this causes a conflict with another library or code on your site, you can change the global variable used by Koala.
+When you load Koala through snippet code, by default, the SDK installs on `window.ko` global variable. If this causes a conflict with another library or code on your site, you can change the global variable used by Koala.
 
-Change the global variable in the beginning of your snippet code as shown below. In this case, Koala uses window.custom_key to load instead of window.ko.
+Change the global variable in the beginning of your snippet code as shown below. In this case, Koala uses `window.custom_key` to load instead of `window.ko`.
 
 ```diff
   - !function(){var k="ko", ...
