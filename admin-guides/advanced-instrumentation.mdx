@@ -22,11 +22,11 @@ This will turn an instrumentation that looks like this:
 ![](/images/admin-guides/advanced-instrumentation/koala-single-account.png)
 
 # Setting up product analytics
-Typically, this is a task that a **full-stack engineering team** will need to spend **2-4 hrs** on, depending on how mature the product analytics stack is and what tools you're already using. 
+Typically, this is a task that a **full-stack engineering team** will need to spend **2-4 hrs** on, depending on how mature the product analytics stack is and what tools you're already using.
 
 Koala has similar semantics to most product analytics tools (e.g., Segment, Rudderstack, Heap, Amplitude, Mixpanel, Posthog, etc.). The main difference with Koala and some tools is that Koala does a few things automatically on the client-side, including accurate tracking of session time and automatic pageview detecting (single-page apps supported!). Thus, we recommend installing Koala client-side (we try to keep the SDK as thin as possible — it is about 20kb). However, if you prefer to only install server-side, we have documentation on the server-side API.
 
-Below is a quick guide on how to take an existing analytics tool and convert to work with Koala. In cases where you must implement `track` and `identify` yourself, please see our <a href="/docs/developer-guides/server-side">developer guide</a>.
+Below is a quick guide on how to take an existing analytics tool and use it with Koala. In cases where you must implement `track` and `identify` yourself, please see our developer guides on how to send <a href="/docs/sdk/identify">client-side (recommended)</a> or <a href="/docs/developer-guides/server-side"> server-side (advanced)</a>.
 
 ### Segment
 <AccordionGroup>
@@ -58,7 +58,7 @@ Below is a quick guide on how to take an existing analytics tool and convert to 
    </Accordion>
 </AccordionGroup>
 
-###  Heap, Amplitude, Mixpanel, Posthog, and others 
+###  Heap, Amplitude, Mixpanel, Posthog, and others
 <AccordionGroup>
    <Accordion title="Can I do a codeless install? ❌">
       No integration support, so you'll need to install the Koala SDK directly.
@@ -119,7 +119,7 @@ ko.identify('tido@getkoala.com', {
   vip_user: true,
   finished_onboarding: true,
   invited_teammate: true,
-  
+
   // These are company specific traits
   $account: {
     name: 'Koala',
