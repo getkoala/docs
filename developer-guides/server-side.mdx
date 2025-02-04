@@ -6,6 +6,7 @@ description: "When you need to integrate Koala with your server-side application
 Sometimes you'll need to send events from your backend application in addition to or instead of using Koala's client-side SDK. This guide will show you how to do that.
 
 **What can it do?**
+
 - ❌ Autotracking (pageviews, forms, active session time)
 - ❌ Sessions
 - ✅ Custom Events
@@ -27,6 +28,7 @@ The `/batch` endpoint has a few constraints/requirements:
 If you've already got the Koala snippet installed client-side on the same top domain as your server you can identify visitors with known email addresses server-side. For example, if your website (www.example.com) has the JavaScript snippet installed, and your app (app.example.com) does not, you can enrich the data Koala is collecting across both.
 
 Whenever users do something identifiable in your app, like logging in, you can identify them manually. This enables you to:
+
 - Track a visitor across browsers or devices
 - Differentiate truly anonymous visitors from known users
 - Combine all activity from a visitor before and after they've logged in
@@ -39,6 +41,7 @@ https://api2.getkoala.com/web/projects/<your public api key>/batch
 ```
 
 Here's an example bare-bones request:
+
 ```sh Example Request
 curl -X POST \
   -H "Content-Type: application/json" \
@@ -53,29 +56,28 @@ curl -X POST \
 
 You should ensure all websites sharing the same top domain also share the Koala anonymous `profile_id` by respecting one if it's already there, or setting it yourself if it isn't there. You can read and modify the `ko_id` cookie value in the request to do this.
 
-*Note: when setting your own randomly generated `profile_id`, you should use a UUID v4 format.*
+_Note: when setting your own randomly generated `profile_id`, you should use a UUID v4 format._
 
 Here's an example of parsing the Koala cookie for a `profile_id` using Express in Node.js:
 
-
 ```js Node.js Express Example
-const cookieParser = require('cookie-parser')
-const express = require('express')
+const cookieParser = require("cookie-parser");
+const express = require("express");
 const app = express();
 
-app.use(cookieParser())
+app.use(cookieParser());
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   // use `profile_id` from cookie, else send a randomly generated one
   // and set it in the cookie yourself
-  let profile_id = req.cookies.ko_id
+  let profile_id = req.cookies.ko_id;
   if (!profile_id) {
-    profile_id = uuid.v4()
-    res.cookie('ko_id', profile_id, { domain: '.example.com' })
+    profile_id = uuid.v4();
+    res.cookie("ko_id", profile_id, { domain: ".example.com" });
   }
 
   // send http request to Koala with the `profile_id`
-})
+});
 ```
 
 ### Sending events
@@ -168,6 +170,7 @@ We recommend using the `domain` parameter to associate traits with an account.
 </Note>
 
 #### Deduplicating Account Traits
+
 There are scenarios where the same Account has multiple tenants in your App. For example, your customers may have a workspace for their development team and another for their marketing team.
 In this case, you can pass along a `group_id` parameter alongside your Account Traits, that way, Koala can disambiguate multiple groupings within the same company.
 
@@ -203,3 +206,31 @@ curl -X POST \
 - The `group_id` parameter is optional, and you can use it to disambiguate multiple groupings within the same company.
 - Koala will group the traits by `group_id` and display them in the Account page in Koala under each individual grouping.
 </Note>
+
+### Sending Account Events
+
+Sometimes you want to send events that are associated with an account, rather than an individual.
+
+Similar to account traits, you must provide either a Koala `account_id` or `domain` to identify the account. These events work similarly to profile-level events but are associated with the entire account rather than individual users.
+
+You should use the `/accounts/batch` endpoint for your workspace to send Account events:
+
+```sh Example Request
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "domain": "getkoala.com",
+    "events": [{
+      "message_id": "any idempotent id (can be a uuid or anything unique)",
+      "type": "track",
+      "event": "Workspace Created",
+      "properties": {
+        "workspace_id": "1234567890",
+        "workspace_name": "Acme, Inc."
+      },
+      "sent_at": "2022-11-09T23:57:14.776Z"
+    }]
+  }' \
+  https://api2.getkoala.com/web/projects/my-public-api-key/accounts/batch
+```
