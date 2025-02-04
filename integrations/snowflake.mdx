@@ -182,3 +182,20 @@ FROM my_analytics.account_events
 ```
 
 - Account events will be associated with the account in Koala when the sync is run.
+
+## Sending data to Snowflake
+
+Koala maintains an automated replication process that continuously syncs data from your Koala workspace to designated tables in your Snowflake instance. This ensures your Snowflake database always has the most current information from Koala.
+
+### Available Data Exports
+
+The following data sets can be automatically exported to your Snowflake instance:
+
+- Raw feed of page views
+- Raw feed of events
+- Raw feed of form submissions
+- Profile snapshots
+- Account snapshots
+- Account scores
+
+Manage your Snowflake integration from the [Snowflake settings page](https://app.getkoala.com/goto/apps/snowflake).
