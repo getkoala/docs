@@ -14,34 +14,31 @@
     "anchors": { "from": "#BA27BA", "to": "#4D32E4" }
   },
   "topbarCtaButton": {
-    "name": "Get Started",
-    "url": "https://app.getkoala.com/signup?utm_source=docs&utm_medium=internal&utm_campaign=get_started"
+    "name": "Log in",
+    "url": "https://app.getkoala.com/login"
   },
   "topbarLinks": [
     {
-      "name": "Book a demo",
-      "url": "https://getkoala.com/contact?utm_source=docs&utm_medium=internal&utm_campaign=book_demo"
-    },
-    {
-      "name": "Log in",
-      "url": "https://app.getkoala.com/login"
+      "name": "Support",
+      "url": "mailto:support@getkoala.com"
     }
   ],
-  "anchors": [
+  "primaryTab": {
+    "name": "Guides"
+  },
+  "tabs": [
     {
-      "name": "Changelog",
-      "icon": "list-timeline",
-      "url": "https://getkoala.com/blog?type=product-updates"
+      "name": "Reference",
+      "url": "reference"
     },
     {
-      "name": "Status",
-      "icon": "wave-pulse",
-      "url": "https://koala.instatus.com"
+      "name": "Changelog",
+      "url": "https://getkoala.com/blog?type=product-updates"
     }
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Getting Started",
       "pages": [
         "get-started/what-is-koala",
         "get-started/how-koala-works",
@@ -49,11 +46,11 @@
       ]
     },
     {
-      "group": "Guides for Sellers",
+      "group": "OLD Guides for Sellers",
       "pages": ["rep-guides/explore-koalau"]
     },
     {
-      "group": "Guides for Admins",
+      "group": "OLD Guides for Admins",
       "pages": [
         "admin-guides/advanced-instrumentation",
         "admin-guides/first-intent-signals",
@@ -64,7 +61,7 @@
       ]
     },
     {
-      "group": "Guides for Developers",
+      "group": "OLD Guides for Developers",
       "pages": [
         "developer-guides/install-on-nextjs",
         "developer-guides/server-side",
@@ -74,7 +71,7 @@
       ]
     },
     {
-      "group": "Product Manual",
+      "group": "OLD Product Manual",
       "pages": [
         "product-manual/audiences",
         "product-manual/content-reports",
@@ -84,7 +81,7 @@
       ]
     },
     {
-      "group": "Automations",
+      "group": "OLD Automations",
       "pages": [
         "automations/intro",
         "automations/slack-alerts",
@@ -105,14 +102,14 @@
       ]
     },
     {
-      "group": "Identity Layer",
+      "group": "OLD Identity Layer",
       "pages": [
         "identity-layer/intro",
         "identity-layer/identify-email-recipients"
       ]
     },
     {
-      "group": "JavaScript SDK",
+      "group": "OLD JavaScript SDK",
       "pages": [
         "sdk/installation",
         "sdk/identify",
@@ -121,59 +118,69 @@
       ]
     },
     {
-      "group": "Sources",
+      "group": "Signals & Integrations",
       "pages": [
-        "sources/index",
+        "integrations/overview",
         {
           "group": "Web & Product Data",
           "pages": [
+            "integrations/arcade",
+            "integrations/bigquery",
+            "integrations/calendly",
+            "integrations/drift",
+            "integrations/fullstory",
+            "integrations/gitbook",
+            "integrations/hightouch",
+            "integrations/intercom",
+            "integrations/mintlify",
+            "integrations/navattic",
+            "integrations/posthog",
+            "integrations/qualified",
+            "integrations/rb2b",
+            "integrations/readme",
             "integrations/segment",
             "integrations/snowflake",
-            "integrations/rb2b",
-            "integrations/bigquery",
-            "integrations/mintlify",
-            "integrations/readme"
+            "integrations/webhooks"
           ]
         },
         {
-          "group": "Social / Community",
+          "group": "Social/Community",
           "pages": [
-            "integrations/linkedin-chrome-extension",
-            "integrations/github",
-            "integrations/slack-community",
             "integrations/discord",
-            "integrations/discourse"
+            "integrations/discourse",
+            "integrations/g2",
+            "integrations/github",
+            "integrations/linkedin-chrome-extension",
+            "integrations/slack",
+            "integrations/slack-community"
           ]
         },
         {
-          "group": "Prospecting",
-          "pages": ["integrations/job-tracking"]
+          "group": "Sales Engagement",
+          "pages": [
+            "integrations/apollo",
+            "integrations/instantly",
+            "integrations/outreach",
+            "integrations/salesloft"
+          ]
+        },
+        {
+          "group": "CRMs",
+          "pages": ["integrations/hubspot", "integrations/salesforce"]
+        },
+        {
+          "group": "Enrichment",
+          "pages": [
+            "integrations/clearbit",
+            "integrations/prospector",
+            "integrations/zoominfo"
+          ]
         }
       ]
     },
     {
-      "group": "Integrations",
-      "pages": [
-        "integrations/apollo",
-        "integrations/arcade",
-        "integrations/calendly",
-        "integrations/census",
-        "integrations/clearbit",
-        "integrations/g2",
-        "integrations/gitbook",
-        "integrations/google-tag-manager",
-        "integrations/hightouch",
-        "integrations/hubspot",
-        "integrations/mintlify",
-        "integrations/navattic",
-        "integrations/readme",
-        "integrations/rudderstack",
-        "integrations/salesforce",
-        "integrations/salesloft",
-        "integrations/segment",
-        "integrations/slack",
-        "integrations/zoominfo"
-      ]
+      "group": "Reference",
+      "pages": ["reference/overview"]
     }
   ],
   "footerSocials": {
