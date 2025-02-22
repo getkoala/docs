@@ -110,9 +110,9 @@ Your final script tag should look something like this:
 ```html
 <script>
     window.koalaSettings = {
-        host: 'your-api-subdomain.yourdomain.com'
+        host: 'https://your-api-subdomain.yourdomain.com'
     }
 
-    !function(t){if(window.ko)return;window.ko=[],["identify","track","removeListeners","open","on","off","qualify","ready"].forEach(function(t){ko[t]=function(){var n=[].slice.call(arguments);return n.unshift(t),ko.push(n),ko}});var n=document.createElement("script");n.async=!0,n.setAttribute("src","https://your-cdn-subdomain.yourdomain.com/v1/YOUR_PUBLIC_KEY/sdk.js"),(document.body || document.head).appendChild(n)}();
+    !function(t){if(window.ko)return;window.ko=[],["identify","track","removeListeners","on","off","qualify","ready"].forEach(function(t){ko[t]=function(){var n=[].slice.call(arguments);return n.unshift(t),ko.push(n),ko}});var n=document.createElement("script");n.async=!0,n.setAttribute("src","https://your-cdn-subdomain.yourdomain.com/v1/YOUR_PUBLIC_KEY/sdk.js"),(document.body || document.head).appendChild(n)}();
 </script>
 ```
