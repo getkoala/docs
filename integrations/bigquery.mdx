@@ -3,7 +3,77 @@ title: "BigQuery"
 description: "Sync product, usage and event data directly from your data warehouse."
 ---
 
-<Note>
-The BigQuery integration is currently in early access.
-Please reach out to support@koala.com if you'd like to get access to the integration.
-</Note>
+Koala can connect to your BigQuery account and sync data from any of your databases directly into your customer profiles, as well as enrich your customer profiles with data from your BigQuery databases.
+
+## Connecting to BigQuery
+
+To connect Koala to your BigQuery account, you'll need to create a service account and generate a JSON key. Follow the steps below:
+
+### Create a Service Account
+
+- Navigate to the [Google Cloud Console](https://console.cloud.google.com).
+
+- From the navigation panel on the left, select **IAM & Admin**, then choose Service Accounts.
+
+- Click on **Create Service Account**.
+
+- Enter a name for your service account (e.g., koala-bigquery) and click **Create**.
+
+![](/images/bigquery/gc-service-account-1.png)
+
+- Assign the following roles to the service account:
+
+  - <code>BigQuery Data Owner</code>
+  - <code>BigQuery Job User</code>
+
+![](/images/bigquery/gc-service-account-2.png)
+
+- After assigning roles, click on Done. Then, find your newly created service account in the list, click on the three dots under Actions, and select **Manage keys**.
+
+- Click on **Add Key** > **Create New Key**, select **JSON** as the key type, and click **Create**. A JSON key file will be downloaded to your computer. This file will be used to connect Koala to your BigQuery instance.
+
+![](/images/bigquery/gc-service-account-3.png)
+
+For more detailed information on creating service accounts, refer to the [Google Cloud documentation](https://cloud.google.com/docs).
+
+### Connect Koala to BigQuery
+
+- Access your [Koala dashboard](https://app.getkoala.com).
+
+- Go to **Settings** > **Sources & Integrations**.
+
+- Locate the **BigQuery** app and click on **Connect**.
+
+- Paste credentials from **JSON Key** file into corresponding fields: `project_id`, `client_email` and `private_key`.
+
+- Click **Save** to establish the connection.
+
+![](/images/bigquery/app-settings.png)
+
+## Reading Data from BigQuery into Koala
+
+Once the connection is established, you can sync data from BigQuery into Koala:
+
+- In **BigQuery** settings, navigate to **Read data from BigQuery** and click on **Add New Model**.
+
+- Select the corresponding **Object Type** (`Account` or `Profile`) and **Data Type** (`Traits` or `Events`) you want to read from **BigQuery**.
+
+- Write the **SQL query** to select the data you want to import from **BigQuery**. Ensure that your query include a unique identifier (e.g., email) to map data correctly to data model in Koala.
+
+- You can preview the data returned by the **SQL Query** clicking on **Test Model**. Make sure to address the **validation errors** if there are any.
+
+- Click **Save** to confirm the changes.
+
+![](/images/bigquery/app-data-model.png)
+
+Once the **Data Model** is correctly configured, the data will be synced to Koala in the next sync window, on 2:15 am and 2:15 pm.
+
+The **last successful sync** timestamp will be shown at the bottom of **Data Model** once the process ran correctly.
+
+## Sending Data from Koala to BigQuery
+
+(coming soon)
+
+For more information on managing BigQuery integrations, refer to the [Google BigQuery documentation](https://cloud.google.com/bigquery/docs).
+
+By following these steps, you can seamlessly integrate BigQuery with Koala, enabling efficient data flow between your data warehouse and Koala's platform.
