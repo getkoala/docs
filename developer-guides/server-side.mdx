@@ -18,7 +18,7 @@ Sometimes you'll need to send events from your backend application in addition t
 <Note>
 The `/batch` endpoint has a few constraints/requirements: 
   
-- you must send either a `profile_id` or `email` identifier as top-level properties in the request body
+- **you must send either a `profile_id` or `email` identifier as top-level properties in the request body**
 - all events, identifies, or page_views collected are limited to up to 30 of each type
 - each request should only send events for the same person (all events are tied to the same `profile_id`/`email`)
 </Note>
@@ -83,6 +83,7 @@ app.get("/", (req, res) => {
 ### Sending events
 
 You can also send custom events to Koala using the same `/batch` endpoint for your workspace.
+The API call must include either an `email` (most common scenario), or a `profile_id` (read from the Koala cookie).
 
 ```sh Example Request
 curl -X POST \
@@ -90,6 +91,7 @@ curl -X POST \
   -H "User-Agent: your-company-name/1.0.0" \
   -d '{
     "profile_id": "3e6a2c18-3b02-40c4-b8d2-1842c193d3ba",
+    "email": "netto@getkoala.com",
     "events": [{
       "message_id": "any idempotent id (can be a uuid or anything unique)",
       "type": "track",
