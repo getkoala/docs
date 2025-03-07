@@ -18,7 +18,7 @@ Sometimes you'll need to send events from your backend application in addition t
 <Note>
 The `/batch` endpoint has a few constraints/requirements: 
   
-- *you must send either a `profile_id` or `email` identifier as top-level properties in the request body*
+- **you must send either a `profile_id` or `email` identifier as top-level properties in the request body**
 - all events, identifies, or page_views collected are limited to up to 30 of each type
 - each request should only send events for the same person (all events are tied to the same `profile_id`/`email`)
 </Note>
