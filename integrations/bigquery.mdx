@@ -123,9 +123,9 @@ And assign this custom role to the Service Account used on integration:
 
 After confirming the new permissions, you could back to Koala settings to continue the configuration and enable the desired Data Exports to be synced to BigQuery dataset.
 
-#### Caveats
+### Caveats
 
-##### **ID columns as `byte` type**
+#### **ID columns as `byte` type**
 BigQuery have a schema detection logic that convert UUID type columns to `bytes` type ([more info](https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-parquet#parquet_conversions)), which result in wrong result values when querying data from that columns. To avoid this, all you'll need is to convert the IDs columns using the [TO_HEX()](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#to_hex) function.
 
 For example, selecting the IDs directly will return it as bytes (base64 encoded):
