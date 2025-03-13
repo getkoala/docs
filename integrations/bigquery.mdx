@@ -58,17 +58,17 @@ Once the connection is established, you can sync data from BigQuery into Koala:
 
 - Select the corresponding **Object Type** (`Account` or `Profile`) and **Data Type** (`Traits` or `Events`) you want to read from **BigQuery**.
 
-- Write the **SQL query** to select the data you want to import from **BigQuery**. Ensure that your query include a unique identifier (e.g., email) to map data correctly to data model in Koala.
+- Write the **SQL query** to select the data you want to import from **BigQuery**. Ensure that your query includes a unique identifier (e.g., email) to map data correctly to the data model in Koala.
 
-- You can preview the data returned by the **SQL Query** clicking on **Test Model**. Make sure to address the **validation errors** if there are any.
+- You can preview the data returned by the **SQL Query** by clicking on **Test Model**. Make sure to address the **validation errors** if there are any.
 
 - Click **Save** to confirm the changes.
 
 ![](/images/bigquery/app-data-model.png)
 
-Once the **Data Model** is correctly configured, the data will be synced to Koala in the next sync window, on 2:15 am and 2:15 pm.
+Once the **Data Model** is correctly configured, the data will be synced to Koala in the next sync window, at 2:15 am and 2:15 pm.
 
-The **last successful sync** timestamp will be shown at the bottom of **Data Model** once the process ran correctly.
+The **last successful sync** timestamp will be shown at the bottom of **Data Model** once the process runs correctly.
 
 ## Sending Data from Koala to BigQuery
 
@@ -99,23 +99,23 @@ You need to create a custom role to assign these permission following:
 
 - Click on **Create Role**.
 
-- Enter a title, description and ID for the role, following the example on image bellow.
+- Enter a title, description, and ID for the role, following the example in the image below.
 
-- Assign the `bigquery.transfers.get` and `bigquery.transfers.update` roles clicking on **Add Permissions**.
+- Assign the `bigquery.transfers.get` and `bigquery.transfers.update` roles by clicking on **Add Permissions**.
 
 - Click on **Create** to confirm the operation.
 
 ![](/images/bigquery/gc-custom-role.png)
 
-And assign this custom role to the Service Account used on integration:
+Assign this custom role to the Service Account used on integration:
 
 - Navigate to the [Google Cloud Console](https://console.cloud.google.com).
 
 - From the navigation panel on the left, select **IAM**.
 
-- Locate the Service Account user on the list and click on the _pencil_ icon at right to edit it.
+- Locate the Service Account user on the list and click on the _pencil_ icon on the right to edit it.
 
-- Click on **Add Another Role** and choose the new created custom role.
+- Click on **Add Another Role** and choose the newly created custom role.
 
 - Click on **Save** to confirm the operation.
 
@@ -123,12 +123,12 @@ And assign this custom role to the Service Account used on integration:
 
 After confirming the new permissions, you could back to Koala settings to continue the configuration and enable the desired Data Exports to be synced to BigQuery dataset.
 
-### Caveats
+### Notes
 
 #### **ID columns as `byte` type**
-BigQuery have a schema detection logic that convert UUID type columns to `bytes` type ([more info](https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-parquet#parquet_conversions)), which result in wrong result values when querying data from that columns. To avoid this, all you'll need is to convert the IDs columns using the [TO_HEX()](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#to_hex) function.
+BigQuery has a schema detection logic that converts UUID type columns to `bytes` type ([more info](https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-parquet#parquet_conversions)), which results in wrong result values when querying data from that columns. To avoid this, all you'll need is to convert the IDs columns using the [TO_HEX()](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#to_hex) function.
 
-For example, selecting the IDs directly will return it as bytes (base64 encoded):
+For example, selecting the IDs directly will return them as bytes (base64 encoded):
 ```
 select company_id, domain from accounts;
 
@@ -137,7 +137,7 @@ select company_id, domain from accounts;
 2	m8IlKhqBRG+qhWASgS1orw==   getkoala.com
 ```
 
-To fetch the real ID value, you need to convert it on query:
+To fetch the real ID value, you need to convert it on the query:
 
 ```
 select TO_HEX(company_id), domain from accounts;
@@ -147,6 +147,6 @@ select TO_HEX(company_id), domain from accounts;
 2	9bc2252a1a81446faa856012812d68af   getkoala.com
 ```
 
-This conversion isn't needed on table joins. Use it just if you need to retrieve the real column value on your BigQuery views and queries.
+This conversion isn't needed on table joins. Use it if you need to retrieve the real column value on your BigQuery views and queries.
 
 For more information on managing BigQuery integrations, refer to the [Google BigQuery documentation](https://cloud.google.com/bigquery/docs).
