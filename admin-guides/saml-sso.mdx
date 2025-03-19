@@ -33,3 +33,30 @@ Now to the steps:
 <Note>
   After saving the SAML SSO settings, you will be logged out and will need to log back in. You have to type in your email address to initiate the SAML SSO flow.
 </Note>
+
+## Notes
+
+### Okta Group Assignments
+
+When assigning Groups to the Okta App used on Koala's integration, make sure that the users assigned from that group are shown as "Group" type instead of "Individual". This _inconsistent scenario_ could happen if a user that belongs to the group was previously assigned as an "individual", making the login process fail.
+
+![](/images/admin-guides/okta-group-assignment.png)
+
+To fix this, remove all previously individually assigned users and then assign the Group you want to give access to. After that, all users in that group will be assigned to App and the type should be shown as "Group".
+
+### Okta Attribute Statements
+
+To correctly create and activate new users on Koala using Okta's info, you should configure the [Attribute Statements](https://help.okta.com/oie/en-us/content/topics/apps/aiw-saml-reference.htm?cshid=csh-attribute-statements-saml) on the Okta App used on integration following these steps:
+
+1. Click on the App settings and go to the "General" tab;
+2. Click on the **Edit** button on the **SAML Settings** section;
+3. Click on **Next** button to go to **2. Configure SAML** step;
+4. Locate the **Attribute Statement** section and add the following fields:
+  - `first_name` mapped to `user.firstName`
+  - `last_name` mapped to `user.lastName`
+  - `email` mapped to `user.email`
+5. Click on the Next button and then on Finish to confirm the changes.
+
+![](/images/admin-guides/okta-attribute-statements.png)
+
+This way, when a newly invited user logs into Koala using Okta, their profile information will be correctly read from Okta.
