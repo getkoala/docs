@@ -5,6 +5,16 @@ description: "Learn how to install the Koala JavaScript SDK."
 
 See [the Quick Start](/get-started/quick-start#copy-the-snippet) for general installation instructions.
 
+## FAQ
+
+### Does Koala work across different subdomains? (eg., example.com, app.example.com, docs.example.com)
+
+Yes, if you intall the pixel in all places, we'll seamlessly track the entire user journey across all subdomains with no additional configuration.
+
+### What happens with Koala installed on different top-level domains? (eg., vercel.com, nextjs.org)
+
+You can install the pixel in both places, but the same user will show up as two different users. This is not a Koala limitation per se, but rather a design choice browsers have made to not let different top-level domains share cookies. If the users identify themselves, we'll automatically merge them into one profile, but they will show up as different profiles until the identification happens.
+
 ## Troubleshooting
 
 ### Using a strict Content Security Policy
