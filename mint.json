@@ -144,10 +144,6 @@
             "integrations/discord",
             "integrations/discourse"
           ]
-        },
-        {
-          "group": "Prospecting",
-          "pages": ["integrations/job-tracking"]
         }
       ]
     },
