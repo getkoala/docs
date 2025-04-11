@@ -1,18 +1,34 @@
 ---
-title: 'Arcade'
-description: 'Capture events coming from Arcade interactive tours.'
+title: "Arcade"
+description: "Capture events coming from Arcade interactive tours."
 ---
 
 ## Overview
 
 [Arcade](https://arcade.software?ref=koala) is a tool to help you create beautiful demos and interactive tours for your product.
 
-With a small bit of code you can capture key events in Koala as visitors interact with your Arcade demos.
+## Automatic Setup
 
-## Setup
+1. [Install the Koala snippet](/get-started/quick-start) on the site where you are embedding Arcade demos.
+2. Koala will automatically detect and capture events from Arcade including:
+   - Flow Rendered
+   - Hotspot Clicked
+   - Video Ended
+   - Flow Restarted
+   - Progress Bar Nav Clicked
+   - Step Reached
+   - Overlay Clicked
+   - External URL Clicked
+   - Powered by Arcade Button Clicked
+   - CTA Clicked
+
+## Manual Setup
+
+If you don't want all Arcade events captured, or need to control when it's turned on, you can manually setup Arcade with Koala. With a small bit of code you can capture key events in Koala as visitors interact with your Arcade demos.
 
 1. [Install the Koala snippet](/get-started/quick-start) on the site where you are also embedding the Arcade demo iframe.
-2. Anywhere *after* the Koala snippet, within the `<body>` tag of your html add this code snippet:
+2. Turn off the Arcade plugin in the [Koala settings](https://app.getkoala.com/goto/settings/install).
+3. Anywhere _after_ the Koala snippet, within the `<body>` tag of your html add this code snippet:
 
 ```html
 <script>
@@ -21,7 +37,7 @@ With a small bit of code you can capture key events in Koala as visitors interac
     function (event) {
       if (event.origin === "https://demo.arcade.software") {
         if (window.ko && event.data && event.data.eventName) {
-          window.ko.track('Arcade ' + event.data.eventName, event.data)
+          window.ko.track("Arcade " + event.data.eventName, event.data);
         }
       }
     },
@@ -36,14 +52,19 @@ If you only want to capture some of the events you can add a conditional check l
 
 ```html
 <script>
-  const eventsToCapture = ['CTA Clicked', 'Hotspot Clicked']
+  const eventsToCapture = ["CTA Clicked", "Hotspot Clicked"];
 
   window.addEventListener(
     "message",
     function (event) {
       if (event.origin === "https://demo.arcade.software") {
-        if (window.ko && event.data && event.data.eventName && eventsToCapture.includes(event.data.eventName)) {
-          window.ko.track('Arcade ' + event.data.eventName, event.data)
+        if (
+          window.ko &&
+          event.data &&
+          event.data.eventName &&
+          eventsToCapture.includes(event.data.eventName)
+        ) {
+          window.ko.track("Arcade " + event.data.eventName, event.data);
         }
       }
     },
@@ -51,3 +72,7 @@ If you only want to capture some of the events you can add a conditional check l
   );
 </script>
 ```
+
+## Turning off autotracking for Arcade
+
+If you don't want all Arcade events captured, or need to control when it's turned on, you can disable autotracking for Arcade in the [Koala settings](https://app.getkoala.com/goto/settings/install).

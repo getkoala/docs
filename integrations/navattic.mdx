@@ -7,12 +7,34 @@ description: "Capture events coming from Navattic interactive demos."
 
 [Navattic](https://www.navattic.com?ref=koala) is a tool to build interactive demos of your product.
 
+## Automatic Setup
+
+1. [Install the Koala snippet](/get-started/quick-start) on the site where you are embedding Navattic demos.
+2. Koala will automatically detect and capture events from Navattic including:
+   - View Step
+   - Start Flow
+   - Complete Flow
+   - Start Checklist
+   - Open Checklist
+   - Close Checklist
+   - Identify User
+   - Converted
+   - Navigate
+   - Complete Task
+
+Koala will also automatically identify users from Navattic forms and interactions.
+
+## Turning off autotracking for Navattic
+
+If you don't want all Navattic events captured, or need to control when it's turned on, you can disable autotracking for Navattic in the [Koala settings](https://app.getkoala.com/goto/settings/install).
+
+## Manual Setup
+
 With a small bit of code you can capture key events in Koala as visitors interact with your Navattic demos.
 
-## Setup
-
 1. [Install the Koala snippet](/get-started/quick-start) on the site where you are also embedding a Navattic demo iframe with Embed Events installed.
-2. Anywhere _after_ the Koala snippet, within the `<body>` tag of your html add this code snippet:
+2. Turn off the Navattic plugin in the [Koala settings](https://app.getkoala.com/goto/settings/install).
+3. Anywhere _after_ the Koala snippet, within the `<body>` tag of your html add this code snippet:
 
 ```html
 <!-- On a page with a Navattic demo and Navattic embed events -->
@@ -44,7 +66,7 @@ With a small bit of code you can capture key events in Koala as visitors interac
 </script>
 ```
 
-This will send all Navattic events to Koala, prefixed with the name “Navattic” (e.g. “Navattic View Step” or “Navattic Navigated”). You can see the full list of events in their [docs](https://docs.navattic.com/embed-events#HlKP6).
+This will send all Navattic events to Koala, prefixed with the name "Navattic" (e.g. "Navattic View Step" or "Navattic Navigated"). You can see the full list of events in their [docs](https://docs.navattic.com/embed-events#HlKP6).
 
 If you only want to capture some of the events you can add a conditional check like this:
 
