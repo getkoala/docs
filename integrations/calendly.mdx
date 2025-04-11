@@ -7,9 +7,21 @@ description: 'Capture events coming from your embedded Calendly booking.'
 
 Koala can integrate with [Calendly](https://calendly.com?ref=koala) to capture events coming from your embedded Calendly booking iframe.
 
-With a small bit of code you can capture key events in Koala as visitors interact with Calendly.
+## Automatic Setup
 
-## Setup
+1. [Install the Koala snippet](/get-started/quick-start) on the site where you are also embedding the Calendly booking iframe.
+2. Leave the Calendly plugin turned on (it's on by default). Koala will automatically detect and capture Calendly events!
+
+Out of the box, Koala will capture the following events:
+
+- Calendly Profile Page Viewed
+- Calendly Event Type Viewed
+- Calendly Date and Time Selected
+- Calendly Event Scheduled
+
+## Manual Setup
+
+With a small bit of code you can capture key events in Koala as visitors interact with Calendly.
 
 1. [Install the Koala snippet](/get-started/quick-start) on the site where you are also embedding the Calendly booking iframe.
 2. Anywhere *after* the Koala snippet, within the `<body>` tag of your html add this code snippet:
