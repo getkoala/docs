@@ -11,7 +11,7 @@ before proceeding. If you don't have a Koala account,
 
 ## Reading from Salesforce
 
-Upon connecting Koala to Salesforce's CRM (Salesforce Sales Cloud), Koala will sync all Accounts, Opportunities, Contacts, and Leads. Koala will automatically refresh Salesforce CRM every hour, so we always have fresh data about who owns which Accounts and which Accounts have active Opportunities attached.
+Upon connecting Koala to Salesforce's CRM (Salesforce Sales Cloud), Koala will sync all Accounts, Opportunities, Contacts, and Leads. Koala will automatically refresh Salesforce CRM data every hour, so we always have fresh data about who owns which Accounts and which Accounts have active Opportunities attached. [Account Scores](#account-score-sync-into-salesforce-business-plan) are synced into the CRM nightly when enabled.
 
 No data will be written to Salesforce by default, and you can use a read-only user if you'd like. However, there are optional ways to write data back into Salesforce.
 
@@ -44,8 +44,9 @@ Every time an intent signal happens for a qualifying list that you specify, ther
 
 ## Account Score Sync into Salesforce (Business Plan)
 
-Each night Koala can send a snapshot of Account Scores into your CRM, that includes: `Intent Score`, `Intent Strength`, `Intent Trend`, `ICP Score` and `ICP Grade`.
-This feature can be enabled in the settings page where the setup instructions give you specific directions.
+Koala can send a snapshot of Account Scores that includes `Intent Score`, `Intent Strength`, `Intent Trend`, `ICP Score` and `ICP Grade` into your CRM .
+This feature can be enabled in the settings page and each night around 10pm PST will send the scores that changed during the day.
+The settings page provides the setup instructions to follow to have everything setup and mapped.
 The fields can be automatically added using the provided [Koala Managed Scores (1.1.0.0)](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tak0000001s6PAAQ) managed package
 or they can be manually added following these definitions:
 

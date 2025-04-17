@@ -12,7 +12,7 @@ before proceeding. If you don't have a Koala account,
 
 ## Reading from HubSpot
 
-Upon connecting Koala to HubSpot's CRM, Koala will sync all Companies, Deals, and Contacts. Koala will automatically refresh HubSpot CRM every hour, so we always have fresh data about who owns which Companies and which Companies have active Deals attached.
+Upon connecting Koala to HubSpot's CRM, Koala will sync all Companies, Deals, and Contacts. Koala will automatically refresh HubSpot CRM data every hour, so we always have fresh data about who owns which Companies and which Companies have active Deals attached. [Account Scores](#account-score-sync-into-hubspot-business-plan) are synced into the CRM nightly when enabled.
 
 ## Importing to HubSpot
 
@@ -40,8 +40,9 @@ Every time an intent signal happens for a qualifying list that you specify, ther
 
 ## Account Score Sync into HubSpot (Business Plan)
 
-Each night Koala can send a snapshot of Account Scores into your CRM, that includes: `Intent Score`, `Intent Strength`, `Intent Trend`, `ICP Score` and `ICP Grade`.
-This feature can be enabled in the settings page where the setup instructions give you specific directions.
+Koala can send a snapshot of Account Scores that includes `Intent Score`, `Intent Strength`, `Intent Trend`, `ICP Score` and `ICP Grade` into your CRM .
+This feature can be enabled in the settings page and each night around 10pm PST will send the scores that changed during the day.
+The settings page provides the setup instructions to follow to have everything setup and mapped.
 The fields can be automatically added to a Koala Managed Scores property group during the setup or they can be manually added following these definitions:
 
 ### Koala Scores Fields Definitions
