@@ -76,6 +76,7 @@
     {
       "group": "Product Manual",
       "pages": [
+        "product-manual/koala-plays",
         "product-manual/audiences",
         "product-manual/content-reports",
         "product-manual/intent-signals",
