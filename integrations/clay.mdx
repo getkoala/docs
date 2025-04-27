@@ -1,0 +1,58 @@
+---
+title: Clay
+description: Send data to Clay via webhooks from Koala's Actions and Auto Outbound frameworks
+---
+
+## Overview
+
+Koala integrates with Clay through webhooks, allowing you to send data from both the Actions framework and Auto Outbound campaigns. This integration enables you to:
+
+- Enrich your Clay tables with intent signals and visitor data
+- Trigger enrichment workflows in Clay
+- Trigger signal-based plays to be run in Clay
+
+## Integration Methods
+
+### 1. Actions Framework
+
+You can use Koala's Actions framework to send data to Clay via webhook when intent signals happen. 
+
+This is the simplest way to integrate.
+
+For detailed setup instructions, see our [Actions](/automations/actions) guide. Actions should be configured to use the "Webhook" destination.
+
+### 2. Auto Outbound
+
+Clay can be used as a destination for Auto Outbound campaigns, allowing you to:
+
+- Leverage Koala to do AI Research, ICP filtering, and Auto Prospecting
+- Send qualified prospects to a Clay table for further workflow
+
+For detailed setup instructions, see our [Auto Outbound with Clay](/automations/auto-outbound/clay) guide.
+
+## Setup Instructions
+
+### Via Actions or Auto Outbound
+
+1. Create a new table in Clay using "Import Data from Webhook"
+2. Copy the Webhook URL from Clay
+3. Paste the URL into your Koala webhook configuration (either Actions or Auto Outbound)
+4. Test the integration using the preview panel
+
+## Data Structure
+
+The webhook payload sent to Clay includes all of the data you see in Koala, including:
+
+- Intent Signal 
+    - Details about which intent signal triggered the webhook
+- Account context
+    - Intent summary
+    - Firmographic enrichment
+    - Account details from CRM
+- Visitor context
+    - Email
+    - Name
+    - Title
+    - Contact details from CRM
+
+As you set up the webhook, Koala gives you a way to preview the exact payload using historical production data.
