@@ -155,6 +155,7 @@
         "integrations/arcade",
         "integrations/calendly",
         "integrations/census",
+        "integrations/clay",
         "integrations/clearbit",
         "integrations/drift",
         "integrations/fullstory",
