@@ -168,6 +168,7 @@
         "integrations/intercom",
         "integrations/mintlify",
         "integrations/navattic",
+        "integrations/outreach",
         "integrations/posthog",
         "integrations/qualified",
         "integrations/readme",
