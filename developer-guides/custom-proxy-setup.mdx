@@ -7,16 +7,21 @@ Custom domains allow you to proxy Koala and send all tracking events to Koala us
 
 Setting up a proxy means creating a service to redirect requests from a subdomain you choose (like `koala-api.yourdomain.com`) to Koala. We recommend avoiding subdomains that include the words `analytics`, `tracking` or other similar words that are sometimes blocked.
 
-There are a variety of CDNs and reverse proxy options. This guide explains how to set up CloudFront as a proxy for Koala, but you can apply these principles to almost any modern CDN that supports proxies.
+<Warning>
+  Cloudflare does not support cross-account proxying. If you're using Cloudflare for your main domain, you'll need to use a different CDN provider (like AWS CloudFront, Netlify, Vercel rewrites, nginx, etc.) for the proxy setup.
+</Warning>
+
+There are a variety of CDN and reverse proxy options. This guide explains how to set up CloudFront as a proxy for Koala, but you can apply these principles to almost any modern CDN that supports proxies.
 
 You need to set up two key parts, regardless of the CDN provider you use:
+
 - Proxy to the Koala API (`proxy.getkoala.com`)
 - Proxy to the Koala CDN (`cdn.getkoala.com`)
 
 ## CloudFront setup for the Koala API
 
 ### Custom certificates
-  
+
 If you plan on using Route 53 certificates on your CloudFront distributions, go ahead and create the two certificates for your domains of choice, e.g. `kapi.yourdomain.com` and `kcdn.yourdomain.com`.
 
 <Warning>
@@ -24,39 +29,39 @@ You must create these certificates in `us-east-1` for them to be usable in Cloud
 </Warning>
 
 ### CloudFront distribution for the Koala API
-  
+
 1. Log into the AWS console and navigate to CloudFront
 2. Click **Create Distribution**
 3. In the Origin section, configure it as follows:
-    - **Origin Domain Name**: `proxy.getkoala.com`
-    - **Protocol**: `HTTPS Only`
+   - **Origin Domain Name**: `proxy.getkoala.com`
+   - **Protocol**: `HTTPS Only`
 4. In the Default cache behavior section, configure it as follows:
-    - **Viewer protocol policy**: `Redirect HTTP to HTTPS`
-    - **Allowed HTTP methods**: `GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE`
+   - **Viewer protocol policy**: `Redirect HTTP to HTTPS`
+   - **Allowed HTTP methods**: `GET, HEAD, OPTIONS, PUT, POST, PATCH, DELETE`
 5. Under "Cache key and origin requets", select **Legacy cache settings** and:
-    - **Cache Policy**: `CachingDisabled`
-    - **Origin Request Policy**: `Create a new Origin Request Policy`
+   - **Cache Policy**: `CachingDisabled`
+   - **Origin Request Policy**: `Create a new Origin Request Policy`
 6. After clicking "Create policy":
-    - Enter a name and description for the policy (something that describes this is for Koala headers)
-    - On Origin request settings, select **Include the following headers** and select these headers:
-        - Origin
-        - Accept
-        - CloudFront-Viewer-Address
-        - CloudFront-Viewer-Latitude
-        - CloudFront-Viewer-Longitude
-    - Still on the "Add header" section, click **"Add Custom"** and enter these headers one by one:
-        - Sec-WebSocket-Key
-        - Sec-WebSocket-Version
-        - Sec-WebSocket-Protocol
-        - Sec-WebSocket-Extensions
-        - User-Agent
-    - Under "Query Strings" select **All**
-    - Under "Cookies" select **All**
-    - Save your changes
+   - Enter a name and description for the policy (something that describes this is for Koala headers)
+   - On Origin request settings, select **Include the following headers** and select these headers:
+     - Origin
+     - Accept
+     - CloudFront-Viewer-Address
+     - CloudFront-Viewer-Latitude
+     - CloudFront-Viewer-Longitude
+   - Still on the "Add header" section, click **"Add Custom"** and enter these headers one by one:
+     - Sec-WebSocket-Key
+     - Sec-WebSocket-Version
+     - Sec-WebSocket-Protocol
+     - Sec-WebSocket-Extensions
+     - User-Agent
+   - Under "Query Strings" select **All**
+   - Under "Cookies" select **All**
+   - Save your changes
 7. Back on the "Create distribution" page, refresh the Origin Request Policy dropdown and select the policy you just created.
 8. Under "Settings":
-    - add an **Alternate Domain Name** (use the domain from the certificate you created earlier)
-    - select the certificate as the **Custom SSL certificate**
+   - add an **Alternate Domain Name** (use the domain from the certificate you created earlier)
+   - select the certificate as the **Custom SSL certificate**
 9. Finalize by clicking **Create distribution**
 
 Copy the distribution domain name for the next step.
