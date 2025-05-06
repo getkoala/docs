@@ -21,6 +21,10 @@ You can use AI agents to answer questions about a person or account. Then you ca
 - In the composer
 - On the people/account pages
 
+<Note>
+**Best Practice**: Design each research agent to answer one specific question. Instead of creating a single agent with multiple questions, create separate agents for each distinct data point you need. This produces more accurate and reliable results.
+</Note>
+
 ### Displaying research in the plays list
 
 You can add a research agent to the plays list by clicking on `Add AI Agent` in the top right corner of the plays list.
@@ -42,6 +46,10 @@ Additionally, you can view research content on people and account pages.
 ## Qualification agents
 
 You can use a qualification agent to automatically qualify leads and accounts based on research. 
+
+<Note>
+**Best Practice**: Design each qualification agent to answer one specific question. You can combine multiple qualification agents to create comprehensive qualification criteria, which produces better results than trying to ask too many things with a single agent.
+</Note>
 
 ### Creating an agent
 
@@ -92,6 +100,36 @@ We currently support the following response types:
 - **Picklist**: Selection from predefined options
 
 Keep in mind that the response type will affect the criteria you can set up.
+
+## AI Agent best practices
+
+For the best results with your AI agents, follow these guidelines:
+
+### Prompting best practices
+1. **Be specific and concise**: Clearly state what information you need in simple language.
+2. **Focus on one question**: Each agent should answer one specific question rather than multiple questions.
+3. **Include context**: Provide relevant context about why you need this information.
+4. **Use clear parameters**: Specify any constraints or requirements (e.g., "only companies with over 100 employees").
+
+### Model selection
+
+Koala supports multiple AI models, each with different strengths. Choose the right model based on your research needs and complexity requirements:
+
+| Model | Suggested Use |
+|-------|--------------|
+| **GPT-4o** | Complex tasks requiring nuanced research and better fact checking. Best for research that needs deeper reasoning. Use this if in doubt. |
+| **GPT-4o-mini** | Great for most tasks - recommended for 90% of use cases. Delivers faster responses while maintaining quality. |
+| **Claude 3.5 Sonnet** | Excellent for complex questions requiring sophisticated reasoning when searching the web. |
+| **Claude 3.5 Haiku** | A well-balanced model suitable for most web search tasks, offering a good mix of speed and quality. |
+| **Perplexity** | Provides fast, straightforward answers from web searches. Good for quick research needs. |
+| **Perplexity Reasoning (DeepSeek R1)** | Latest Perplexity model backed by DeepSeek R1, providing more sources and reasoning. |
+| **Perplexity Pro** | For complex questions requiring deeper research, offering more comprehensive sources and analysis. |
+
+### Examples of effective agent questions:
+- ✅ "Does this company have a sales team larger than 10 people?"
+- ✅ "What is the company's annual revenue?"
+- ✅ "Is this person a decision maker for purchasing software?"
+- ❌ "Tell me about the company's revenue, sales team, tech stack, and recent news." (Too broad)
 
 ## Managing agents
 
