@@ -1,0 +1,141 @@
+---
+title: "AI Agents"
+description: "Learn how to use AI Agents in Koala to automatically research and qualify leads and accounts."
+---
+
+## What is an AI Agent?
+
+Agents are a way to automate lead and account research for your sales team. You can use them to simply answer questions about people or companies, and can use them to automatically qualify leads and accounts based on their research.
+
+There are a few ways of creating an agent:
+- Research agents
+- Qualification agents
+- AI agents on settings page
+
+Let's dive into each of these.
+
+## Research agents
+
+You can use AI agents to answer questions about a person or account. Then you can show in a few places:
+- In the plays list
+- In the composer
+- On the people/account pages
+
+<Note>
+**Best Practice**: Design each research agent to answer one specific question. Instead of creating a single agent with multiple questions, create separate agents for each distinct data point you need. This produces more accurate and reliable results.
+</Note>
+
+### Displaying research in the plays list
+
+You can add a research agent to the plays list by clicking on `Add AI Agent` in the top right corner of the plays list.
+
+![Research agent](/images/product-manual/ai-agents/research-agents-play-list.png)
+
+## Using AI Research Agents with Coach
+
+After adding AI Research Agents to a Play, you can use them in Koala Coach. You can select the relevant research knowledge to write personalized emails, LinkedIn messages, and call scripts.
+
+![Research agent](/images/product-manual/ai-agents/research-composer-list.png)
+
+## Displaying research on people/account pages
+
+Additionally, you can view research content on people and account pages.
+
+![Research agent](/images/product-manual/ai-agents/research-account-page.png)
+
+## Qualification agents
+
+You can use a qualification agent to automatically qualify leads and accounts based on research. 
+
+<Note>
+**Best Practice**: Design each qualification agent to answer one specific question. You can combine multiple qualification agents to create comprehensive qualification criteria, which produces better results than trying to ask too many things with a single agent.
+</Note>
+
+### Creating an agent
+
+To create an agent you can use for qualification, select or create a new agent in the third step of the `Create New Play` flow:
+
+![Qualification agent](/images/product-manual/ai-agents/qualification.png)
+
+To create an AI agent, you'll need to:
+
+1. **Agent goal** - Define the purpose of your agent (required)
+2. **Question/Prompt** - Ask the specific question you want answered (required)
+3. **Research type** - Choose between "Companies" or "People" (required)
+4. **Research individual people** - Option for people-focused research
+5. **Response Type** - Select how the AI should format its answer
+6. **Advanced Options** - Additional configuration settings
+
+![Qualification agent](/images/product-manual/ai-agents/creating-ai-agent.png)
+
+<Note>
+For qualification agents, the **Response Type** is particularly important. Based on those you'll set up criteria for qualifying leads and accounts.
+</Note>
+
+<Tip>
+It's highly recommended to use `Boolean`, `Number` or `Picklist` response types for qualification agents. This will make it easier to set up qualification criteria.
+</Tip>
+
+### Qualification criteria and response types
+
+Take the following example:
+
+![Qualification agent](/images/product-manual/ai-agents/criteria-set-up.png)
+
+The agent named `Sales Contracts > $50k` has response type `Boolean`, which means that the agent will only return a `Yes` or `No` answer.
+
+You can then set up a rule to qualify a lead or account based on that answer.
+
+**Response types**
+
+We currently support the following response types:
+
+- **String**: A text response for open-ended answers
+- **Number**: A numerical value without currency formatting
+- **Currency**: A monetary amount with the appropriate currency symbol
+- **Percent**: A percentage value
+- **Boolean**: A Yes/No or True/False response
+- **Date**: A calendar date
+- **List**: Multiple items returned as a list
+- **Picklist**: Selection from predefined options
+
+Keep in mind that the response type will affect the criteria you can set up.
+
+## AI Agent best practices
+
+For the best results with your AI agents, follow these guidelines:
+
+### Prompting best practices
+1. **Be specific and concise**: Clearly state what information you need in simple language.
+2. **Focus on one question**: Each agent should answer one specific question rather than multiple questions.
+3. **Include context**: Provide relevant context about why you need this information.
+4. **Use clear parameters**: Specify any constraints or requirements (e.g., "only companies with over 100 employees").
+
+### Model selection
+
+Koala supports multiple AI models, each with different strengths. Choose the right model based on your research needs and complexity requirements:
+
+| Model | Suggested Use |
+|-------|--------------|
+| **GPT-4o** | Complex tasks requiring nuanced research and better fact checking. Best for research that needs deeper reasoning. Use this if in doubt. |
+| **GPT-4o-mini** | Great for most tasks - recommended for 90% of use cases. Delivers faster responses while maintaining quality. |
+| **Claude 3.5 Sonnet** | Excellent for complex questions requiring sophisticated reasoning when searching the web. |
+| **Claude 3.5 Haiku** | A well-balanced model suitable for most web search tasks, offering a good mix of speed and quality. |
+| **Perplexity** | Provides fast, straightforward answers from web searches. Good for quick research needs. |
+| **Perplexity Reasoning (DeepSeek R1)** | Latest Perplexity model backed by DeepSeek R1, providing more sources and reasoning. |
+| **Perplexity Pro** | For complex questions requiring deeper research, offering more comprehensive sources and analysis. |
+
+### Examples of effective agent questions:
+- ✅ "Does this company have a sales team larger than 10 people?"
+- ✅ "What is the company's annual revenue?"
+- ✅ "Is this person a decision maker for purchasing software?"
+- ❌ "Tell me about the company's revenue, sales team, tech stack, and recent news." (Too broad)
+
+## Managing agents
+
+You can manage your agents in the `Agents` section of the settings page.
+
+![Research agent](/images/product-manual/ai-agents/manage-agents.png)
+
+Here you can create, test, edit, and delete agents.
+
