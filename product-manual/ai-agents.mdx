@@ -1,18 +1,43 @@
 ---
 title: "AI Agents"
-description: "Build a custom AI agent to automate your sales workflows"
+description: "Learn how to use AI Agents in Koala to automatically research and qualify leads and accounts."
 ---
 
-## What is an agent?
+## What is an AI Agent?
 
-Agents are a way to automate your sales workflows. You can use them to simply answer questions about a profile or account, or to qualify leads and accounts.
+Agents are a way to automate lead and account research for your sales team. You can use them to simply answer questions about people or companies, and can use them to automatically qualify leads and accounts based on their research.
 
 There are a few ways of creating an agent:
-- When setting up qualification in a play
-- AI agents on settings
 - Research agents
+- Qualification agents
+- AI agents on settings page
 
 Let's dive into each of these.
+
+## Research agents
+
+You can use AI agents to answer questions about a person or account. Then you can show in a few places:
+- In the plays list
+- In the composer
+- On the people/account pages
+
+### Displaying research in the plays list
+
+You can add a research agent to the plays list by clicking on `Add AI Agent` in the top right corner of the plays list.
+
+![Research agent](/images/product-manual/ai-agents/research-agents-play-list.png)
+
+## Using AI Research Agents with Coach
+
+After adding AI Research Agents to a Play, you can use them in Koala Coach. You can select the relevant research knowledge to write personalized emails, LinkedIn messages, and call scripts.
+
+![Research agent](/images/product-manual/ai-agents/research-composer-list.png)
+
+## Displaying research on people/account pages
+
+Additionally, you can view research content on people and account pages.
+
+![Research agent](/images/product-manual/ai-agents/research-account-page.png)
 
 ## Qualification agents
 
@@ -22,7 +47,7 @@ You can use a qualification agent to automatically qualify leads and accounts ba
 
 To create an agent you can use for qualification, select or create a new agent in the third step of the `Create New Play` flow:
 
-![Qualification agent](/images/product-manual/koala-agents/qualification.png)
+![Qualification agent](/images/product-manual/ai-agents/qualification.png)
 
 To create an AI agent, you'll need to:
 
@@ -33,15 +58,21 @@ To create an AI agent, you'll need to:
 5. **Response Type** - Select how the AI should format its answer
 6. **Advanced Options** - Additional configuration settings
 
-![Qualification agent](/images/product-manual/koala-agents/creating-ai-agent.png)
+![Qualification agent](/images/product-manual/ai-agents/creating-ai-agent.png)
 
+<Note>
 For qualification agents, the **Response Type** is particularly important. Based on those you'll set up criteria for qualifying leads and accounts.
+</Note>
+
+<Tip>
+It's highly recommended to use `Boolean`, `Number` or `Picklist` response types for qualification agents. This will make it easier to set up qualification criteria.
+</Tip>
 
 ### Qualification criteria and response types
 
 Take the following example:
 
-![Qualification agent](/images/product-manual/koala-agents/criteria-set-up.png)
+![Qualification agent](/images/product-manual/ai-agents/criteria-set-up.png)
 
 The agent named `Sales Contracts > $50k` has response type `Boolean`, which means that the agent will only return a `Yes` or `No` answer.
 
@@ -62,35 +93,11 @@ We currently support the following response types:
 
 Keep in mind that the response type will affect the criteria you can set up.
 
-## Research agents
-
-You can use AI agents to answer questions about a profile or account. Then you can show in a few places:
-- In the plays list
-- In the composer
-- On the profile/account pages
-
-### Displaying research in the plays list
-
-You can add a research agent to the plays list by clicking on `Add AI Agent` in the top right corner of the plays list.
-
-![Research agent](/images/product-manual/koala-agents/research-agents-play-list.png)
-
-## Using resarch in composer
-
-After adding research agents to the plays list, you can use them in Koala Coach. You can select the relevant research knowledge to write personalized emails, Linkedin messages, and call scripts.
-
-![Research agent](/images/product-manual/koala-agents/research-composer-list.png)
-
-## Displaying research on profile/account pages
-
-Additionally, you can view research content on profile and account pages.
-
-![Research agent](/images/product-manual/koala-agents/research-account-page.png)
-
 ## Managing agents
 
 You can manage your agents in the `Agents` section of the settings page.
 
-![Research agent](/images/product-manual/koala-agents/manage-agents.png)
+![Research agent](/images/product-manual/ai-agents/manage-agents.png)
 
 Here you can create, test, edit, and delete agents.
+
