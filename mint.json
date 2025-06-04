@@ -81,6 +81,7 @@
         "product-manual/content-reports",
         "product-manual/ai-agents",
         "product-manual/intent-signals",
+        "product-manual/intent-scores",
         "product-manual/slack-alerts",
         "product-manual/koala-weekly"
       ]
