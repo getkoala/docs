@@ -6,35 +6,69 @@ description: "Once you've gotten the hang of basic intent signals, we recommend 
 This guide is meant to be inspiration for finding the hottest intent you have!
 
 <Note>
-  Both the <a href="/get-started/quick-start">basic instrumentation</a> and <a href="/admin-guides/advanced-instrumentation">advanced instrumentation</a> are required before you can do some of these. But we do believe that these advanced intent signals can be nirvana for sales reps!
+  Both the <a href="/get-started/quick-start">basic instrumentation</a> and <a href="/developer-guides/sending-identify">contact identity setup</a> are required before you can do some of these. But we do believe that these advanced intent signals can be nirvana for sales reps!
 </Note>
 
-## Aha moment reached
-Pick an 'aha' moment in your app, and send an event when that aha moment happens. Try to pick an event that is the first time your customer really sees value. Send the event to Koala using ko.track().
+## Product Events via Koala SDK (Recommended)
+
+For teams with a product, usage signals are often more valuable than website activity. The recommended approach is to instrument events directly via the Koala SDK for maximum flexibility and accuracy.
+
+### Aha moment reached
+Pick an 'aha' moment in your app, and send an event when that aha moment happens. Try to pick an event that is the first time your customer really sees value. Send the event to Koala using `ko.track()`.
+
+```javascript
+ko.track('Aha Moment Reached', {
+  feature: 'dashboard_created',
+  user_type: 'trial_user',
+  time_to_aha: '3_days'
+});
+```
 
 If you have a lot of users in the workspace and "hobby" usage is overwhelming, you can use an account list to filter out (1) existing paid customers, (2) companies that are so small they won't buy, (3) schools/universities, and (4) personal use cases.
 
-## Habit moment reached
+### Habit moment reached
 
-Pick an 'habit' moment. This could be a one-time event that happens in the app (in which you'd use an architecture as described with the 'Aha' moment, above), but chances are it may be something you realize when you're looking at how active they've been over time. If the latter is the case, you may want to use an account trait to model this habit moment.
+Pick a 'habit' moment. This could be a one-time event that happens in the app (in which you'd use an architecture as described with the 'Aha' moment, above), but chances are it may be something you realize when you're looking at how active they've been over time. If the latter is the case, you may want to use an account trait to model this habit moment.
+
+```javascript
+ko.track('Habit Formation', {
+  action: 'daily_login_streak',
+  streak_length: 7,
+  engagement_level: 'high'
+});
+```
 
 If you have a lot of users in the workspace and "hobby" usage is overwhelming, you can use an account list to filter out (1) existing paid customers, (2) companies that are so small they won't buy, (3) schools/universities, and (4) personal use cases.
 
-## Workspace membership crosses threshold
+## Account-Level Product Signals
+
+### Workspace membership crosses threshold
 
 Pick a threshold of users that you believe signifies that the account is ripe for a sales call. This will depend on your product, but typically we find that a threshold of 3-10 users is a good starting point for most products. You can set up an account trait that lists the number of users in the app.
 
 One tip as you set up this intent signal: your users are likely not your buyer. You can tell each of your users about how active the account is, ask them to meet, and then ask them in that meeting for access to the buyer to give them the pitch. It's often not wise to directly try to sell to your end-users, but this is a very powerful way to understand which bigger accounts might be ready for a sales conversation.
 
-## Consumption metric crosses threshold
+### Consumption metric crosses threshold
 
 Many products have consumption metrics — for Snowflake, it's about how much data is stored and how much compute is needed; for Vercel, it's about how much bandwidth is consumed; for many developer apps, it's about how many API calls happen. If you have a consumption metric, it's wise to take a nightly snapshot of that consumption metric using an account trait and send that data to Koala. 
 
 The very strongest intent signal in a business is when free and pro plan limits start to be crossed. Koala makes it easy to experiment with which threshold is right and ensure that all reps are always aware of consumption metrics getting crossed.
 
-## Pro account shows interest in tech docs
+## Website Activity Signals
+
+### Pro account shows interest in tech docs
 
 Some of the best buying intent lurks in your technical docs. Technical docs are one of the best ways to learn about how a product deeply works, and one of the best signs that someone is interested in learning more is when they spend significant time on docs. Not every single tech doc is going to be relevant or exciting, but you may well have ones that show intent in your sales-led offerings.
 
 To get a bit meta for a second, for us: that's larger sales teams, advanced instrumentation, and advanced intent signals. Don't be surprised if you get an email from us if you spend too long reading this 👀.
+
+## Alternative: Product Analytics Integrations
+
+<Note>
+  While you can use existing analytics tool integrations, this approach has limited event coverage compared to direct SDK implementation. We recommend the direct Koala SDK approach above for maximum flexibility.
+</Note>
+
+If you're already using tools like Segment, Amplitude, or Mixpanel, you can leverage some of their data through our integrations. However, you'll need to ensure that identify calls are properly configured and that the events you want to track are being sent to Koala.
+
+For more information on analytics integrations, see our [integrations documentation](/integrations).
 

@@ -55,7 +55,7 @@
     {
       "group": "Guides for Admins",
       "pages": [
-        "admin-guides/advanced-instrumentation",
+        "developer-guides/sending-identify",
         "admin-guides/first-intent-signals",
         "admin-guides/advanced-intent-signals",
         "admin-guides/how-to-drive-more-known-users",

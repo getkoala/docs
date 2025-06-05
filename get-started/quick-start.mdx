@@ -142,15 +142,31 @@ It'll look something this:
   We recommend installing the Koala snippet on your marketing website, docsite,
   application and any other places that users are expressing intent in the
   product because Koala is going to surface this intent to the sales team. Koala
-  can only surface intent that it can see, so it’s important to capture all of
+  can only surface intent that it can see, so it's important to capture all of
   these surface areas.
 </Note>
 
-## Step 2: Connect Clearbit
+## Step 2: Set Up Contact Identity
+
+While the pixel automatically captures some contact info from forms, identifying users who sign up for your product unlocks much more value from Koala - whether for tracking prospects in POCs, existing customers, or trial users.
+
+### Two approaches:
+
+**Client-side (Recommended):** Add `ko.identify()` calls in your app when users sign up or log in.
+
+**Server-side:** API calls linking email to Koala profile ID for teams with performance or security constraints.
+
+For detailed setup instructions and code examples, see our **[Contact Identity Setup Guide](/developer-guides/sending-identify)**.
+
+<Note>
+  This step provides 100% accurate, privacy-friendly data with perfect match rates and gives you prospect-level instead of company-level detail. Most customers who skip this initially add it later and are blown away by what they were missing!
+</Note>
+
+## Step 3: Connect Clearbit
 
 We partner with Powered by Clearbit to give 10,000 free Clearbit Reveal calls and 250 free Clearbit Enrich calls every month. This is the cheapest way to get started with Clearbit and is essential to identifying anonymous traffic on your site. We've made this as easy as clicking a button in the welcome flow!
 
-## Step 3: Connect your CRM (optional)
+## Step 4: Connect your CRM
 
 This is an optional step, but strongly recommended if you're using Salesforce (Salesforce Sales Cloud) or HubSpot. (No worries if you're still operating out of a spreadsheet – we support you too!)
 
@@ -160,17 +176,31 @@ Connecting your CRM will:
 - be able to differentiate between prospects and customers, so that you can focus your time on prospects
 - help Koala build a scoring model to find accounts that look like your Closed Won customers
 
-## Step 4: Set up an intent signal
+## Step 5: Set Up Intent Signals
 
-Set up your first intent signal — we recommend **a pricing page visit that lasts for at least 15 seconds**! Better yet, setting up 3-5 is even better. Here are a few common first intent signals, other than pricing page:
+Intent signals help your sales team know when prospects are showing buying interest.
 
-- reading technical docs about paid features
-- reading a blog post for 2+ minutes
-- ensuring you are notified about form submits / content downloads
+### Basic Signals (Website Activity):
+- Pricing page visits lasting 15+ seconds
+- Technical documentation reads  
+- Blog post engagement (2+ minutes)
+- Form submissions
+
+### Advanced Signals (Product Activity):
+For teams with a product, usage signals are often more valuable:
+- Feature adoption milestones
+- Usage threshold alerts
+- Trial behavior patterns
+
+### Implementation:
+- **Recommended:** Instrument events directly via Koala SDK for maximum flexibility
+- **Alternative:** Use existing analytics tool integrations (note: limited event coverage)
+
+We recommend starting with **a pricing page visit that lasts for at least 15 seconds**! Better yet, setting up 3-5 signals is even better.
 
 That said, you know your business best, so be sure to set up things that your sales development team and AEs will be most interested in!
 
-## Step 5: Set up a Slack Alert
+## Step 6: Set Up Slack Alerts
 
 Keep things simple by sending all the intent signals to a single channel for now. If you have a larger sales team, you can read our guide on <a href="/admin-guides/larger-sales-teams">larger sales teams</a>, but to start things off we always recommend watching a single channel for a few business days to see what kind of intent you're working with all in one place.
 
