@@ -13,6 +13,12 @@
     "dark": "#4D32E4",
     "anchors": { "from": "#BA27BA", "to": "#4D32E4" }
   },
+  "redirects": [
+    {
+      "source": "/admin-guides/advanced-instrumentation",
+      "destination": "/developer-guides/sending-identify"
+    }
+  ],
   "topbarCtaButton": {
     "name": "Get Started",
     "url": "https://app.getkoala.com/signup?utm_source=docs&utm_medium=internal&utm_campaign=get_started"
