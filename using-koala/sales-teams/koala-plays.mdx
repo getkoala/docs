@@ -1,0 +1,116 @@
+---
+title: "Plays"
+description: "Encode a signal-based sales strategy and dole it out to the right reps on your team"
+---
+
+## Building a play
+
+Koala Plays let you encode a signal-based sales strategy and dole it out to the right reps on your team. Typically you’ll want to cover your highest converting signals and build a rep-in-the-loop workflow around engaging these priority leads when you want a more human touch (we can do an automated touch too, but we’ll be covering the UI experience here).
+
+This could be tried-and-true / evergreen plays like Demo Form Abandoners or Pricing Visitors, one-off micro campaigns like working a list of webinar attendees with relevant follow-up outreach, or more novel/experimental plays you want to try out with a small team of reps.
+
+### What do you need to create a play?
+
+Plays are made up of a few core components:
+
+- What – what’s the name, description or goal of the play? This includes what information you want to know about the leads/accounts (via AI Research + custom columns). All of these features will be used as additional context for Koala’s AI that helps extract key insights about the account, lead, deal, and why this play is relevant. It’ll also feed into the AI-suggested messaging.
+
+![Play Details.png](/images/product-manual/koala-plays/play-details.png)
+
+- Who – how do you want to define the audience of leads or accounts that you want to target? This can be configured to dynamically enroll leads based on specific criteria, or you can manually add leads to the play (via CSV upload, or manually selecting people/accounts). For dynamic enrollment you’ll typically want to specify some signals in addition to filter conditions. Here are all the ways you can enroll leads into a play today:
+    - Choose from an already-defined list. As new leads match that audience definition, they’ll be added to the play. Use this when you have an audience already defined that you’d like to reuse.
+    - Choose from a set of filter conditions. This is the same as choosing a list, but you don’t have to create/save a list first. Use this when you don’t necessarily want to define a reusable audience (”list”).
+    - Manually add people/companies from a CSV file. You can map columns from the CSV to attributes on the records, too.
+    - Choose from a Prospector search. You can specify company firmographic filters and person-level filters about their title or role to pick the right type of people from the right types of accounts you want to engage, and you’ll receive batches of new prospects that match your criteria every day.
+    - Choose GitHub repository interactions to automatically sync people who are interacting (forking, commenting, open pull requests, starring) with a given set of repos that are relevant. These could be repos that your company owns or cares about (like OSS projects related to your product), or competitor repos that are public to see what engineering teams may be in market for your product.
+    - Choose LinkedIn interactions to automatically sync people interacting with specific posts, specific profiles, or company pages. This isn’t limited to just your own profile or own company, so you can also track competitors and influencers that are in your space.
+    - Set up exclusion filters to automatically prevent certain leads from entering your play even if they match your enrollment criteria. This helps filter out paid customers, recently active leads, or visitors from non-target regions, ensuring your team only works the most relevant opportunities.
+
+![Enrollment.png](/images/product-manual/koala-plays/enrollment.png)
+
+- How – do you want to automatically qualify and disqualify leads/accounts? do you want to set up auto-assignment to route leads to different reps on your team based on flexible rules? Do you want to subscribe to a Slack channel to see updates for all the new leads added to the play with AI insights and suggested messaging? Do you want to enhance your play with AI & Prospecting features like Waterfall Enrichment to gather contact information, AI Auto-Prospecting to discover additional prospects, and AI Agent Swarm to collect key account insights for coaching?
+
+
+
+![Qualification.png](/images/product-manual/koala-plays/qualification.png)
+
+![AI & Prospeting.png](/images/product-manual/koala-plays/ai-prospecting.png)
+
+![Assignment.png](/images/product-manual/koala-plays/assignment.png)
+
+### How do I know what signals to use?
+
+Koala’s [Content Reports](/docs/product-manual/content-reports) give you a lot of insight if you are unsure about what signals tend to lead to conversion. You can use multiple reports to see what events actually are relevant for different conversion goals, like net-new opportunities, booking meetings, or custom events like new user signups.
+
+Typically you’ll have a few key signals that you may already have a hunch about, and the Content Report data can help confirm your hypothesis in a statistically significant way.
+
+Some of the more surprising ones we’ve seen are legal pages, deeper technical docs showing interest in understanding how the product works, and lots of product usage data for companies that have a freemium or PLG motion.
+
+We recommend starting with the most obvious things before diving into more nuanced signals.
+
+## What happens after I create the play?
+
+Once you’ve configured the required parts of a play, Koala will start finding recent leads/accounts that match your enrollment criteria. This only happens when you first set up the play source, as a way to backfill leads that you would have gotten had it already been running recently.
+
+You can choose to set up auto-assignment with lead routing rules to dole out leads to the rest of your team, or you can leave leads unassigned. If they are unassigned, they’ll only show up in the Play (i.e. you’ll have to navigate to the Play to see them, assign them, or work them).
+
+If you have assignment happening, reps will have 3 primary ways they can interact with the leads.
+
+1. **In the app**: They will see a new Inbox item in their navigation menu, with a little red dot if they have any leads in their inbox to work.
+2. **In their email**: If notifications are turned on they can receive emails of new assigned leads.
+3. **In Slack**: If notifications are turned on they can receive Slack DMs about new assigned leads, and can join a shared channel for new leads as they get added to the play.
+
+You can also enable notifications so you and your team know when there are new leads. We have two types of notifications you can configure in a couple clicks, today:
+
+1. Enrollment notifications
+2. Assignment notifications
+
+### Enrollment notifications
+
+You can subscribe to a Slack channel to see all new leads in the play that havent already been ack’d or completed or disqualified.
+
+If you enable @ mentions, users who are assigned the lead will be invited to the channel (once only) with their name mentioned on the corresponding lead.
+
+Koala will send alerts as new leads are added to the play with the most relevant data, AI research, and key insights automatically included in the Slack message. 
+
+You can take further action directly from Slack to see more insights, suggested messaging, as well as Claim, Assign, or Dismiss the lead, without having to leave Slack.
+
+### Assignment notifications
+
+You can subscribe to both *email and Slack DMs* for this notification. Whenever leads are assigned to you (either manually, or automatically) you’ll receive a DM in Slack or an email digest of new assigned leads. 
+
+Note: This is configured at the play level for all assignees, and cannot currently be configured per user.
+
+## How do I take action on leads?
+
+There are three places you can take action:
+
+1. From the Play dashboard – you can see the full table view of all the leads or accounts added to the play and you can assign, dismiss, email or add to sequence.
+2. From the Inbox – reps will get an inbox containing only the stuff assigned to them. Admins can see an Inbox Dashboard that shows you how leads are being enrolled, worked, or dismissed by user or by play, with some high level stats about daily/weekly trends.
+3. From Slack – you can subscribe to notifications and do things like AI Research, assignment, and dismissing leads directly from Slack. However, actions like emailing or adding to a sequence still require navigating into the app first.
+
+## Inbox
+
+The Inbox is where reps go to take action on leads enrolled in plays. It provides a streamlined interface to manage assignments and engage with prospects effectively.
+
+## How do reps work leads in their Inbox?
+
+The Inbox is where reps go to see and take action on their assigned leads. When opening the Inbox, reps see a personalized greeting showing how many leads are waiting for review, along with a streak tracker displaying their activity throughout the week. Leads are organized into collapsible sections by play, with each section showing a count of included leads and a brief description of the play's purpose. Leads can also be filter for Today, Last Week, or All Time.
+
+![Rep Inbox.png](/images/product-manual/koala-plays/rep-inbox.png)
+
+### What actions can reps take on leads?
+
+Reps have several ways to engage with their assigned leads:
+
+When clicking the "Coach" button on a lead, reps access the AI Coach which provides essential context including the Play Tactic (why this lead was enrolled), relevant Research data about the company, Key Information about engagement patterns, and strategic Email Approach recommendations.
+
+From the Coach interface, reps can send emails through Gmail or sales tools like Outreach/Apollo, create LinkedIn messages, or access AI-generated call scripts. The system also alerts reps if a lead was contacted recently to prevent duplicate outreach.
+
+For lead management, reps can Mark Complete when a lead has been worked, Dismiss leads that aren't relevant, Add to Sequence for automated follow-up, or Reassign leads to other team members. Multiple leads can be selected for bulk actions to improve efficiency.
+
+### How do managers track team performance?
+
+Team managers access the Inbox Dashboard to monitor lead status across the entire team. The dashboard displays leads by status (Pending, Qualified, Engaged, Dismissed) with trend visualizations and can be viewed by User or by Play. This lets managers quickly identify performance patterns and determine which team members might need additional coaching or support.
+
+![Rep Dashboard.png](/images/product-manual/koala-plays/rep-dashboard.png)

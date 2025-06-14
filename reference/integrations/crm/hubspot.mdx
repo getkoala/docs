@@ -1,0 +1,83 @@
+---
+title: "HubSpot"
+description:
+  "Connect HubSpot's CRM to see HubSpot Companies, Deals, and Contacts in Koala. Optionally, write intent signals back to HubSpot."
+---
+
+## Installation
+
+You must have an active Koala account [Koala](https://app.getkoala.com)
+before proceeding. If you don't have a Koala account,
+[sign up for free](https://app.getkoala.com/signup).
+
+## Reading from HubSpot
+
+Upon connecting Koala to HubSpot's CRM, Koala will sync all Companies, Deals, and Contacts. Koala will automatically refresh HubSpot CRM data every hour, so we always have fresh data about who owns which Companies and which Companies have active Deals attached. [Account Scores](#account-score-sync-into-hubspot-business-plan) are synced into the CRM nightly when enabled.
+
+## Importing to HubSpot
+
+There are three actions you can take from Koala to manually write data to HubSpot's CRM:
+
+1. Import Companies
+2. Import Contacts
+3. Claim Account (rewrite the Company owner to be the current Koala user)
+
+These actions can be enabled/disabled by a Koala admin if you don't wish to enable writing to HubSpot.
+
+## Automating actions into HubSpot (Business Plan)
+
+Every time an intent signal happens for a qualifying list that you specify, there are five actions Koala can automate in HubSpot:
+
+1. **Import Company.** Import an Account as a Company in HubSpot if it doesn't already exist. Supports custom field mappings.
+
+2. **Import Contact.** Import a Visitor as a Contact in HubSpot if it doesn't already exist. (Supports custom field mappings.)
+
+3. **Adding to a Contact List.** Adds a Contact to a Contact List.
+
+4. **Create Task.** Assign a task to a specific person. (Supports custom subjects, types, priority, due date, and task owner.)
+
+5. **Add Timeline Entry.** Create a Timeline Entry for the current Visitor or Account.
+
+## Account Score Sync into HubSpot (available on Koala's Business Plan)
+
+Koala can send a snapshot of Account Scores that includes `Intent Score`, `Intent Strength`, `Intent Trend`, `ICP Score` and `ICP Grade` into your CRM .
+This feature can be enabled in the settings page and each night around 10pm PST will send the scores that changed during the day.
+The settings page provides the setup instructions to follow to have everything setup and mapped.
+The fields can be automatically added to a Koala Managed Scores property group during the setup or they can be manually added following these definitions:
+
+### Koala Scores Fields Definitions
+
+| **Field Label**       | **Field Name**        | **Type (Field Type)** | **Details**                                   |
+|-----------------------|-----------------------|-----------------------|-----------------------------------------------|
+| Koala Intent Score    | koala_intent_score    | number (number)       |                                               |
+| Koala Intent Strength | koala_intent_strength | enumeration (select)  | Very High, High, Medium, Low, None            |
+| Koala Intent Trend    | koala_intent_trend    | enumeration (select)  | Surging, Heating, Neutral, Cooling, New, None |
+| Koala ICP Fit Score   | koala_icp_fit_score   | number (number)       |                                               |
+| Koala ICP Fit Grade   | koala_icp_fit_grade   | enumeration (select)  | A, B, C, D, --                                |
+
+If you want to use existing fields that are compatible, you can use the custom mapping in the settings to map each Koala Score field to your CRM field.
+
+The integration sends scores to the CRM in groups of `~100_000` records, so you can see more than one entry per day in the `Import` page if there are more than that amount of scores to send.
+The sync happens in two modes: `full` and `delta` (incremental) syncs. The `full` sync is executed the first time the feature is enabled and all subsequent syncs are `delta` syncs. The `delta` sync only sends scores that changed during the day against what is already in your CRM. This generally accounts to `6-10%` of the full amount of scores sent in a `full` sync.
+You can access the `Import` page in the CRM (button in top right besides `Create Company`) to view the latest sync information.
+
+## FAQ
+
+### How do you match Koala accounts to HubSpot Companies?
+
+For every account on your site, Koala has a list of a domain (eg., `dropbox.com`) and all associated domain aliases (eg., `getdropbox.com`, `dropbox.jp`, `dash.ai`, etc.). We will search your CRM for the primary domain and all aliases, trying to find matches to the Account object's `domain` field. If that isn't set, Koala will use `website` instead.
+
+If Koala finds multiple Company objects matching a domain, we'll pick the Company in the following order:
+
+1. Pick the Company with most Deals
+2. Pick the Company with most Contacts
+3. Pick the Company modified most recently
+
+### How do you match Koala contacts to HubSpot Contacts?
+
+Contacts will be matched when an example email match happens between the Contact object and the Koala profile email.
+
+## Support
+
+Having issues with the HubSpot integration? Email the Koala team with your
+questions at support@getkoala.com!

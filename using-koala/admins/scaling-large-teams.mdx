@@ -1,0 +1,65 @@
+---
+title: "Larger sales teams"
+description: "This guide walks through a scaled rollout of Koala to larger sales teams."
+---
+
+Koala scales well to larger sales teams, but there's often a little extra organization required to ensure that everyone is getting timely, helpful, and not-too-noisy notification streams. This guide walks you through that setup, so that you can hit the ground running with a larger sales team. This guide is recommended for sales teams with different teams, whether those teams are split by segmentation, territory, or whatever else. We're also happy to help guide the setup if you reach out to: support@getkoala.com. 
+
+## Step 1: Set up intent signals
+
+Step 1 is still the same regardless of team size — you'll want to set up intent signals. One thing that we find with larger teams is that it's often your top reps (AEs, SEs, BDRs, SDRs) that have the best idea about what a great intent signal could be, so be sure to source ideas from the crowd or teach some of your reps how to make them! There's nothing more empowering for a team than feeling like they have control and can iterate themselves — Koala makes this easy!
+
+## Step 2: Plan your Slack channels
+
+Step 2 is where things get a bit more interesting. I'm going to assume one sample GTM org structure, which is hopefully sufficiently complex that it explains all concepts:
+
+* A **mid-market / commercial team** (covering AMER)
+* An **enterprise team** (covering AMER)
+* A **strategic team** (covering AMER)
+* A **vertical EMEA team** (covering all segments)
+* A **vertical APAC team** (covering all segments)
+
+For each team, we recommend making two Slack channels: **a channel with owned accounts** and **a channel with unowned accounts**. 
+
+The channel with owned accounts should be set to alert the account owner every time an intent signal goes off, while also creating visibility for the team — managers, peers, and the supporting sales development functions.
+
+The channel with unowned accounts should be given to the sales development team and any reps who are responsible for outbound. Typically, we recommend a "first to comment on the Slack notification" as the rules of engagement for this channel with the expectation that the rep works on the outbound right away (it will maximize your speed to lead for the customer), though if you'd like to set up a more formal round robin we can help set that up with CRM Automations.
+
+## Step 3: Make audiences to support each channel
+
+Next, you'll need to make audiences that explain which accounts should go into each channel. You can do this by going to the Accounts tab https://app.getkoala.com/goto/accounts, and applying the filters that make sense for each channel. 
+
+Here's one example of an "owned" channel:
+
+![](/images/admin-guides/larger-sales-teams/filters-owned.png)
+
+Here's how to ensure all intent signals from your "unowned" accounts are going to make it to reps:
+
+![](/images/admin-guides/larger-sales-teams/filters-unowned.png)
+
+And finally, here's how you can see the best traffic not already in your CRM: 
+
+![](/images/admin-guides/larger-sales-teams/filters-not-in-crm.png)
+
+Note for this last example that the employee range should match the segment you're sending to, but because the data isn't in Salesforce, we cannot leverage your CRM enrichment and instead fallback to live enrichment which may not perfectly match your segmentation. If this is an important issue, you can use a CRM Automation to ensure that the account gets imported and enriched consistently with all other accounts.
+
+Other potential gotchas:
+* You may want to filter to ensure that Stage Name != Closed Won, or more generally filter out anything where there is an open opportunity (especially for the Unowned channel)
+* You may want to ensure you're filtering out accounts owned by other teams (e.g., Partnerships pipeline accounts)
+
+## Step 4: Set up your channels
+
+The hard work is done — now you just need to set up the Slack Alerts! You can do that here: https://app.getkoala.com/goto/slack-alerts
+
+Typically, we recommend sending all the intent signals (from Step 1) that you think reps will be interested in to the appropriate channels (from Step 2), using the filters you made (from Step 3). We recommend using the "@mention Account Owners in Slack" functionality, so that reps will be immediately alerted to intent signals happening. However, this is optional so you can test it in "dry run" mode to make sure the intent signals look good before turning it on!
+
+In terms of naming, standard conventions would be:
+* #koala-intent-mm
+* #koala-intent-mm-unowned
+* #koala-intent-ent
+* #koala-intent-ent-unowned
+
+That's the whole setup! We find it takes about an hour or two for initial setup, and then typically gets a lot better as you hone it over the course of a few business days. When you're ready to launch, encourage your reps to: 
+* check out the rep guides on account research and sending great sales messages (having this unprecedented access to data is a new paradigm and there's a bit of a learning curve, but it's worth it!)
+* ensure that they are participating in the feedback loop about which intent signals are working / which deals are Koala influenced (they'll get a DM from Koala bot ,if relevant)
+* keep setting up new intent signals

@@ -1,0 +1,168 @@
+---
+title: "CRM Integrations for Auto-Outbound"
+description: "Connect Koala to your CRM for automated outbound workflows"
+---
+
+Connect Koala's auto-outbound capabilities with your CRM to automatically create leads, update records, and trigger workflows based on intent signals.
+
+## Salesforce Integration
+
+### Overview
+Automatically create and update leads, contacts, and opportunities in Salesforce based on Koala intent signals.
+
+### Setup Steps
+
+<Steps>
+  <Step title="Connect Salesforce">
+    Navigate to Settings → Integrations → Salesforce and authenticate with your Salesforce account.
+  </Step>
+  
+  <Step title="Configure Field Mapping">
+    Map Koala fields to your Salesforce custom fields:
+    - Intent Score → Lead Score
+    - Page Views → Custom Activity Fields
+    - Company Data → Account Fields
+  </Step>
+  
+  <Step title="Set Up Automation Rules">
+    Define when to create or update records:
+    - High intent score (>80) → Create hot lead
+    - Pricing page visit → Update opportunity stage
+    - Multiple visits → Increase lead score
+  </Step>
+</Steps>
+
+### Best Practices
+- Use Salesforce duplicate rules to prevent duplicate leads
+- Set up assignment rules based on territory or intent type
+- Create custom fields for Koala-specific data
+- Use Process Builder for advanced workflows
+
+## HubSpot Integration
+
+### Overview
+Sync Koala intent data with HubSpot to enrich contacts, trigger workflows, and score leads automatically.
+
+### Setup Steps
+
+<Steps>
+  <Step title="Connect HubSpot">
+    Go to Settings → Integrations → HubSpot and authorize the connection.
+  </Step>
+  
+  <Step title="Configure Properties">
+    Create custom properties in HubSpot for Koala data:
+    - `koala_intent_score`
+    - `koala_last_visit`
+    - `koala_pages_viewed`
+    - `koala_intent_signals`
+  </Step>
+  
+  <Step title="Set Up Workflows">
+    Create HubSpot workflows triggered by Koala events:
+    - Assign to rep when intent score > 70
+    - Send email sequence for content downloads
+    - Create task for pricing page visits
+  </Step>
+</Steps>
+
+### Advanced Features
+- **Timeline Events**: See all Koala activity in contact timeline
+- **Lead Scoring**: Incorporate intent signals into HubSpot lead scoring
+- **Lists**: Create dynamic lists based on intent behavior
+- **Reporting**: Build dashboards showing intent → conversion metrics
+
+## Common Use Cases
+
+<Tabs>
+  <Tab title="Lead Creation">
+    **Trigger**: Anonymous visitor from target account views pricing
+    
+    **Action**: 
+    1. Create lead in CRM
+    2. Assign to territory rep
+    3. Send Slack alert
+    4. Start nurture sequence
+  </Tab>
+  
+  <Tab title="Opportunity Acceleration">
+    **Trigger**: Contact from open opportunity returns to site
+    
+    **Action**:
+    1. Update opportunity with activity
+    2. Notify account owner
+    3. Log intent signal
+    4. Adjust close date probability
+  </Tab>
+  
+  <Tab title="Account Expansion">
+    **Trigger**: New visitor from existing customer domain
+    
+    **Action**:
+    1. Create contact under account
+    2. Alert customer success
+    3. Flag for expansion outreach
+    4. Track department spread
+  </Tab>
+</Tabs>
+
+## Field Mapping Reference
+
+| Koala Field | Salesforce Field | HubSpot Property | Description |
+|-------------|------------------|------------------|-------------|
+| Intent Score | Lead_Score__c | koala_intent_score | 0-100 score |
+| Company Name | Company | company | Clearbit enriched |
+| Page Views | Page_View_Count__c | koala_page_count | Total pages |
+| Last Visit | Last_Visit_Date__c | koala_last_seen | Timestamp |
+| Intent Signals | Intent_Signals__c | koala_signals | Multi-select |
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Duplicate Records">
+    **Issue**: Creating duplicate leads/contacts
+    
+    **Solution**: 
+    - Enable CRM duplicate management
+    - Use email as unique identifier
+    - Set up merge rules for anonymous → known
+  </Accordion>
+  
+  <Accordion title="Sync Delays">
+    **Issue**: Data not appearing immediately
+    
+    **Solution**:
+    - Check API limits
+    - Verify webhook configuration
+    - Review error logs in Settings
+  </Accordion>
+  
+  <Accordion title="Field Mapping Errors">
+    **Issue**: Data not mapping correctly
+    
+    **Solution**:
+    - Ensure field types match
+    - Check field-level security
+    - Verify API user permissions
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card 
+    title="Sales Engagement Tools" 
+    icon="envelope"
+    href="/automation-ai/auto-outbound/sales-engagement"
+  >
+    Connect Outreach, Salesloft, and more
+  </Card>
+  
+  <Card 
+    title="Webhook Configuration" 
+    icon="webhook"
+    href="/automation-ai/auto-outbound/webhooks-apis"
+  >
+    Build custom integrations
+  </Card>
+</CardGroup>

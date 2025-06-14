@@ -1,0 +1,152 @@
+---
+title: "BigQuery"
+description: "Sync product, usage and event data directly from your data warehouse."
+---
+
+Koala can connect to your BigQuery account and sync data from any of your databases directly into your customer profiles, as well as enrich your customer profiles with data from your BigQuery databases.
+
+## Connecting to BigQuery
+
+To connect Koala to your BigQuery account, you'll need to create a service account and generate a JSON key. Follow the steps below:
+
+### Create a Service Account
+
+- Navigate to the [Google Cloud Console](https://console.cloud.google.com).
+
+- From the navigation panel on the left, select **IAM & Admin**, then choose Service Accounts.
+
+- Click on **Create Service Account**.
+
+- Enter a name for your service account (e.g., koala-bigquery) and click **Create**.
+
+![](/images/bigquery/gc-service-account-1.png)
+
+- Assign the following roles to the service account:
+
+  - <code>BigQuery Data Owner</code>
+  - <code>BigQuery Job User</code>
+
+![](/images/bigquery/gc-service-account-2.png)
+
+- After assigning roles, click on Done. Then, find your newly created service account in the list, click on the three dots under Actions, and select **Manage keys**.
+
+- Click on **Add Key** > **Create New Key**, select **JSON** as the key type, and click **Create**. A JSON key file will be downloaded to your computer. This file will be used to connect Koala to your BigQuery instance.
+
+![](/images/bigquery/gc-service-account-3.png)
+
+For more detailed information on creating service accounts, refer to the [Google Cloud documentation](https://cloud.google.com/docs).
+
+### Connect Koala to BigQuery
+
+- Access your [Koala dashboard](https://app.getkoala.com).
+
+- Go to **Settings** > **Sources & Integrations**.
+
+- Locate the **BigQuery** app and click on **Connect**.
+
+- Paste credentials from **JSON Key** file into corresponding fields: `project_id`, `client_email` and `private_key`.
+
+- Click **Save** to establish the connection.
+
+![](/images/bigquery/app-settings.png)
+
+## Reading Data from BigQuery into Koala
+
+Once the connection is established, you can sync data from BigQuery into Koala:
+
+- In **BigQuery** settings, navigate to **Read data from BigQuery** and click on **Add New Model**.
+
+- Select the corresponding **Object Type** (`Account` or `Profile`) and **Data Type** (`Traits` or `Events`) you want to read from **BigQuery**.
+
+- Write the **SQL query** to select the data you want to import from **BigQuery**. Ensure that your query includes a unique identifier (e.g., email) to map data correctly to the data model in Koala.
+
+- You can preview the data returned by the **SQL Query** by clicking on **Test Model**. Make sure to address the **validation errors** if there are any.
+
+- Click **Save** to confirm the changes.
+
+![](/images/bigquery/app-data-model.png)
+
+Once the **Data Model** is correctly configured, the data will be synced to Koala in the next sync window, at 2:15 am and 2:15 pm.
+
+The **last successful sync** timestamp will be shown at the bottom of **Data Model** once the process runs correctly.
+
+## Sending Data from Koala to BigQuery
+
+Koala maintains an automated replication process that continuously syncs data from your Koala workspace to designated tables in your BigQuery instance. This ensures your BigQuery database always has the most current information from Koala.
+
+### Available Data Exports
+
+The following data sets can be automatically exported to your BigQuery instance:
+- Raw feed of page views
+- Raw feed of events
+- Raw feed of form submissions
+- Profile snapshots
+- Account snapshots
+- Account scores
+
+### Ensuring Data Transfer permissions
+
+Koala relies on [BigQuery Data Transfer Service](https://cloud.google.com/bigquery/docs/dts-introduction) to automate the data load configuration and synchronization.
+You must ensure the following permissions on the configured user:
+- `bigquery.transfers.get`
+- `bigquery.transfers.update`
+
+You need to create a custom role to assign these permission following:
+
+- Navigate to the [Google Cloud Console](https://console.cloud.google.com).
+
+- From the navigation panel on the left, select **IAM & Admin**, then choose **Roles**.
+
+- Click on **Create Role**.
+
+- Enter a title, description, and ID for the role, following the example in the image below.
+
+- Assign the `bigquery.transfers.get` and `bigquery.transfers.update` roles by clicking on **Add Permissions**.
+
+- Click on **Create** to confirm the operation.
+
+![](/images/bigquery/gc-custom-role.png)
+
+Assign this custom role to the Service Account used on integration:
+
+- Navigate to the [Google Cloud Console](https://console.cloud.google.com).
+
+- From the navigation panel on the left, select **IAM**.
+
+- Locate the Service Account user on the list and click on the _pencil_ icon on the right to edit it.
+
+- Click on **Add Another Role** and choose the newly created custom role.
+
+- Click on **Save** to confirm the operation.
+
+![](/images/bigquery/gc-add-permission.png)
+
+After confirming the new permissions, you could back to Koala settings to continue the configuration and enable the desired Data Exports to be synced to BigQuery dataset.
+
+### Notes
+
+#### **ID columns as `byte` type**
+BigQuery has a schema detection logic that converts UUID type columns to `bytes` type ([more info](https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-parquet#parquet_conversions)), which results in wrong result values when querying data from that columns. To avoid this, all you'll need is to convert the IDs columns using the [TO_HEX()](https://cloud.google.com/bigquery/docs/reference/standard-sql/string_functions#to_hex) function.
+
+For example, selecting the IDs directly will return them as bytes (base64 encoded):
+```
+select company_id, domain from accounts;
+
+#   column_id                  domain
+1	TN4pUk51Sh+d5tCT6EY9pw==   domain.com
+2	m8IlKhqBRG+qhWASgS1orw==   getkoala.com
+```
+
+To fetch the real ID value, you need to convert it on the query:
+
+```
+select TO_HEX(company_id), domain from accounts;
+
+#   column_id                          domain
+1	4cde29524e754a1f9de6d093e8463da7   domain.com
+2	9bc2252a1a81446faa856012812d68af   getkoala.com
+```
+
+This conversion isn't needed on table joins. Use it if you need to retrieve the real column value on your BigQuery views and queries.
+
+For more information on managing BigQuery integrations, refer to the [Google BigQuery documentation](https://cloud.google.com/bigquery/docs).

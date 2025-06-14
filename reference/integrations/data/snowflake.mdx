@@ -1,0 +1,201 @@
+---
+title: "Snowflake"
+description: "Sync product, usage and event data directly from your data warehouse."
+---
+
+Koala can connect to your Snowflake account and sync data from any of your databases directly into your customer profiles, as well as enrich your customer profiles with data from your Snowflake databases.
+
+## Connecting to Snowflake
+First, you'll need to generate an RSA key pair and assign the public key to your Snowflake user.
+
+
+### 1. Generate an RSA key pair:
+
+- Open a terminal and run:
+
+```
+openssl genrsa 2048 | openssl pkcs8 -topk8 -nocrypt -inform PEM -out rsa_key.p8
+```
+
+- Generate the public key:
+
+```
+openssl rsa -in rsa_key.p8 -pubout -out rsa_key.pub
+```
+
+### 2. Assign the public key to your Snowflake user:
+
+- Log in to your Snowflake account with admin privileges
+- Copy the contents of the public key file (rsa_key.pub)
+
+```
+openssl rsa -pubin -in rsa_key.pub -outform DER | openssl base64 -A
+```
+
+- Execute the following SQL command in Snowflake:
+
+```
+ALTER USER your_username SET RSA_PUBLIC_KEY='your_public_key_content';
+```
+
+<Note>
+**Important**: Snowflake does not like the % character in the public key. If you have a # in your key, remove it before pasting it in.
+</Note>
+
+
+### 3. Enter the required information in the form above:
+
+- Account URL: Your Snowflake account URL (e.g., https://your_account.snowflakecomputing.com)
+- Account: Your Snowflake account name
+- Username: Your Snowflake username
+- Warehouse: The default warehouse to use
+- Database: The default database to use
+- Organization: Your Snowflake organization name (if applicable)
+- Private Key: The contents of your private key file (rsa_key.p8)
+  - Open the rsa_key.p8 file in a text editor
+  - Copy the entire contents, including the "BEGIN PRIVATE KEY" and "END PRIVATE KEY" lines
+  - Paste the copied content into the Private Key field in Koala
+  - Alternatively, if you're using macOS, you can use the following command to copy the content directly to your clipboard:
+
+```
+pbcopy < rsa_key.p8
+```
+
+### 4. Click "Save"
+Your credentials will be stored securely in Koala.
+
+## Setting up your Snowflake Source
+Once you've connected your Snowflake account, you can create a new data model by clicking **Data Model Settings > Add New Model**.
+
+This will allow you to write SQL to transform your data and load it into Koala.
+
+### Profile Traits
+Profile traits are any properties you want to associate with a user profile in Koala. You can load traits from your Snowflake database by writing a SQL query and selecting the columns you want to load.
+
+1. Select **Profile** as the object type.
+2. Select **Traits** as the data model type.
+3. Enter a SQL query to load the traits you want to associate with a user profile:
+  - Your query should contain a column named `email` which contains the email address of the user you want to associate the traits with.
+  - Example query:
+
+```sql
+SELECT
+  email, -- Koala requires an email trait to match a user profile to a visitor in your app
+  first_name,
+  last_name,
+  last_login_at,
+  plan_name,
+  plan_type
+FROM customers
+```
+
+  - All columns you select in your query will be loaded as traits for the user profile. This is analogous to the [`identify`](/sdk/identify#setting-visitor-traits) call in the Koala JavaScript SDK.
+
+### Account Traits
+Account traits are any properties you want to associate with an account in Koala. This is similar to the [`account identify`](/sdk/identify#setting-account-traits) call in the Koala JavaScript SDK.
+
+1. Select **Account** as the object type.
+2. Select **Traits** as the data model type.
+3. Enter a SQL query to load the traits you want to associate with an account:
+  - Your query should contain a column named `account_id` which contains the account ID of the account you want to associate the traits with.
+  - Example query:
+
+```sql
+SELECT
+  domain, -- Koala requires a domain trait to match an account to a visitor in your app
+  group_id, -- (optional) You can optionally associate an account to a group in Koala
+  account_name,
+  account_plan,
+  account_plan_type,
+  total_users
+FROM accounts
+```
+
+  - All columns you select in your query will be loaded as traits for the account.
+
+### Profile Events
+Profile events are any events you want to associate with a user profile in Koala. This is similar to the [`track`](/sdk/track) call in the Koala JavaScript SDK.
+Koala will backfill events from the last 90 days by default on the first sync, and then sync new events incrementally as they come in.
+
+1. Select **Profile** as the object type. 
+2. Select **Events** as the data model type.
+3. Enter a SQL query to load the events you want to associate with a user profile:
+  - Your query should adhere to the following requirements:
+    - Each row must contain an `event_name` column to be used to identify the event.
+    - Each row must contain a `timestamp` column.
+      - The timestamp is used as a checkpoint between syncs to determine which events were sent after the last sync.
+    - Each row must contain an `email` column to identify the profile.
+
+    - (Optional) Each row can contain a `message_id` column to identify the event. Koala will use this key to deduplicate events.
+      - Otherwise Koala will compute a hash of the event_name + properties + timestamp to identify the event.
+    - (Optional) Each row can contain a `properties` column to specify event properties.
+      - The properties object must either be of the JSON type, or contain a JSON string.
+    - (Optional) Each row can contain a `source` column to specify where the event was sent from.
+      - This is useful if you have multiple sources for events.
+
+  - Example query:
+
+```sql
+SELECT
+  email,
+  event_name,
+  timestamp,
+  message_id,
+  properties,
+  source
+FROM my_analytics.events
+```
+
+- Events will be synced to Koala when the sync is run.
+
+### Account Events
+Account events are any events you want to associate with an account in Koala.
+
+1. Select **Account** as the object type.
+2. Select **Events** as the data model type.
+3. Enter a SQL query to load the events you want to associate with an account:
+
+  - Your query should adhere to the following requirements:
+    - Each row must contain an `event_name` column to be used to identify the event.
+    - Each row must contain a `timestamp` column.
+      - The timestamp is used as a checkpoint between syncs to determine which events were sent after the last sync.
+    - Each row must contain an `domain` column to identify the account.
+
+    - (Optional) Each row can contain a `message_id` column to identify the event. Koala will use this key to deduplicate events.
+      - Otherwise Koala will compute a hash of the event_name + properties + timestamp to identify the event.
+    - (Optional) Each row can contain a `properties` column to specify event properties.
+      - The properties object must either be of the JSON type, or contain a JSON string.
+    - (Optional) Each row can contain a `source` column to specify where the event was sent from.
+      - This is useful if you have multiple sources for events.
+
+  - Example query:
+
+```sql
+SELECT
+  domain,
+  event_name,
+  timestamp,
+  message_id,
+  properties,
+  source
+FROM my_analytics.account_events
+```
+
+- Account events will be associated with the account in Koala when the sync is run.
+
+## Sending data to Snowflake
+
+Koala maintains an automated replication process that continuously syncs data from your Koala workspace to designated tables in your Snowflake instance. This ensures your Snowflake database always has the most current information from Koala.
+
+### Available Data Exports
+
+The following data sets can be automatically exported to your Snowflake instance:
+
+- Raw feed of page views
+- Raw feed of events
+- Raw feed of form submissions
+- Profile snapshots
+- Account snapshots
+- Account scores
+
+Manage your Snowflake integration from the [Snowflake settings page](https://app.getkoala.com/goto/apps/snowflake).

@@ -1,0 +1,321 @@
+---
+title: "Google Tag Manager Installation"
+description: "Install Koala using Google Tag Manager - no code required"
+---
+
+<Info>
+**Prerequisites**: You need Google Tag Manager already installed on your website and publish access to your GTM container.
+</Info>
+
+## Installation Steps
+
+<Steps>
+  <Step title="Get Your Koala API Key">
+    1. Log in to your [Koala account](https://app.getkoala.com)
+    2. Navigate to Settings → Installation
+    3. Copy your public API key (starts with `pk_`)
+  </Step>
+  
+  <Step title="Create a New Tag in GTM">
+    1. Open your Google Tag Manager container
+    2. Click "Tags" → "New"
+    3. Name your tag "Koala - Analytics"
+    4. Click "Tag Configuration"
+  </Step>
+  
+  <Step title="Configure the Tag">
+    1. Choose "Custom HTML" as the tag type
+    2. Paste the following code:
+    
+    ```html
+    <script>
+      !function(t){if(window.ko)return;window.ko=[],["identify","track","removeListeners","open","on","off","qualify","ready"].forEach(function(t){ko[t]=function(){var n=[].slice.call(arguments);return n.unshift(t),ko.push(n),ko}});var n=document.createElement("script");n.async=!0,n.src="https://cdn.getkoala.com/v1/YOUR_PUBLIC_API_KEY/sdk.js";var o=document.getElementsByTagName("script")[0];o.parentNode.insertBefore(n,o)}();
+    </script>
+    ```
+    
+    3. Replace `YOUR_PUBLIC_API_KEY` with your actual API key
+  </Step>
+  
+  <Step title="Set Up Triggers">
+    1. Click "Triggering"
+    2. Select "All Pages" (or create custom triggers)
+    3. Save the tag
+  </Step>
+  
+  <Step title="Test Your Installation">
+    1. Click "Preview" in GTM
+    2. Navigate to your website
+    3. Verify the Koala tag fires on page load
+    4. Check for the `ko` object in browser console
+  </Step>
+  
+  <Step title="Publish Changes">
+    1. Exit preview mode
+    2. Click "Submit" in GTM
+    3. Add a version description
+    4. Publish to your live environment
+  </Step>
+</Steps>
+
+## Advanced Configuration
+
+### Custom Events
+
+Track custom events by creating additional tags:
+
+```html
+<script>
+  // Track button clicks
+  ko.track('Button Clicked', {
+    button_text: {{Click Text}},
+    button_url: {{Click URL}},
+    page_url: {{Page URL}}
+  });
+</script>
+```
+
+### Form Submissions
+
+Track form submissions with GTM variables:
+
+```html
+<script>
+  ko.track('Form Submitted', {
+    form_id: {{Form ID}},
+    form_name: {{Form Classes}},
+    page_url: {{Page URL}}
+  });
+</script>
+```
+
+### Identify Users
+
+When users log in or provide email:
+
+```html
+<script>
+  // Use GTM variables or dataLayer
+  if ({{User Email}}) {
+    ko.identify({{User Email}}, {
+      name: {{User Name}},
+      company: {{User Company}},
+      plan: {{User Plan}}
+    });
+  }
+</script>
+```
+
+## GTM Variables Setup
+
+Create these commonly used variables:
+
+<Tabs>
+  <Tab title="User Email">
+    1. Variables → New → Variable Configuration
+    2. Choose "Data Layer Variable"
+    3. Name: "User Email"
+    4. Data Layer Variable Name: `userEmail`
+  </Tab>
+  
+  <Tab title="User ID">
+    1. Variables → New → Variable Configuration
+    2. Choose "1st Party Cookie"
+    3. Cookie Name: `user_id` (or your cookie name)
+  </Tab>
+  
+  <Tab title="Page Category">
+    1. Variables → New → Variable Configuration
+    2. Choose "DOM Element"
+    3. Selection Method: CSS Selector
+    4. Element Selector: `meta[property="article:section"]`
+  </Tab>
+</Tabs>
+
+## Common Use Cases
+
+### E-commerce Tracking
+
+```html
+<script>
+  // Track product views
+  ko.track('Product Viewed', {
+    product_id: {{Product ID}},
+    product_name: {{Product Name}},
+    product_price: {{Product Price}},
+    product_category: {{Product Category}}
+  });
+  
+  // Track add to cart
+  ko.track('Added to Cart', {
+    product_id: {{Product ID}},
+    quantity: {{Quantity}},
+    cart_value: {{Cart Value}}
+  });
+</script>
+```
+
+### Content Engagement
+
+```html
+<script>
+  // Track content downloads
+  ko.track('Content Downloaded', {
+    content_title: {{Content Title}},
+    content_type: {{Content Type}},
+    content_category: {{Content Category}}
+  });
+  
+  // Track video plays
+  ko.track('Video Played', {
+    video_title: {{Video Title}},
+    video_duration: {{Video Duration}},
+    video_percent: {{Video Percent}}
+  });
+</script>
+```
+
+### SaaS Events
+
+```html
+<script>
+  // Track feature usage
+  ko.track('Feature Used', {
+    feature_name: {{Feature Name}},
+    feature_category: {{Feature Category}},
+    user_plan: {{User Plan}}
+  });
+  
+  // Track trial starts
+  ko.track('Trial Started', {
+    trial_type: {{Trial Type}},
+    trial_length: {{Trial Length}},
+    referral_source: {{Referral Source}}
+  });
+</script>
+```
+
+## Debugging Tips
+
+### Check Tag Firing
+
+1. Use GTM Preview mode
+2. Look for "Tags Fired" section
+3. Verify Koala tag shows green checkmark
+
+### Verify Data Collection
+
+```javascript
+// In browser console
+ko.ready(function() {
+  console.log('Koala loaded successfully');
+  console.log('API Key:', ko.apiKey);
+});
+```
+
+### Common Issues
+
+<AccordionGroup>
+  <Accordion title="Tag Not Firing">
+    - Check trigger configuration
+    - Verify GTM container is published
+    - Ensure no JavaScript errors
+    - Check browser ad blockers
+  </Accordion>
+  
+  <Accordion title="No Data in Koala">
+    - Verify API key is correct
+    - Check network tab for requests to `api.getkoala.com`
+    - Ensure tag fires on correct pages
+    - Wait 5-10 minutes for data to appear
+  </Accordion>
+  
+  <Accordion title="User Not Identified">
+    - Verify email variable is populated
+    - Check identify call syntax
+    - Ensure identify fires after page load
+    - Test in incognito mode
+  </Accordion>
+</AccordionGroup>
+
+## Best Practices
+
+### 1. Tag Organization
+- Use clear naming conventions
+- Group related tags in folders
+- Document custom variables
+- Version control your changes
+
+### 2. Performance
+- Load Koala tag asynchronously
+- Use tag sequencing sparingly
+- Monitor page load impact
+- Consolidate multiple events
+
+### 3. Data Quality
+- Test in preview before publishing
+- Use consistent event naming
+- Validate data in Koala dashboard
+- Document your tracking plan
+
+### 4. Privacy Compliance
+- Respect consent management
+- Use GTM's built-in consent mode
+- Configure based on user preferences
+- Document data collection
+
+## GTM Templates
+
+### Basic Page Tracking
+Already included in the main tag - tracks all page views automatically.
+
+### Enhanced E-commerce
+```html
+<script>
+  // Use with GTM's Enhanced E-commerce
+  dataLayer.push({
+    'event': 'purchase',
+    'ecommerce': {
+      'purchase': {
+        'actionField': {
+          'id': {{Transaction ID}},
+          'revenue': {{Revenue}}
+        }
+      }
+    }
+  });
+  
+  // Also send to Koala
+  ko.track('Purchase Completed', {
+    order_id: {{Transaction ID}},
+    revenue: {{Revenue}},
+    products: {{Products}}
+  });
+</script>
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card 
+    title="Configure Intent Signals" 
+    icon="chart-line"
+    href="/using-koala/sales-teams/understanding-intent-signals"
+  >
+    Set up your first intent signals
+  </Card>
+  
+  <Card 
+    title="Advanced Tracking" 
+    icon="code"
+    href="/implementation-guide/identity/tracking-events"
+  >
+    Learn about custom events
+  </Card>
+</CardGroup>
+
+## Related Resources
+
+- [GTM Best Practices](https://developers.google.com/tag-platform/tag-manager/best-practices)
+- [Koala JavaScript SDK Reference](/reference/sdk/javascript)
+- [Troubleshooting Guide](/reference/troubleshooting)
+- [Privacy & Compliance](/implementation-guide/advanced/gdpr-compliance)
