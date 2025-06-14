@@ -1,0 +1,233 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Koala",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://getkoala.com"
+  },
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#4D32E4",
+    "light": "#A393FE",
+    "dark": "#4D32E4",
+    "anchors": { "from": "#BA27BA", "to": "#4D32E4" }
+  },
+  "redirects": [
+    {
+      "source": "/admin-guides/advanced-instrumentation",
+      "destination": "/implementation-guide/identity/identifying-users"
+    },
+    {
+      "source": "/developer-guides/sending-identify",
+      "destination": "/implementation-guide/identity/identifying-users"
+    },
+    {
+      "source": "/identity-layer/intro",
+      "destination": "/implementation-guide/identity/understanding-identity"
+    },
+    {
+      "source": "/rep-guides/explore-koalau",
+      "destination": "/using-koala/sales-teams/getting-started"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Get Started",
+    "url": "https://app.getkoala.com/signup?utm_source=docs&utm_medium=internal&utm_campaign=get_started"
+  },
+  "topbarLinks": [
+    {
+      "name": "Book a demo",
+      "url": "https://getkoala.com/contact?utm_source=docs&utm_medium=internal&utm_campaign=book_demo"
+    },
+    {
+      "name": "Log in",
+      "url": "https://app.getkoala.com/login"
+    }
+  ],
+  "anchors": [
+    {
+      "name": "Changelog",
+      "icon": "list-timeline",
+      "url": "https://getkoala.com/blog?type=product-updates"
+    },
+    {
+      "name": "Status",
+      "icon": "wave-pulse",
+      "url": "https://koala.instatus.com"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "🚀 Getting Started",
+      "pages": [
+        "getting-started/what-is-koala",
+        "getting-started/how-koala-works",
+        "getting-started/core-concepts",
+        "getting-started/quick-start"
+      ]
+    },
+    {
+      "group": "📖 Implementation Guide",
+      "pages": [
+        "implementation-guide/planning",
+        {
+          "group": "Installation Methods",
+          "pages": [
+            "implementation-guide/installation/overview",
+            "implementation-guide/installation/javascript-sdk",
+            "implementation-guide/installation/server-side",
+            "implementation-guide/installation/npm-package",
+            "implementation-guide/installation/tag-manager"
+          ]
+        },
+        {
+          "group": "Identity & User Tracking",
+          "pages": [
+            "implementation-guide/identity/understanding-identity",
+            "implementation-guide/identity/identifying-users",
+            "implementation-guide/identity/tracking-events",
+            "implementation-guide/identity/email-recipients"
+          ]
+        },
+        {
+          "group": "Data Sources & Integrations",
+          "pages": [
+            "implementation-guide/integrations/overview",
+            "implementation-guide/integrations/web-product-analytics",
+            "implementation-guide/integrations/crm-sales-tools",
+            "implementation-guide/integrations/community-social",
+            "implementation-guide/integrations/data-warehouses"
+          ]
+        },
+        {
+          "group": "Advanced Setup",
+          "pages": [
+            "implementation-guide/advanced/custom-proxy",
+            "implementation-guide/advanced/gdpr-compliance",
+            "implementation-guide/advanced/nextjs-integration"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "📊 Using Koala",
+      "pages": [
+        {
+          "group": "For Sales Teams",
+          "pages": [
+            "using-koala/sales-teams/getting-started",
+            "using-koala/sales-teams/understanding-intent-signals",
+            "using-koala/sales-teams/koala-plays",
+            "using-koala/sales-teams/working-with-audiences",
+            "using-koala/sales-teams/best-practices"
+          ]
+        },
+        {
+          "group": "For Marketing Teams",
+          "pages": [
+            "using-koala/marketing-teams/content-reports",
+            "using-koala/marketing-teams/intent-scoring",
+            "using-koala/marketing-teams/campaign-attribution"
+          ]
+        },
+        {
+          "group": "For Customer Success",
+          "pages": [
+            "using-koala/customer-success/account-health",
+            "using-koala/customer-success/usage-tracking",
+            "using-koala/customer-success/renewal-signals"
+          ]
+        },
+        {
+          "group": "For Admins",
+          "pages": [
+            "using-koala/admins/team-management",
+            "using-koala/admins/saml-sso",
+            "using-koala/admins/scaling-large-teams",
+            "using-koala/admins/security-compliance"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "🤖 Automation & AI",
+      "pages": [
+        "automation-ai/getting-started",
+        "automation-ai/slack-alerts",
+        "automation-ai/actions",
+        {
+          "group": "Auto-Outbound",
+          "pages": [
+            "automation-ai/auto-outbound/overview",
+            "automation-ai/auto-outbound/crm-integrations",
+            "automation-ai/auto-outbound/sales-engagement",
+            "automation-ai/auto-outbound/webhooks-apis"
+          ]
+        },
+        "automation-ai/ai-agents",
+        "automation-ai/credits-billing"
+      ]
+    },
+    {
+      "group": "🔧 Reference",
+      "pages": [
+        {
+          "group": "API Documentation",
+          "pages": [
+            "reference/api/overview",
+            "reference/api/authentication",
+            "reference/api/endpoints",
+            "reference/api/webhooks"
+          ]
+        },
+        {
+          "group": "SDK Reference",
+          "pages": [
+            "reference/sdk/javascript",
+            "reference/sdk/server-side",
+            "reference/sdk/methods"
+          ]
+        },
+        {
+          "group": "Integration Catalog",
+          "pages": [
+            "reference/integrations/all-integrations",
+            "reference/integrations/crm/salesforce",
+            "reference/integrations/crm/hubspot",
+            "reference/integrations/analytics/segment",
+            "reference/integrations/analytics/mixpanel",
+            "reference/integrations/engagement/outreach",
+            "reference/integrations/engagement/salesloft",
+            "reference/integrations/data/snowflake",
+            "reference/integrations/data/bigquery"
+          ]
+        },
+        "reference/troubleshooting"
+      ]
+    },
+    {
+      "group": "📚 Resources",
+      "pages": [
+        "resources/best-practices",
+        "resources/use-case-library",
+        "resources/video-tutorials",
+        "resources/faq",
+        "resources/glossary"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "website": "https://getkoala.com/",
+    "twitter": "https://twitter.com/getkoala_com",
+    "linkedin": "https://www.linkedin.com/company/getkoala/"
+  },
+  "analytics": {
+    "ga4": {
+      "measurementId": "G-ZGWCQQMRGW"
+    },
+    "koala": {
+      "publicApiKey": "pk_e512327ffffa5834567ce885504c7c04323c"
+    }
+  }
+}
