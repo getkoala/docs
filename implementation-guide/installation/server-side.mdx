@@ -1,0 +1,238 @@
+---
+title: "Server Side Tracking"
+description: "When you need to integrate Koala with your server-side application."
+---
+
+Sometimes you'll need to send events from your backend application in addition to or instead of using Koala's client-side SDK. This guide will show you how to do that.
+
+**What can it do?**
+
+- ❌ Autotracking (pageviews, forms, active session time)
+- ❌ Sessions
+- ✅ Custom Events
+- ✅ Visitor Identification
+- ✅ Account Traits
+
+**Important**: Please make sure to always include the `User-Agent` header in your requests to Koala, or it may be flagged as a bot and not processed.
+
+<Note>
+The `/batch` endpoint has a few constraints/requirements: 
+  
+- **you must send either a `profile_id` or `email` identifier as top-level properties in the request body**
+- all events, identifies, or page_views collected are limited to up to 30 of each type
+- each request should only send events for the same person (all events are tied to the same `profile_id`/`email`)
+</Note>
+
+### Identifying visitors
+
+If you've already got the Koala snippet installed client-side on the same top domain as your server you can identify visitors with known email addresses server-side. For example, if your website (www.example.com) has the JavaScript snippet installed, and your app (app.example.com) does not, you can enrich the data Koala is collecting across both.
+
+Whenever users do something identifiable in your app, like logging in, you can identify them manually. This enables you to:
+
+- Track a visitor across browsers or devices
+- Differentiate truly anonymous visitors from known users
+- Combine all activity from a visitor before and after they've logged in
+- Associate visitors with company data
+
+To identify anonymous visitors with an email, send a request to your workspace's public API for collection:
+
+```sh Tracking API Endpoint
+https://api2.getkoala.com/web/projects/<your public api key>/batch
+```
+
+Here's an example bare-bones request:
+
+```sh Example Request
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{ "profile_id": "3e6a2c18-3b02-40c4-b8d2-1842c193d3ba", "email": "person@example.com" }' \
+  https://api2.getkoala.com/web/projects/my-public-api-key/batch
+```
+
+<Note>
+  If you want to explicitly collect `identify` calls and see them appear in the debugger in the Koala app, you'll need to include the `identifies` array in the body of the request. See an [example below](#sending-traits).
+</Note>
+
+You should ensure all websites sharing the same top domain also share the Koala anonymous `profile_id` by respecting one if it's already there, or setting it yourself if it isn't there. You can read and modify the `ko_id` cookie value in the request to do this.
+
+_Note: when setting your own randomly generated `profile_id`, you should use a UUID v4 format._
+
+Here's an example of parsing the Koala cookie for a `profile_id` using Express in Node.js:
+
+```js Node.js Express Example
+const cookieParser = require("cookie-parser");
+const express = require("express");
+const app = express();
+
+app.use(cookieParser());
+
+app.get("/", (req, res) => {
+  // use `profile_id` from cookie, else send a randomly generated one
+  // and set it in the cookie yourself
+  let profile_id = req.cookies.ko_id;
+  if (!profile_id) {
+    profile_id = uuid.v4();
+    res.cookie("ko_id", profile_id, { domain: ".example.com" });
+  }
+
+  // send http request to Koala with the `profile_id`
+});
+```
+
+### Sending events
+
+You can also send custom events to Koala using the same `/batch` endpoint for your workspace.
+The API call must include either an `email` (most common scenario), or a `profile_id` (read from the Koala cookie).
+
+```sh Example Request
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "profile_id": "3e6a2c18-3b02-40c4-b8d2-1842c193d3ba",
+    "email": "netto@getkoala.com",
+    "events": [{
+      "message_id": "any idempotent id (can be a uuid or anything unique)",
+      "type": "track",
+      "event": "Created Account",
+      "properties": {},
+      "sent_at": "2022-11-09T23:57:14.776Z"
+    }]
+  }' \
+  https://api2.getkoala.com/web/projects/my-public-api-key/batch
+```
+
+You can send multiple events at once. You can omit the `message_id` if you do not require it, but note that the event could potentially be captured more than once (if retries are needed). The `message_id` acts as an idempotency key to dedupe replayed/retried events.
+
+### Sending Traits
+
+You can send custom traits that can be attached to a Koala visitor using the `/batch` endpoint for your workspace.
+
+<Note>
+You must either pass a `profile_id` or `email` key in the body of a request in order for it to be attached to an existing visitor in Koala.
+
+- You can find the `profile_id` for a visitor by reading the `ko_id` cookie that is set by the Koala pixel client side.
+- Alternatively, you can attach an `email` field to your `/batch` call, and Koala will associate the traits to an existing user that has been previously identified using the same email.
+</Note>
+
+```sh Example Request
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "profile_id": "3e6a2c18-3b02-40c4-b8d2-1842c193d3ba",
+    "email": "user@example.org",
+    "identifies": [{
+      "type": "identify",
+      "sent_at": "2023-11-30T02:51:36.840Z",
+      "traits": {
+        "email": "user@example.org",
+        "billing_plan": "pro",
+        "vip": true,
+        "is_current_customer": true
+      }
+    }]
+  }' \
+  https://api2.getkoala.com/web/projects/my-public-api-key/batch
+```
+
+### Sending Account Traits
+
+Sometimes you want to send traits that are associated with an account, rather than a visitor. You can do this by sending a `domain` along with the traits for the Account.
+Account traits will be associated with the `domain` and will be available to all visitors that have been identified with the same account.
+
+You should use the `/accounts/batch` endpoint for your workspace to send Account traits:
+
+```sh Example Request
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "domain": "getkoala.com",
+    "identifies": [{
+      "type": "identify",
+      "traits": {
+        "billing_plan": "pro",
+        "vip": true,
+        "headcount": 100
+      }
+    }]
+  }' \
+  https://api2.getkoala.com/web/projects/my-public-api-key/accounts/batch
+```
+
+The traits above will be visible in the Account page for `getkoala.com` in the Koala app.
+
+<Note>
+You must either pass an `account_id` or `domain` key in the body of a request in order for it to be attached to an existing Account in Koala.
+We recommend using the `domain` parameter to associate traits with an account.
+
+- Koala will automatically create a new Account if the `domain` hasn't been tracked in Koala yet.
+</Note>
+
+#### Deduplicating Account Traits
+
+There are scenarios where the same Account has multiple tenants in your App. For example, your customers may have a workspace for their development team and another for their marketing team.
+In this case, you can pass along a `group_id` parameter alongside your Account Traits, that way, Koala can disambiguate multiple groupings within the same company.
+
+```sh Example Request
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "domain": "getkoala.com",
+    "identifies": [
+      {
+        "type": "identify",
+        "traits": {
+          "group_id": "development-team",
+          "billing_plan": "free",
+          "vip": false
+        }
+      },
+      {
+        "type": "identify",
+        "traits": {
+          "group_id": "marketing-team",
+          "billing_plan": "pro",
+          "vip": true
+        }
+      }
+    ]
+  }' \
+  https://api2.getkoala.com/web/projects/my-public-api-key/accounts/batch
+```
+
+<Note>
+- The `group_id` parameter is optional, and you can use it to disambiguate multiple groupings within the same company.
+- Koala will group the traits by `group_id` and display them in the Account page in Koala under each individual grouping.
+</Note>
+
+### Sending Account Events
+
+Sometimes you want to send events that are associated with an account, rather than an individual.
+
+Similar to account traits, you must provide either a Koala `account_id` or `domain` to identify the account. These events work similarly to profile-level events but are associated with the entire account rather than individual users.
+
+You should use the `/accounts/batch` endpoint for your workspace to send Account events:
+
+```sh Example Request
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "domain": "getkoala.com",
+    "events": [{
+      "message_id": "any idempotent id (can be a uuid or anything unique)",
+      "type": "track",
+      "event": "Workspace Created",
+      "properties": {
+        "workspace_id": "1234567890",
+        "workspace_name": "Acme, Inc."
+      },
+      "sent_at": "2022-11-09T23:57:14.776Z"
+    }]
+  }' \
+  https://api2.getkoala.com/web/projects/my-public-api-key/accounts/batch
+```

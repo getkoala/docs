@@ -1,0 +1,43 @@
+---
+title: "Intent Scores"
+description: "Learn how Koala scores intent from accounts engaging with your product."
+---
+
+# What is an Intent Score?
+
+Koala scores the level of intent at the account level for every account you track – whether they were visiting your marketing website, researching your product (or competitors) on G2, or interacting with your LinkedIn posts and GitHub repos.
+
+## Components of an Intent Score
+
+There are three main components of an Intent Score:
+
+1. **The intent strength** - this is a number between 0 and 100 that represents how strong the intent is for an account and is summarized with a label "Low", "Medium", "High", or "Very High".
+2. **The intent trend** - "Surging", "Heating", "Neutral", or "Cooling". This is how the intent strength has been changing over time for an account, repesenting the slope of the intent strength.
+3. **The intent history** - a timeseries chart of the intent strength over time.
+
+The combination of these three components gives you a holistic view of the intent of an account and how it's changing over time.
+
+## How is an Intent Score calculated?
+
+Koala calculates intent scores multiple times per day, as we see activity from people in your accounts across any signal source you've connected to Koala.
+
+There are several factors that contribute to an account's Intent Score:
+
+- **Intent signals** - Koala automatically captures and scores signals from accounts engaging with your product. For example, if you've defined any signals for a pricing page view over 30 seconds long, Koala will capture that as a signal and incorporate it in the score.
+- **Page views** - Koala will incorporate page views from your marketing site and other domains you've connected to Koala (docs, blog, etc.), as well as the time spent on those pages. We focus on the breadth of pages viewed more than the frequency of them since that is a stronger indicator that people are doing deeper research on your product offering.
+- **Active session time** - Koala automatically captures the amount of time a visitor _actively_ engages with your content, and that often can be a strong indicator of intent.
+- **Number of active people** - Koala also sees how many people from an account are active on a given day, so going from 1 person to 10 people can be a strong indicator that multiple people are starting to share and explore the product.
+
+Since some of these factors can happen frequently with high cardinality (e.g., someone visiting the pricing page many times), Koala automatically smooths out the noise by looking for distinct patterns in the data.
+
+Intent also doesn't last forever. It decays rather quickly. In fact, we've found for some customers, intent can decay as rapidly as less than a day, but for others the signals might last for a week. Our algorithm automatically adapts a decay rate for intent scores.
+
+## How do I use Intent Scores?
+
+Intent scores are most useful when you're looking to understand the trends of engagement and to spot new opportunties for accounts heating up or surging. From there you can pair the intent scores with the raw activity to deeply understand how you can be genuinely helpful and provide value to a prospect.
+
+You can also use intent scores and trends to understand which existing customers or trials are most at risk of churning and take action to re-engage them. For these, the intent trend is often most important because you can see how disengaged an account is becoming.
+
+## Advanced Intent Scoring
+
+Koala also supports advanced scoring configuration, so you can define specific scoring rules for different types of signals. Reach out to support@getkoala.com if you're interested in learning more!

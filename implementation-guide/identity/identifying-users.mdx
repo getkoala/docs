@@ -1,0 +1,81 @@
+---
+title: "Sending Identify Calls"
+description: "An introduction to identify calls into Koala"
+---
+
+## Background
+
+Koala's data model supports the entire first-party prospect/customer lifecycle, from deanonymizing the very first moment someone comes to the site through to education, consideration, becoming a customer, and expansion.
+
+Even if you're using Koala solely for pipeline generation (our most popular use case!), you'll find that first-party identity data has a number of benefits in that it's <b>100% accurate, privacy-friendly, has perfect match rate, and gives you prospect-level instead of company-level detail</b>.
+
+<Note>
+  The importance of having this first-party identity data cannot be overstated.
+  The vast majority of our onboarding customers decide to skip this step during
+  setup, add it in later, and were blown away by what they were missing. It's a
+  little extra work, but it's worth it!
+</Note>
+
+In this guide, we'll walk you through the two recommended approaches, but we support a multitude of tools and can integrate with your existing stack as necessary. Please email support@getkoala.com if you'd like help with a different approach.
+
+## Approach 1: Client-side install
+
+This is typically our recommend approach if you're open to having Koala's SDK in your app (it's fairly light at under ~30kb).
+
+This is typically as simple as making sure we're installed in the client of your application and that you're sending `ko.identify()` calls. Be sure you're sending these calls for all forms of login, including Google OAuth, SSO, Github, etc.
+
+If you do it client-side, you'll get the following additional benefits:
+
+- fastest installation
+- accurate session time <i>(optional)</i>
+- pageview autotracking <i>(optional)</i>
+- form-fill autotracking <i>(optional)</i>
+
+## Approach 2: Server-side API call
+
+If you are set on a server-side implementation (typically for app performance reasons, though there may be other reasons you don't want an external SDK in your bundle), you can do this as well. You won't get the additional benefits above, but the key here is we'll want to link the Koala Profile ID (`ko_id` in your cookies) to an email address. The pseudocode for this is:
+
+```
+ko_id = get_from_cookies('ko_id')
+send_server_side_identify(
+    { 'email': email_address, 'profile_id': ko_id }
+)
+```
+
+For this to achieve the desired outcome, you'll need to ensure that two things happen:
+
+- the `email` property is set with your user email
+- the `profile_id` property is set with the Koala cookie id (if no id, skip the call)
+
+After you set it up, you can tell that you were successful by seeing two things happen in Koala:
+
+1. Lots of identify calls flowing here: <a href="https://app.getkoala.com/goto/instrumentation">Instrumentation Page</a>
+2. Lots of identified users flowing here: <a href="https://app.getkoala.com/goto/visitors?range=week&facets[identified][]=true&page=1&sort_by=last_seen">Visitors Page</a>
+
+It will take a few days for your identity graph to fully warm up, but you should see a significant percentage of traffic be identified over the coming days.
+
+If you'd like to do this approach, read our <a href="/docs/developer-guides/server-side">server-side technical docs</a>.
+
+## Common questions
+
+### I'm only using Koala for website signals and have another tool for product analytics. Is there still a benefit to doing this?
+
+Yes, this will make your data in Koala more specific and more accurate. Even if just for this, we still recommend investing a few hours here for a much better data experience.
+
+However, more than anything, we see that having a cross-section across the entire customer journey unlocks "surprise" use-cases. Here are two that happen all the time:
+
+- an enterprise buyer is beginning their research for an upcoming project. In order to see the product, they sign up for a free account but cannot actually send data without an MSA in place. They read technical docs about advanced features. Now, you know both who is researching and what they are researching
+
+- an executive in a larger account is looking at a new module 2 months before the renewal; because they have logged into your platform in the past, you know exactly who they are
+
+### I don't allow any Javascript code to be added client-side to my app for performance or security reasons. Can I still do this?
+
+We've built Approach 2 with this concern in mind. It's slightly more involved, but shouldn't take more than 10-20 lines of code.
+
+### Can I do this via Segment?
+
+Yes, we have a client-side and a cloud mode destination.
+
+The client-side destination is simplest and will work out of the box. This is an easy way to get Approach 1.
+
+If you want to use the cloud mode destination (Approach 2), <b>you'll need to make a code change to send along the Koala cookie ID in the `analytics.identify()` call</b>. See the pseudocode in Approach 2 as a reference — without this, the identity linking will not work!

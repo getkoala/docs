@@ -1,0 +1,206 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Koala",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://getkoala.com"
+  },
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#4D32E4",
+    "light": "#A393FE",
+    "dark": "#4D32E4",
+    "anchors": { "from": "#BA27BA", "to": "#4D32E4" }
+  },
+  "redirects": [
+    {
+      "source": "/admin-guides/advanced-instrumentation",
+      "destination": "/developer-guides/sending-identify"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Get Started",
+    "url": "https://app.getkoala.com/signup?utm_source=docs&utm_medium=internal&utm_campaign=get_started"
+  },
+  "topbarLinks": [
+    {
+      "name": "Book a demo",
+      "url": "https://getkoala.com/contact?utm_source=docs&utm_medium=internal&utm_campaign=book_demo"
+    },
+    {
+      "name": "Log in",
+      "url": "https://app.getkoala.com/login"
+    }
+  ],
+  "anchors": [
+    {
+      "name": "Changelog",
+      "icon": "list-timeline",
+      "url": "https://getkoala.com/blog?type=product-updates"
+    },
+    {
+      "name": "Status",
+      "icon": "wave-pulse",
+      "url": "https://koala.instatus.com"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Get Started",
+      "pages": [
+        "get-started/what-is-koala",
+        "get-started/how-koala-works",
+        "get-started/quick-start"
+      ]
+    },
+    {
+      "group": "Guides for Sellers",
+      "pages": ["rep-guides/explore-koalau"]
+    },
+    {
+      "group": "Guides for Admins",
+      "pages": [
+        "developer-guides/sending-identify",
+        "admin-guides/first-intent-signals",
+        "admin-guides/advanced-intent-signals",
+        "admin-guides/how-to-drive-more-known-users",
+        "admin-guides/larger-sales-teams",
+        "admin-guides/saml-sso"
+      ]
+    },
+    {
+      "group": "Guides for Developers",
+      "pages": [
+        "developer-guides/install-on-nextjs",
+        "developer-guides/server-side",
+        "developer-guides/using-npm",
+        "developer-guides/custom-proxy-setup",
+        "developer-guides/gdpr-endpoint"
+      ]
+    },
+    {
+      "group": "Product Manual",
+      "pages": [
+        "product-manual/koala-plays",
+        "product-manual/audiences",
+        "product-manual/content-reports",
+        "product-manual/ai-agents",
+        "product-manual/intent-signals",
+        "product-manual/intent-scores",
+        "product-manual/slack-alerts",
+        "product-manual/koala-weekly"
+      ]
+    },
+    {
+      "group": "Automations",
+      "pages": [
+        "automations/intro",
+        "automations/slack-alerts",
+        "automations/actions",
+        {
+          "group": "Auto Outbound",
+          "pages": [
+            "automations/auto-outbound/intro",
+            "automations/auto-outbound/outreach",
+            "automations/auto-outbound/salesforce",
+            "automations/auto-outbound/hubspot",
+            "automations/auto-outbound/apollo",
+            "automations/auto-outbound/clay",
+            "automations/auto-outbound/webhooks"
+          ]
+        },
+        "automations/credits"
+      ]
+    },
+    {
+      "group": "Identity Layer",
+      "pages": [
+        "identity-layer/intro",
+        "identity-layer/identify-email-recipients"
+      ]
+    },
+    {
+      "group": "JavaScript SDK",
+      "pages": [
+        "sdk/installation",
+        "sdk/identify",
+        "sdk/track",
+        "sdk/autotracking"
+      ]
+    },
+    {
+      "group": "Sources",
+      "pages": [
+        "sources/index",
+        {
+          "group": "Web & Product Data",
+          "pages": [
+            "integrations/segment",
+            "integrations/snowflake",
+            "integrations/rb2b",
+            "integrations/bigquery",
+            "integrations/mintlify",
+            "integrations/readme"
+          ]
+        },
+        {
+          "group": "Social / Community",
+          "pages": [
+            "integrations/linkedin-chrome-extension",
+            "integrations/github",
+            "integrations/slack-community",
+            "integrations/discord",
+            "integrations/discourse"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Integrations",
+      "pages": [
+        "integrations/apollo",
+        "integrations/arcade",
+        "integrations/calendly",
+        "integrations/census",
+        "integrations/clay",
+        "integrations/clearbit",
+        "integrations/drift",
+        "integrations/fullstory",
+        "integrations/g2",
+        "integrations/gitbook",
+        "integrations/google-tag-manager",
+        "integrations/hightouch",
+        "integrations/hubspot",
+        "integrations/hubspot-meetings",
+        "integrations/intercom",
+        "integrations/mintlify",
+        "integrations/navattic",
+        "integrations/outreach",
+        "integrations/posthog",
+        "integrations/qualified",
+        "integrations/readme",
+        "integrations/rudderstack",
+        "integrations/salesforce",
+        "integrations/salesloft",
+        "integrations/segment",
+        "integrations/slack",
+        "integrations/storylane",
+        "integrations/zoominfo"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "website": "https://getkoala.com/",
+    "twitter": "https://twitter.com/getkoala_com",
+    "linkedin": "https://www.linkedin.com/company/getkoala/"
+  },
+  "analytics": {
+    "ga4": {
+      "measurementId": "G-ZGWCQQMRGW"
+    },
+    "koala": {
+      "publicApiKey": "pk_e512327ffffa5834567ce885504c7c04323c"
+    }
+  }
+}

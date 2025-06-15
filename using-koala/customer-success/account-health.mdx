@@ -1,0 +1,347 @@
+---
+title: "Account Health Monitoring"
+description: "Use Koala to proactively monitor customer health and prevent churn"
+---
+
+<Info>
+This guide is for Customer Success teams. For technical setup, see the [Implementation Guide](/implementation-guide/planning).
+</Info>
+
+## Overview
+
+Koala helps Customer Success teams identify at-risk accounts and expansion opportunities by tracking customer engagement patterns across your website, documentation, and product.
+
+## Key Health Indicators
+
+### 🚨 Churn Risk Signals
+
+Monitor these behaviors that often precede churn:
+
+<CardGroup cols={2}>
+  <Card title="Declining Usage" icon="chart-line-down">
+    - Fewer logins over time
+    - Reduced feature adoption
+    - Decreased time in app
+    - Abandoned workflows
+  </Card>
+  
+  <Card title="Research Behavior" icon="search">
+    - Viewing cancellation docs
+    - Checking contract terms
+    - Visiting competitor pages
+    - Reading migration guides
+  </Card>
+  
+  <Card title="Support Patterns" icon="headset">
+    - Increased support tickets
+    - Unresolved issues
+    - Negative feedback
+    - Feature complaints
+  </Card>
+  
+  <Card title="Team Changes" icon="users">
+    - Champion departure
+    - New stakeholders
+    - Domain changes
+    - Email bounces
+  </Card>
+</CardGroup>
+
+### 💚 Healthy Account Signals
+
+Positive indicators to reinforce:
+
+<CardGroup cols={2}>
+  <Card title="Growing Usage" icon="chart-line">
+    - New users added
+    - Feature exploration
+    - API usage increase
+    - Regular logins
+  </Card>
+  
+  <Card title="Engagement" icon="heart">
+    - Reading best practices
+    - Attending webinars
+    - Community participation
+    - Sharing content
+  </Card>
+</CardGroup>
+
+## Setting Up Health Monitoring
+
+<Steps>
+  <Step title="Define Health Scores">
+    Create a scoring system based on:
+    - Login frequency (40%)
+    - Feature usage (30%)
+    - Support tickets (20%)
+    - Engagement (10%)
+  </Step>
+  
+  <Step title="Configure Intent Signals">
+    Set up alerts for critical pages:
+    - `/pricing` → Expansion opportunity
+    - `/cancel` → Churn risk
+    - `/docs/api` → Technical investment
+    - `/integrations` → Deeper adoption
+  </Step>
+  
+  <Step title="Create Segments">
+    Build customer segments:
+    - By health score
+    - By contract value
+    - By renewal date
+    - By product tier
+  </Step>
+  
+  <Step title="Set Up Alerts">
+    Configure Slack alerts for:
+    - Health score drops >20%
+    - Cancellation page visits
+    - New user additions
+    - Feature limit approaches
+  </Step>
+</Steps>
+
+## Proactive Playbooks
+
+### When Health Score Drops
+
+<Tabs>
+  <Tab title="Immediate Actions">
+    1. **Review Recent Activity**
+       - Check last 30 days of usage
+       - Look for specific friction points
+       - Identify which features declined
+    
+    2. **Reach Out Within 24 Hours**
+       ```
+       Subject: Quick check-in on your [Product] experience
+       
+       Hi [Name],
+       
+       I noticed your team's usage has shifted recently, and I wanted to 
+       check in to see if everything is going smoothly.
+       
+       Are there any challenges or questions I can help address?
+       
+       Happy to jump on a quick call if helpful.
+       ```
+    
+    3. **Schedule Business Review**
+       - Review original goals
+       - Assess current state
+       - Identify gaps
+       - Create action plan
+  </Tab>
+  
+  <Tab title="Long-term Strategy">
+    1. **Deepen Relationships**
+       - Identify new champions
+       - Executive alignment
+       - Success story development
+    
+    2. **Drive Adoption**
+       - Feature training
+       - Best practices sharing
+       - Use case expansion
+    
+    3. **Demonstrate Value**
+       - ROI analysis
+       - Benchmark reports
+       - Success metrics
+  </Tab>
+</Tabs>
+
+### Expansion Opportunities
+
+When you see these signals, act fast:
+
+| Signal | Action | Template |
+|--------|--------|----------|
+| Pricing page visit | Proactive upgrade offer | "Noticed you're exploring our plans..." |
+| Hitting usage limits | Capacity planning call | "Let's discuss scaling your usage..." |
+| New team exploration | Multi-team pitch | "Saw [Department] is interested..." |
+| Integration research | Technical consultation | "Happy to help with integration..." |
+
+## Health Dashboard Setup
+
+### Key Metrics to Track
+
+```
+Account Health Score = 
+  (Login Frequency × 0.4) +
+  (Feature Adoption × 0.3) +
+  (Support Health × 0.2) +
+  (Engagement Score × 0.1)
+```
+
+### Visual Indicators
+
+- 🟢 **Healthy (80-100)**: Growing and engaged
+- 🟡 **At Risk (60-79)**: Needs attention
+- 🔴 **Critical (0-59)**: Immediate action required
+
+### Recommended Views
+
+1. **Daily Dashboard**
+   - Accounts with score changes >10%
+   - New at-risk accounts
+   - Expansion signals
+   - Upcoming renewals
+
+2. **Weekly Review**
+   - Health score trends
+   - Feature adoption rates
+   - Support ticket patterns
+   - Engagement metrics
+
+3. **Monthly Analysis**
+   - Cohort performance
+   - Churn prediction accuracy
+   - Intervention success rates
+   - Revenue impact
+
+## Automation Workflows
+
+### Slack Alerts Configuration
+
+```yaml
+High Priority Alerts:
+  - Cancellation page visit
+  - Health score drop >30%
+  - Champion leaves company
+  - Contract page views
+
+Medium Priority:
+  - Competitor research
+  - Support spike
+  - Usage decline >20%
+  - Feature limits approached
+
+Low Priority:
+  - Documentation visits
+  - New user added
+  - Integration explored
+  - Training content viewed
+```
+
+### CRM Integration
+
+Sync these Koala insights to your CRM:
+
+- Health score (custom field)
+- Last activity date
+- Risk indicators
+- Expansion signals
+- Engagement level
+
+## Best Practices
+
+### 1. Response Time Matters
+
+| Signal Type | Response Time | Method |
+|-------------|---------------|---------|
+| Cancellation research | < 2 hours | Phone call |
+| Health drop >30% | < 24 hours | Email + call |
+| Expansion signal | < 48 hours | Email |
+| General decline | < 1 week | Check-in |
+
+### 2. Personalization is Key
+
+Use Koala data to personalize outreach:
+- Reference specific features they use
+- Mention pages they've visited
+- Address their actual use case
+- Provide relevant resources
+
+### 3. Track Intervention Success
+
+Measure the impact of your actions:
+- Health score recovery rate
+- Churn prevention success
+- Expansion conversion rate
+- Time to resolution
+
+## Common Patterns to Watch
+
+<AccordionGroup>
+  <Accordion title="The Silent Churn">
+    **Pattern**: Gradual usage decline with no support contact
+    
+    **Action**: Proactive check-in focusing on value realization
+  </Accordion>
+  
+  <Accordion title="The Researcher">
+    **Pattern**: Heavy documentation and competitor research
+    
+    **Action**: Technical consultation and feature roadmap discussion
+  </Accordion>
+  
+  <Accordion title="The Limit Hitter">
+    **Pattern**: Consistently hitting plan limits
+    
+    **Action**: Upgrade conversation with ROI justification
+  </Accordion>
+  
+  <Accordion title="The New Stakeholder">
+    **Pattern**: New domain/users with different behavior
+    
+    **Action**: Re-onboarding and relationship building
+  </Accordion>
+</AccordionGroup>
+
+## Reporting Templates
+
+### Monthly Health Report
+
+```
+Account Health Summary - [Month]
+
+Overall Statistics:
+- Total Accounts: X
+- Healthy: X (X%)
+- At Risk: X (X%)
+- Critical: X (X%)
+
+Key Movements:
+- Improved: X accounts
+- Declined: X accounts
+- Churned: X accounts
+- Expanded: X accounts
+
+Success Stories:
+- [Account A]: Recovered from at-risk to healthy
+- [Account B]: Expanded after proactive outreach
+
+Action Items:
+- X accounts need immediate attention
+- X accounts show expansion potential
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card 
+    title="Usage Tracking Guide" 
+    icon="chart-bar"
+    href="/using-koala/customer-success/usage-tracking"
+  >
+    Deep dive into usage analytics
+  </Card>
+  
+  <Card 
+    title="Renewal Signals" 
+    icon="calendar"
+    href="/using-koala/customer-success/renewal-signals"
+  >
+    Predict and improve renewals
+  </Card>
+</CardGroup>
+
+## Related Resources
+
+- [Intent Signals Guide](/using-koala/sales-teams/understanding-intent-signals)
+- [Automation Setup](/automation-ai/getting-started)
+- [CRM Integration](/implementation-guide/integrations/crm-sales-tools)
+- [Best Practices](/resources/best-practices)

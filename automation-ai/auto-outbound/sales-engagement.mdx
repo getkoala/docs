@@ -1,0 +1,243 @@
+---
+title: "Sales Engagement Tools"
+description: "Automate outreach with Outreach, Salesloft, Apollo, and Clay"
+---
+
+Connect Koala with your sales engagement platform to automatically trigger sequences, create tasks, and personalize outreach based on real-time intent signals.
+
+## Outreach Integration
+
+### Overview
+Trigger Outreach sequences and create prospects automatically when high-intent visitors are detected.
+
+### Key Features
+- Auto-create prospects from anonymous visitors
+- Trigger sequences based on intent signals
+- Personalize emails with browsing data
+- Track engagement back to Koala
+
+### Setup & Configuration
+
+<Steps>
+  <Step title="Connect Outreach">
+    1. Go to Settings → Integrations → Outreach
+    2. Click "Connect Outreach"
+    3. Authorize Koala to access your Outreach instance
+  </Step>
+  
+  <Step title="Configure Sequences">
+    Map intent signals to Outreach sequences:
+    - Pricing page → "High Intent Pricing" sequence
+    - Demo page → "Demo Interest" sequence
+    - Docs/Integration → "Technical Buyer" sequence
+  </Step>
+  
+  <Step title="Set Trigger Rules">
+    Define when to create prospects:
+    - Intent score threshold (e.g., >70)
+    - Specific page visits
+    - Company size/industry filters
+  </Step>
+</Steps>
+
+### Personalization Variables
+Use these Koala variables in your Outreach templates:
+- `{{koala.pages_viewed}}` - List of pages visited
+- `{{koala.intent_score}}` - Current intent score
+- `{{koala.last_page}}` - Most recent page
+- `{{koala.time_on_site}}` - Total time spent
+
+## Salesloft Integration
+
+### Overview
+Automatically add people to Salesloft cadences and create tasks for your team based on buying signals.
+
+### Automation Options
+1. **Cadence Triggers**: Start cadences for new high-intent visitors
+2. **Task Creation**: Create calls/emails for existing people
+3. **Person Enrichment**: Update Salesloft records with intent data
+4. **Account Alerts**: Notify reps of account-level activity
+
+### Best Practices
+- Use intent score for cadence prioritization
+- Create separate cadences for different intent signals
+- Include browsing context in first touch
+- Set up round-robin for fair lead distribution
+
+## Apollo Integration
+
+### Overview
+Enrich contacts with Apollo data and trigger automated sequences based on Koala intent signals.
+
+### Unique Features
+- **Contact Enrichment**: Find email/phone for anonymous visitors
+- **Sequence Automation**: Trigger Apollo sequences
+- **List Building**: Add high-intent visitors to Apollo lists
+- **Data Sync**: Two-way sync of engagement data
+
+### Setup Process
+
+<Tabs>
+  <Tab title="Initial Setup">
+    1. Connect Apollo account in Settings
+    2. Configure API permissions
+    3. Set enrichment preferences
+    4. Map custom fields
+  </Tab>
+  
+  <Tab title="Automation Rules">
+    Create rules for different scenarios:
+    - New company → Enrich and add to sequence
+    - Return visitor → Update engagement score
+    - High intent → Create task for rep
+  </Tab>
+  
+  <Tab title="Enrichment Settings">
+    Configure what data to pull:
+    - Contact details (email, phone, LinkedIn)
+    - Company information
+    - Technology stack
+    - Funding data
+  </Tab>
+</Tabs>
+
+## Clay Integration
+
+### Overview
+Use Clay's powerful enrichment and automation capabilities with Koala's intent data for sophisticated outbound workflows.
+
+### Workflow Examples
+
+<CardGroup cols={2}>
+  <Card title="Visitor Enrichment">
+    1. Koala detects anonymous visitor
+    2. Send company domain to Clay
+    3. Clay finds decision makers
+    4. Return enriched contacts to Koala
+    5. Trigger personalized outreach
+  </Card>
+  
+  <Card title="Intent-Based Research">
+    1. High-intent signal detected
+    2. Clay researches company news
+    3. Find relevant talking points
+    4. Generate personalized message
+    5. Send via preferred channel
+  </Card>
+</CardGroup>
+
+### Advanced Clay Workflows
+
+```javascript
+// Example Clay webhook payload from Koala
+{
+  "event": "high_intent_visitor",
+  "company": {
+    "domain": "example.com",
+    "name": "Example Corp",
+    "industry": "Software"
+  },
+  "intent_data": {
+    "score": 85,
+    "pages_viewed": ["pricing", "features", "integrations"],
+    "time_on_site": 420,
+    "return_visitor": true
+  },
+  "instructions": "Find decision makers and recent company news"
+}
+```
+
+## Comparison Table
+
+| Feature | Outreach | Salesloft | Apollo | Clay |
+|---------|----------|-----------|---------|------|
+| Auto-sequence | ✅ | ✅ | ✅ | ✅ |
+| Contact enrichment | ❌ | ❌ | ✅ | ✅ |
+| Custom workflows | Limited | Limited | ✅ | ✅ |
+| Email finding | ❌ | ❌ | ✅ | ✅ |
+| AI personalization | ❌ | ❌ | ❌ | ✅ |
+| Pricing | $$$ | $$$ | $$ | $$ |
+
+## Implementation Best Practices
+
+### 1. Start Simple
+- Begin with one tool and one use case
+- Test with a small segment first
+- Measure response rates before scaling
+
+### 2. Personalization Strategy
+- Reference specific pages visited
+- Mention time-relevant triggers
+- Use industry-specific messaging
+- Avoid creepy specificity
+
+### 3. Timing Optimization
+- Immediate response for pricing page visits
+- 24-hour delay for content consumption
+- Weekly batch for low-intent signals
+- Respect timezone differences
+
+### 4. Compliance Considerations
+- Ensure GDPR/CCPA compliance
+- Respect opt-out preferences
+- Document data usage
+- Maintain audit trails
+
+## Common Workflows
+
+<AccordionGroup>
+  <Accordion title="Anonymous Visitor → Outreach">
+    1. Visitor from target ICP views pricing
+    2. Koala identifies company via IP
+    3. Find contacts using Apollo/Clay
+    4. Add to Outreach sequence
+    5. Personalize with browsing data
+  </Accordion>
+  
+  <Accordion title="Known Contact Re-engagement">
+    1. Previous lead returns to site
+    2. Views new feature pages
+    3. Update Salesloft person record
+    4. Trigger re-engagement cadence
+    5. Alert assigned rep
+  </Accordion>
+  
+  <Accordion title="Competitive Intelligence">
+    1. Visitor views competitor comparison
+    2. Clay researches their current vendor
+    3. Create battlecard talking points
+    4. Route to competitive specialist
+    5. Launch differentiation sequence
+  </Accordion>
+</AccordionGroup>
+
+## Measuring Success
+
+Track these metrics for each integration:
+
+| Metric | Target | Why It Matters |
+|--------|--------|----------------|
+| Sequence Entry Rate | >80% | Validates trigger accuracy |
+| Response Rate | >15% | Shows message relevance |
+| Meeting Book Rate | >5% | Indicates quality |
+| Time to Response | <2 hrs | Critical for hot leads |
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card 
+    title="CRM Integration" 
+    icon="database"
+    href="/automation-ai/auto-outbound/crm-integrations"
+  >
+    Sync with Salesforce & HubSpot
+  </Card>
+  
+  <Card 
+    title="Custom Webhooks" 
+    icon="code"
+    href="/automation-ai/auto-outbound/webhooks-apis"
+  >
+    Build custom integrations
+  </Card>
+</CardGroup>
