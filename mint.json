@@ -125,77 +125,42 @@
       "group": "Integrations",
       "pages": [
         "sources/index",
-        {
-          "group": "Data Sources",
-          "pages": [
-            "integrations/segment",
-            "integrations/snowflake",
-            "integrations/bigquery",
-            "integrations/rb2b",
-            "integrations/rudderstack",
-            "integrations/census",
-            "integrations/hightouch"
-          ]
-        },
-        {
-          "group": "Web & Product Analytics",
-          "pages": [
-            "integrations/google-tag-manager",
-            "integrations/posthog",
-            "integrations/fullstory",
-            "integrations/mintlify",
-            "integrations/readme",
-            "integrations/gitbook"
-          ]
-        },
-        {
-          "group": "CRM & Sales Tools",
-          "pages": [
-            "integrations/salesforce",
-            "integrations/hubspot",
-            "integrations/hubspot-meetings",
-            "integrations/outreach",
-            "integrations/salesloft",
-            "integrations/apollo",
-            "integrations/clay"
-          ]
-        },
-        {
-          "group": "Marketing & Engagement",
-          "pages": [
-            "integrations/drift",
-            "integrations/intercom",
-            "integrations/qualified",
-            "integrations/calendly",
-            "integrations/clearbit",
-            "integrations/zoominfo"
-          ]
-        },
-        {
-          "group": "Social & Community",
-          "pages": [
-            "integrations/slack",
-            "integrations/slack-community",
-            "integrations/linkedin-chrome-extension",
-            "integrations/github",
-            "integrations/discord",
-            "integrations/discourse"
-          ]
-        },
-        {
-          "group": "Demo & Training Tools",
-          "pages": [
-            "integrations/arcade",
-            "integrations/navattic",
-            "integrations/storylane"
-          ]
-        },
-        {
-          "group": "Review & Social Proof",
-          "pages": [
-            "integrations/g2"
-          ]
-        }
+        "integrations/apollo",
+        "integrations/arcade",
+        "integrations/bigquery",
+        "integrations/calendly",
+        "integrations/census",
+        "integrations/clay",
+        "integrations/clearbit",
+        "integrations/discord",
+        "integrations/discourse",
+        "integrations/drift",
+        "integrations/fullstory",
+        "integrations/g2",
+        "integrations/gitbook",
+        "integrations/github",
+        "integrations/google-tag-manager",
+        "integrations/hightouch",
+        "integrations/hubspot",
+        "integrations/hubspot-meetings",
+        "integrations/intercom",
+        "integrations/linkedin-chrome-extension",
+        "integrations/mintlify",
+        "integrations/navattic",
+        "integrations/outreach",
+        "integrations/posthog",
+        "integrations/qualified",
+        "integrations/rb2b",
+        "integrations/readme",
+        "integrations/rudderstack",
+        "integrations/salesforce",
+        "integrations/salesloft",
+        "integrations/segment",
+        "integrations/slack",
+        "integrations/slack-community",
+        "integrations/snowflake",
+        "integrations/storylane",
+        "integrations/zoominfo"
       ]
     },
     {
