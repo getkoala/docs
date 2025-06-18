@@ -35,6 +35,11 @@
   ],
   "anchors": [
     {
+      "name": "KoalaU",
+      "icon": "graduation-cap",
+      "url": "https://www.getkoala.com/university/koala-101"
+    },
+    {
       "name": "Changelog",
       "icon": "list-timeline",
       "url": "https://getkoala.com/blog?type=product-updates"
@@ -125,42 +130,47 @@
       "group": "Integrations",
       "pages": [
         "sources/index",
-        "integrations/apollo",
-        "integrations/arcade",
-        "integrations/bigquery",
-        "integrations/calendly",
-        "integrations/census",
-        "integrations/clay",
-        "integrations/clearbit",
-        "integrations/discord",
-        "integrations/discourse",
-        "integrations/drift",
-        "integrations/fullstory",
-        "integrations/g2",
-        "integrations/gitbook",
-        "integrations/github",
-        "integrations/google-tag-manager",
-        "integrations/hightouch",
-        "integrations/hubspot",
-        "integrations/hubspot-meetings",
-        "integrations/intercom",
-        "integrations/linkedin-chrome-extension",
-        "integrations/mintlify",
-        "integrations/navattic",
-        "integrations/outreach",
-        "integrations/posthog",
-        "integrations/qualified",
-        "integrations/rb2b",
-        "integrations/readme",
-        "integrations/rudderstack",
-        "integrations/salesforce",
-        "integrations/salesloft",
-        "integrations/segment",
-        "integrations/slack",
-        "integrations/slack-community",
-        "integrations/snowflake",
-        "integrations/storylane",
-        "integrations/zoominfo"
+        {
+          "group": "All Integrations",
+          "pages": [
+            "integrations/apollo",
+            "integrations/arcade",
+            "integrations/bigquery",
+            "integrations/calendly",
+            "integrations/census",
+            "integrations/clay",
+            "integrations/clearbit",
+            "integrations/discord",
+            "integrations/discourse",
+            "integrations/drift",
+            "integrations/fullstory",
+            "integrations/g2",
+            "integrations/gitbook",
+            "integrations/github",
+            "integrations/google-tag-manager",
+            "integrations/hightouch",
+            "integrations/hubspot",
+            "integrations/hubspot-meetings",
+            "integrations/intercom",
+            "integrations/linkedin-chrome-extension",
+            "integrations/mintlify",
+            "integrations/navattic",
+            "integrations/outreach",
+            "integrations/posthog",
+            "integrations/qualified",
+            "integrations/rb2b",
+            "integrations/readme",
+            "integrations/rudderstack",
+            "integrations/salesforce",
+            "integrations/salesloft",
+            "integrations/segment",
+            "integrations/slack",
+            "integrations/slack-community",
+            "integrations/snowflake",
+            "integrations/storylane",
+            "integrations/zoominfo"
+          ]
+        }
       ]
     },
     {
@@ -171,12 +181,6 @@
         "admin-guides/how-to-drive-more-known-users",
         "admin-guides/larger-sales-teams",
         "admin-guides/saml-sso"
-      ]
-    },
-    {
-      "group": "Guides by Role",
-      "pages": [
-        "rep-guides/explore-koalau"
       ]
     }
   ],

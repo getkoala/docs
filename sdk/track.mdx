@@ -1,9 +1,61 @@
 ---
-title: "Send events"
-description: "Learn how to capture key events with the Koala JavaScript SDK."
+title: "ko.track()"
+description: "Send custom events to track important user actions"
 ---
 
-You can capture events that signify important actions in your product or marketing site. For example, you could send an event when a user clicks a certain call-to-action button or when a user signs up for your product.
+<Info>
+  **Purpose**: Capture key events and actions that users take in your product or on your website
+</Info>
+
+## Syntax
+
+```js
+ko.track(eventName, properties, options)
+```
+
+## Parameters
+
+<ParamField path="eventName" type="string" required>
+  The name of the event you want to track. Use descriptive names like "Signed Up" or "Requested Demo".
+</ParamField>
+
+<ParamField path="properties" type="object">
+  Additional data about the event. This can include any relevant context that helps you understand the action.
+  
+  <ParamField path="plan" type="string">
+    Subscription plan or tier (for signup events)
+  </ParamField>
+  <ParamField path="frequency" type="string">
+    Billing frequency like "monthly" or "annual"
+  </ParamField>
+  <ParamField path="source" type="string">
+    Where the action originated, like "Pricing Page" or "Navigation"
+  </ParamField>
+  <ParamField path="team_size" type="string">
+    Company size range for qualification
+  </ParamField>
+  <ParamField path="value" type="number">
+    Monetary value associated with the event
+  </ParamField>
+</ParamField>
+
+<ParamField path="options" type="object">
+  Additional configuration options (optional)
+</ParamField>
+
+## Code Examples
+
+### Basic Event Tracking
+
+Track a simple event without additional properties:
+
+```js
+ko.track('Signed Up')
+```
+
+### Event with Properties
+
+Include additional context about the event:
 
 ```js
 ko.track('Signed Up', {
@@ -13,13 +65,158 @@ ko.track('Signed Up', {
 })
 ```
 
-If you are using Segment, Koala can be configured to automatically hook into Segment events without any code.
+### Demo Request
 
-You can use custom events like this to define [Intent Signals](/product-manual/intent-signals) and send real-time [Slack Alert](/product-manual/slack-alerts).
+Track demo requests with qualification data:
+
+```js
+ko.track('Requested Demo', {
+  team_size: '10-50',
+  how_did_you_hear_about_us: 'Google Search',
+  use_case: 'Lead Generation'
+})
+```
+
+### Feature Usage
+
+Track specific feature interactions:
+
+```js
+ko.track('Created Dashboard', {
+  dashboard_type: 'Sales',
+  widgets_added: 3,
+  template_used: 'Default'
+})
+```
+
+### Purchase Events
+
+Track revenue-generating events:
+
+```js
+ko.track('Subscription Upgraded', {
+  from_plan: 'Starter',
+  to_plan: 'Pro',
+  value: 99.00,
+  currency: 'USD'
+})
+```
+
+## Common Event Names
+
+Here are some examples of effective event names:
+
+<AccordionGroup>
+  <Accordion title="Authentication Events">
+    - `Signed Up`
+    - `Logged In`
+    - `Password Reset`
+    - `Account Verified`
+  </Accordion>
+  
+  <Accordion title="Sales & Marketing Events">
+    - `Requested Demo`
+    - `Downloaded Whitepaper`
+    - `Subscribed to Newsletter`
+    - `Contacted Sales`
+  </Accordion>
+  
+  <Accordion title="Product Usage Events">
+    - `Created Project`
+    - `Invited Team Member`
+    - `Completed Onboarding`
+    - `Used Feature`
+  </Accordion>
+  
+  <Accordion title="Revenue Events">
+    - `Subscription Started`
+    - `Subscription Upgraded`
+    - `Subscription Cancelled`
+    - `Payment Failed`
+  </Accordion>
+</AccordionGroup>
+
+## Integration with Segment
+
+If you're using Segment, Koala can automatically hook into your existing Segment events:
+
+```js
+// Your existing Segment code
+analytics.track('Signed Up', {
+  plan: 'Team Plan',
+  source: 'Pricing Page'
+})
+
+// Koala will automatically receive this event
+// No additional ko.track() call needed
+```
+
+<Note>
+  Contact your Koala team to enable Segment integration and automatic event forwarding.
+</Note>
+
+## Use Cases
+
+### Intent Signals
+Use custom events to define [Intent Signals](/product-manual/intent-signals) that trigger when prospects show buying intent:
+
+```js
+ko.track('Viewed Pricing', {
+  plan_interest: 'Enterprise',
+  pricing_page_time: 45
+})
+```
+
+### Slack Alerts
+Send real-time [Slack Alerts](/product-manual/slack-alerts) when important events occur:
+
+```js
+ko.track('High Value Signup', {
+  company_size: '500+',
+  plan: 'Enterprise',
+  source: 'Product Hunt'
+})
+```
+
+### Sales Qualification
+Track events that help qualify prospects:
+
+```js
+ko.track('Integration Connected', {
+  integration_type: 'Salesforce',
+  setup_completed: true,
+  team_size: '50+'
+})
+```
+
+## Related Methods
+
+<CardGroup cols={2}>
+  <Card title="ko.identify()" href="/sdk/identify">
+    Identify users before tracking events
+  </Card>
+  <Card title="Autotracking" href="/sdk/autotracking">
+    Automatically track form submissions
+  </Card>
+</CardGroup>
+
+## Best Practices
 
 <Tip>
-    When enabled, Koala's SDK will autotrack most form submissions. You can often model Intent Signals without sending custom events for things like demo requests or registrations unless Koala is not able to see those forms. In those cases, it's recommended to send custom events in lieu of the autotracked form submission.
+  **Use descriptive event names**: Choose names that clearly describe the action, like "Requested Demo" instead of "Button Click".
 </Tip>
+
+<Tip>
+  **Include relevant context**: Add properties that help you understand the event better and create more targeted intent signals.
+</Tip>
+
+<Tip>
+  **Be consistent**: Use the same event names and property structures across your application.
+</Tip>
+
+<Warning>
+  **Avoid PII in properties**: Don't include sensitive personal information in event properties.
+</Warning>
 
 ```js
 ko.track('Requested Demo', {

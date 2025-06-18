@@ -1,66 +1,95 @@
 ---
-title: "Identify visitors"
-description: "Learn how to identify visitors with the Koala SDK."
+title: "ko.identify()"
+description: "Identify visitors and associate events with known users"
 ---
 
-Koala allows you to identify your visitors with their email. This enables Koala to associate the visitor with a specific company, track them on different platforms, and connect events from before and after they log in.
+<Info>
+  **Purpose**: Associate a visitor with an email address and enrich their profile with traits
+</Info>
 
-Identifying visitors can be done with the `identify` method in Koala's JavaScript SDK. By using this method, you can enhance your ability to understand visitor and company intent throughout Koala.
+## Syntax
 
-## Anonymous visitors
+```js
+ko.identify(email, traits, options)
+```
 
-Every visitor to your website is automatically assigned a unique anonymous ID by the Koala JavaScript SDK. You can use the `identify` method to provide additional properties about the visitor even before you know their email address. This information can help you better understand traits about your visitors.
+## Parameters
 
-In order to track visitors across different devices, use the `identify` method to associate events with a logged-in user instead of just the device they are using.
+<ParamField path="email" type="string" required>
+  The visitor's email address. This is used to associate the visitor with a company and track them across devices.
+</ParamField>
 
+<ParamField path="traits" type="object">
+  Additional properties about the visitor or their account.
+  
+  <Expandable title="Visitor Traits">
+    <ParamField path="name" type="string">
+      The visitor's full name
+    </ParamField>
+    <ParamField path="title" type="string">
+      The visitor's job title
+    </ParamField>
+    <ParamField path="role" type="string">
+      The visitor's role or department
+    </ParamField>
+  </Expandable>
+  
+  <Expandable title="Account Traits">
+    <ParamField path="$account" type="object">
+      Company or organization-level data
+      
+      <ParamField path="$account.group_id" type="string">
+        Unique identifier for the account (recommended)
+      </ParamField>
+      <ParamField path="$account.name" type="string">
+        Company name
+      </ParamField>
+      <ParamField path="$account.domain" type="string">
+        Company domain
+      </ParamField>
+      <ParamField path="$account.plan" type="string">
+        Subscription plan or tier
+      </ParamField>
+    </ParamField>
+  </Expandable>
+</ParamField>
 
-## Identifying a visitor
+<ParamField path="options" type="object">
+  Additional configuration options (optional)
+</ParamField>
 
-When a visitor signs up for your product for the first time, or logs in again, you can use the `identify` method to associate their email address with their anonymous ID. This allows Koala to associate events from before and after they log in and Koala can associate the visitor with a specific company.
+## Code Examples
 
-You should use the `identify` method whenever a visitor:
-- Signs up for your product
-- Logs in
-- Provides their email address in a form
-- Loads a page as a logged-in user
+### Basic Identification
+
+Identify a visitor with just their email address:
 
 ```js
 ko.identify('jane.doe@example.com')
 ```
 
-<Note>
-  Using Google Sign In or other login methods? Check out more details below: [Identifying with Google Sign In](#identifying-with-google-sign-in-passwordless-magic-links-or-others)
-</Note>
+### With Visitor Traits
 
-## Setting visitor traits
-
-You can use the `traits` (2nd parameter) to supply additional details about the anonymous or known visitor. This can include any relevant information that helps you understand your visitors better. You can use this data to filter and segment your visitors in Koala. Some examples of visitor traits are:
-
-- `name`: The visitor's full name
-- `title`: The visitor's job title
-- `role`: The visitor's role
-- and whatever else is important to your business
-
-Here is an example of using the `identify` method to set visitor traits:
+Include additional information about the visitor:
 
 ```js
 ko.identify('jane.doe@example.com', {
   name: 'Jane Doe',
-  title: 'Product Manager'
+  title: 'Product Manager',
+  role: 'Product'
 })
 ```
 
-We recommend sending traits along with every `identify` call to make sure your visitor's profile is up to date.
+### With Account Traits
 
-## Setting account traits
-
-In addition to capturing visitor traits, you can also specify _account-level_ traits. This is any data about the company or organization you want Koala to know about. You can use account traits to set up filters and lists in Koala.
-
-Here is an example of using the `identify` method to set account traits:
+Associate the visitor with account-level data:
 
 ```js
 ko.identify('jane.doe@example.com', {
+  name: 'Jane Doe',
+  title: 'Product Manager',
   $account: {
+    group_id: 'acme-production-id',
     name: 'Acme Inc.',
     domain: 'example.com',
     plan: 'Enterprise'
@@ -68,27 +97,12 @@ ko.identify('jane.doe@example.com', {
 })
 ```
 
-When you specify the `$account.domain`, Koala will automatically associate that company with the visitor, if not already associated. 
+### Multiple Account Groups
 
-If `domain` is not a unique value for your account-level data, for instance if you have multiple Teams or Workspaces that all link back to the same `domain`, you can specify the `group_id` to distinguish them. It's recommended to always include a `group_id` that is a unique id for the group of data.
-
-<Info>You can pass account traits as camelCase or snake_case. Koala will treat them the same. Use whatever is most comfortable or familiar for your environment/language.</Info>
+Link the same user to multiple account groups:
 
 ```js
-ko.identify('jane.doe@example.com', {
-  $account: {
-    group_id: '<replace-with-unique-id-for-acme-inc>',
-    name: 'Acme Inc.',
-    domain: 'example.com',
-    plan: 'Enterprise'
-  }
-})
-```
-
-You can link multiple sets of `group_id` traits to the same domain, but you cannot do it in a single `identify` call:
-
-```js
-// ✅ Allowed
+// Production environment
 ko.identify('jane.doe@example.com', {
   $account: {
     group_id: 'acme-production-id',
@@ -97,6 +111,8 @@ ko.identify('jane.doe@example.com', {
     plan: 'Enterprise'
   }
 })
+
+// Test environment
 ko.identify('jane.doe@example.com', {
   $account: {
     group_id: 'acme-test-environment-id',
@@ -107,25 +123,65 @@ ko.identify('jane.doe@example.com', {
 })
 ```
 
-Unlike some product analytics tools that have a `group` concept, we do not support capturing `group_id`s for events/pageviews. Instead, they are only used for collecting sets of traits you want to associate with a given account (company/domain).
+## When to Call
 
-## Identifying with Google Sign In, Passwordless Magic Links (or others)
+You should call `ko.identify()` whenever a visitor:
 
-Typically, the Koala pixel automatically captures emails from form submissions, which works great for traditional login forms. However, for more advanced login methods, like Google Sign-In, GitHub Sign-In, or Single Sign-On (SSO), manual intervention is required. 
+- **Signs up** for your product for the first time
+- **Logs in** to your application
+- **Provides their email** in a form
+- **Loads a page** as a logged-in user
 
-If you use these types of sign-in methods, you'll need to manually call `ko.identify` _after_ the user has successfully logged in. We recommend installing the Koala pixel on the landing page of your logged-in site, and then calling `ko.identify` from there with the user's email. You can also provide any other relevant traits you want to see or use in Koala.
+## Special Use Cases
+
+### Google Sign In & SSO
+
+For Google Sign-In, GitHub Sign-In, or SSO, call `ko.identify()` after successful login:
 
 ```js
+// After successful OAuth/SSO login
 ko.identify('jane.doe@example.com', {
-  name: 'Jane Doe', 
+  name: 'Jane Doe',
   title: 'Product Manager'
 })
 ```
 
 <Note>
-  If you cannot manually call `ko.identify` from the client-side of your logged-in site (after successful login/signup), it is possible to identify users server-side, but a bit more complex. We strongly recommend installing the Koala pixel and calling `ko.identify` on page load of your logged-in site, but if this is not possible you can read more about [Identifying server-side](/developer-guides/server-side#identifying-visitors).
+  Install the Koala pixel on your logged-in site's landing page and call `ko.identify()` from there. For server-side identification, see [Server-side Implementation](/developer-guides/server-side#identifying-visitors).
 </Note>
 
-## Reset after logout
+### Anonymous Visitors
 
-When a user logs out on your frontend, you should call `ko.reset()`. This will prevent future events from that device from being linked with that user. This is especially important when a device is shared by multiple users.
+You can identify anonymous visitors with traits before knowing their email:
+
+```js
+ko.identify(null, {
+  source: 'organic_search',
+  campaign: 'product_launch'
+})
+```
+
+## Related Methods
+
+<CardGroup cols={2}>
+  <Card title="ko.track()" href="/sdk/track">
+    Send custom events after identifying users
+  </Card>
+  <Card title="ko.reset()" href="/sdk/autotracking">
+    Clear user identification on logout
+  </Card>
+</CardGroup>
+
+## Best Practices
+
+<Tip>
+  **Always include traits**: Send visitor and account traits with every identify call to keep profiles up-to-date.
+</Tip>
+
+<Tip>
+  **Use group_id**: Always include a unique `group_id` for account traits to avoid conflicts.
+</Tip>
+
+<Warning>
+  **Call ko.reset() on logout**: Prevent future events from being linked to the logged-out user.
+</Warning>
