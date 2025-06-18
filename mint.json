@@ -47,7 +47,7 @@
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Getting Started",
       "pages": [
         "get-started/what-is-koala",
         "get-started/how-koala-works",
@@ -55,82 +55,78 @@
       ]
     },
     {
-      "group": "Guides for Sellers",
-      "pages": ["rep-guides/explore-koalau"]
-    },
-    {
-      "group": "Guides for Admins",
-      "pages": [
-        "developer-guides/sending-identify",
-        "admin-guides/first-intent-signals",
-        "admin-guides/advanced-intent-signals",
-        "admin-guides/how-to-drive-more-known-users",
-        "admin-guides/larger-sales-teams",
-        "admin-guides/saml-sso"
-      ]
-    },
-    {
-      "group": "Guides for Developers",
-      "pages": [
-        "developer-guides/install-on-nextjs",
-        "developer-guides/server-side",
-        "developer-guides/using-npm",
-        "developer-guides/custom-proxy-setup",
-        "developer-guides/gdpr-endpoint"
-      ]
-    },
-    {
-      "group": "Product Manual",
-      "pages": [
-        "product-manual/koala-plays",
-        "product-manual/audiences",
-        "product-manual/content-reports",
-        "product-manual/ai-agents",
-        "product-manual/intent-signals",
-        "product-manual/intent-scores",
-        "product-manual/slack-alerts",
-        "product-manual/koala-weekly"
-      ]
-    },
-    {
-      "group": "Automations",
-      "pages": [
-        "automations/intro",
-        "automations/slack-alerts",
-        "automations/actions",
-        {
-          "group": "Auto Outbound",
-          "pages": [
-            "automations/auto-outbound/intro",
-            "automations/auto-outbound/outreach",
-            "automations/auto-outbound/salesforce",
-            "automations/auto-outbound/hubspot",
-            "automations/auto-outbound/apollo",
-            "automations/auto-outbound/clay",
-            "automations/auto-outbound/webhooks"
-          ]
-        },
-        "automations/credits"
-      ]
-    },
-    {
-      "group": "Identity Layer",
-      "pages": [
-        "identity-layer/intro",
-        "identity-layer/identify-email-recipients"
-      ]
-    },
-    {
-      "group": "JavaScript SDK",
+      "group": "Implementation",
       "pages": [
         "sdk/installation",
+        "developer-guides/install-on-nextjs",
+        "developer-guides/sending-identify",
+        "developer-guides/server-side",
+        "developer-guides/using-npm",
+        "developer-guides/custom-proxy-setup"
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
         "sdk/identify",
         "sdk/track",
         "sdk/autotracking"
       ]
     },
     {
-      "group": "Sources",
+      "group": "Using Koala",
+      "pages": [
+        "get-started/identifying-users",
+        "product-manual/intent-signals",
+        "admin-guides/first-intent-signals",
+        "admin-guides/advanced-intent-signals",
+        "product-manual/audiences",
+        "product-manual/slack-alerts",
+        "product-manual/koala-plays",
+        "product-manual/ai-agents",
+        "product-manual/content-reports",
+        "product-manual/intent-scores",
+        "product-manual/koala-weekly"
+      ]
+    },
+    {
+      "group": "Integrations",
+      "pages": [
+        "integrations/apollo",
+        "integrations/arcade",
+        "integrations/calendly",
+        "integrations/census",
+        "integrations/clay",
+        "integrations/clearbit",
+        "integrations/drift",
+        "integrations/fullstory",
+        "integrations/g2",
+        "integrations/gitbook",
+        "integrations/google-tag-manager",
+        "integrations/hightouch",
+        "integrations/hubspot",
+        "integrations/hubspot-meetings",
+        "integrations/intercom",
+        "integrations/linkedin-chrome-extension",
+        "integrations/mintlify",
+        "integrations/navattic",
+        "integrations/outreach",
+        "integrations/posthog",
+        "integrations/qualified",
+        "integrations/rb2b",
+        "integrations/readme",
+        "integrations/rudderstack",
+        "integrations/salesforce",
+        "integrations/salesloft",
+        "integrations/segment",
+        "integrations/slack",
+        "integrations/snowflake",
+        "integrations/storylane",
+        "integrations/zoominfo"
+      ]
+    },
+    {
+      "group": "Data Sources",
       "pages": [
         "sources/index",
         {
@@ -157,37 +153,40 @@
       ]
     },
     {
-      "group": "Integrations",
+      "group": "Automations",
       "pages": [
-        "integrations/apollo",
-        "integrations/arcade",
-        "integrations/calendly",
-        "integrations/census",
-        "integrations/clay",
-        "integrations/clearbit",
-        "integrations/drift",
-        "integrations/fullstory",
-        "integrations/g2",
-        "integrations/gitbook",
-        "integrations/google-tag-manager",
-        "integrations/hightouch",
-        "integrations/hubspot",
-        "integrations/hubspot-meetings",
-        "integrations/intercom",
-        "integrations/mintlify",
-        "integrations/navattic",
-        "integrations/outreach",
-        "integrations/posthog",
-        "integrations/qualified",
-        "integrations/readme",
-        "integrations/rudderstack",
-        "integrations/salesforce",
-        "integrations/salesloft",
-        "integrations/segment",
-        "integrations/slack",
-        "integrations/storylane",
-        "integrations/zoominfo"
+        "automations/intro",
+        "automations/slack-alerts",
+        "automations/actions",
+        {
+          "group": "Auto Outbound",
+          "pages": [
+            "automations/auto-outbound/intro",
+            "automations/auto-outbound/outreach",
+            "automations/auto-outbound/salesforce",
+            "automations/auto-outbound/hubspot",
+            "automations/auto-outbound/apollo",
+            "automations/auto-outbound/clay",
+            "automations/auto-outbound/webhooks"
+          ]
+        },
+        "automations/credits"
       ]
+    },
+    {
+      "group": "Advanced Configuration",
+      "pages": [
+        "admin-guides/how-to-drive-more-known-users",
+        "admin-guides/larger-sales-teams",
+        "admin-guides/saml-sso",
+        "developer-guides/gdpr-endpoint",
+        "identity-layer/intro",
+        "identity-layer/identify-email-recipients"
+      ]
+    },
+    {
+      "group": "For Sales Teams",
+      "pages": ["rep-guides/explore-koalau"]
     }
   ],
   "footerSocials": {
