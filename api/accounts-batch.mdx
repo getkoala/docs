@@ -1,0 +1,329 @@
+---
+title: "POST /accounts/batch"
+description: "Send account-level events and traits to Koala"
+---
+
+<Info>
+  **Endpoint**: `https://api2.getkoala.com/web/projects/{publicApiKey}/accounts/batch`
+</Info>
+
+The `/accounts/batch` endpoint allows you to send account-level events and traits that are associated with entire companies rather than individual visitors.
+
+## Authentication
+
+<ParamField path="publicApiKey" type="string" required>
+  Your workspace's public API key, included in the URL path
+</ParamField>
+
+## Headers
+
+<ParamField path="Content-Type" type="string" required>
+  Must be `application/json`
+</ParamField>
+
+<ParamField path="User-Agent" type="string" required>
+  Your application identifier (e.g., `your-company-name/1.0.0`). **Required to prevent requests from being flagged as bot traffic.**
+</ParamField>
+
+## Request Body
+
+<ParamField path="account_id" type="string">
+  The Koala account ID. Either `account_id` or `domain` is required.
+</ParamField>
+
+<ParamField path="domain" type="string">
+  The company domain (recommended). Either `account_id` or `domain` is required. Koala will automatically create a new account if the domain doesn't exist.
+</ParamField>
+
+<ParamField path="events" type="array">
+  Array of account-level events to track
+  
+  <Expandable title="Account Event Object">
+    <ParamField path="message_id" type="string">
+      Idempotency key to prevent duplicate events (optional but recommended)
+    </ParamField>
+    <ParamField path="type" type="string" required>
+      Must be `"track"`
+    </ParamField>
+    <ParamField path="event" type="string" required>
+      The event name (e.g., "Workspace Created", "Plan Upgraded")
+    </ParamField>
+    <ParamField path="properties" type="object">
+      Custom properties associated with the account event
+    </ParamField>
+    <ParamField path="sent_at" type="string" required>
+      ISO 8601 timestamp when the event occurred
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="identifies" type="array">
+  Array of account trait updates
+  
+  <Expandable title="Account Identify Object">
+    <ParamField path="type" type="string" required>
+      Must be `"identify"`
+    </ParamField>
+    <ParamField path="traits" type="object" required>
+      Account traits and properties
+      
+      <ParamField path="group_id" type="string">
+        Unique identifier to disambiguate multiple groups within the same domain (e.g., different teams or workspaces)
+      </ParamField>
+      <ParamField path="name" type="string">
+        Company name
+      </ParamField>
+      <ParamField path="billing_plan" type="string">
+        Subscription plan or tier
+      </ParamField>
+      <ParamField path="headcount" type="number">
+        Number of employees
+      </ParamField>
+      <ParamField path="industry" type="string">
+        Company industry
+      </ParamField>
+      <ParamField path="annual_revenue" type="number">
+        Annual revenue in dollars
+      </ParamField>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+## Code Examples
+
+### Send Account Traits
+
+Update account-level information:
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "domain": "getkoala.com",
+    "identifies": [{
+      "type": "identify",
+      "traits": {
+        "billing_plan": "pro",
+        "headcount": 100,
+        "industry": "Software",
+        "annual_revenue": 5000000
+      }
+    }]
+  }' \
+  https://api2.getkoala.com/web/projects/your-public-api-key/accounts/batch
+```
+
+### Send Account Events
+
+Track account-level actions:
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "domain": "getkoala.com",
+    "events": [{
+      "message_id": "acc_evt_12345",
+      "type": "track",
+      "event": "Workspace Created",
+      "properties": {
+        "workspace_id": "1234567890",
+        "workspace_name": "Acme Marketing Team",
+        "plan": "pro"
+      },
+      "sent_at": "2023-11-30T23:57:14.776Z"
+    }]
+  }' \
+  https://api2.getkoala.com/web/projects/your-public-api-key/accounts/batch
+```
+
+### Multiple Account Groups
+
+Handle multiple teams/workspaces within the same company:
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "domain": "getkoala.com",
+    "identifies": [
+      {
+        "type": "identify",
+        "traits": {
+          "group_id": "development-team",
+          "billing_plan": "free",
+          "team_size": 15,
+          "department": "Engineering"
+        }
+      },
+      {
+        "type": "identify",
+        "traits": {
+          "group_id": "marketing-team",
+          "billing_plan": "pro",
+          "team_size": 8,
+          "department": "Marketing"
+        }
+      }
+    ]
+  }' \
+  https://api2.getkoala.com/web/projects/your-public-api-key/accounts/batch
+```
+
+### Account Events with Group ID
+
+Track events for specific groups within an account:
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "domain": "getkoala.com",
+    "events": [{
+      "message_id": "team_upgrade_12345",
+      "type": "track", 
+      "event": "Team Plan Upgraded",
+      "properties": {
+        "group_id": "marketing-team",
+        "from_plan": "starter",
+        "to_plan": "pro",
+        "seats_added": 5
+      },
+      "sent_at": "2023-11-30T23:57:14.776Z"
+    }]
+  }' \
+  https://api2.getkoala.com/web/projects/your-public-api-key/accounts/batch
+```
+
+### Combined Events and Traits
+
+Send both account events and trait updates:
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "domain": "acme.com",
+    "events": [{
+      "message_id": "integration_connected_12345",
+      "type": "track",
+      "event": "Integration Connected",
+      "properties": {
+        "integration_type": "Salesforce",
+        "setup_method": "OAuth"
+      },
+      "sent_at": "2023-11-30T23:57:14.776Z"
+    }],
+    "identifies": [{
+      "type": "identify",
+      "traits": {
+        "integrations_count": 3,
+        "salesforce_connected": true,
+        "setup_completed": true
+      }
+    }]
+  }' \
+  https://api2.getkoala.com/web/projects/your-public-api-key/accounts/batch
+```
+
+## Response
+
+### Success Response
+
+```json
+{
+  "status": "success"
+}
+```
+
+### Error Response
+
+```json
+{
+  "error": "Invalid request",
+  "message": "Missing required field: domain or account_id"
+}
+```
+
+## Use Cases
+
+### SaaS Billing Events
+Track subscription changes at the account level:
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "domain": "customer.com",
+    "events": [{
+      "type": "track",
+      "event": "Subscription Upgraded",
+      "properties": {
+        "from_plan": "starter",
+        "to_plan": "enterprise",
+        "mrr_change": 500
+      },
+      "sent_at": "2023-11-30T23:57:14.776Z"
+    }]
+  }' \
+  https://api2.getkoala.com/web/projects/your-public-api-key/accounts/batch
+```
+
+### Multi-Tenant Applications
+Track different workspaces or teams:
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "domain": "enterprise.com",
+    "identifies": [{
+      "type": "identify",
+      "traits": {
+        "group_id": "workspace-production",
+        "environment": "production",
+        "billing_plan": "enterprise",
+        "users_count": 250
+      }
+    }]
+  }' \
+  https://api2.getkoala.com/web/projects/your-public-api-key/accounts/batch
+```
+
+## Account vs Visitor Data
+
+<Note>
+  **Account events and traits** are associated with the entire company and visible to all users from that domain.
+  
+  **Visitor events and traits** are associated with individual users and their personal profiles.
+  
+  Use account-level data for company-wide information like billing plans, integrations, or organizational changes.
+</Note>
+
+## Group ID Best Practices
+
+<Tip>
+  Use `group_id` when you have multiple logical groupings within the same company domain:
+  - Different product workspaces
+  - Separate development/staging environments  
+  - Individual teams or departments
+  - Different subscription tiers
+</Tip>
+
+## Related Endpoints
+
+<CardGroup cols={2}>
+  <Card title="POST /batch" href="/api/batch">
+    Send visitor-level events and traits
+  </Card>
+  <Card title="Server-Side Guide" href="/developer-guides/server-side">
+    Implementation guide for server-side tracking
+  </Card>
+</CardGroup>

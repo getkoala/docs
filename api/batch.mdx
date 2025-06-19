@@ -1,0 +1,267 @@
+---
+title: "POST /batch"
+description: "Send visitor identification, events, and traits to Koala"
+---
+
+<Info>
+  **Endpoint**: `https://api2.getkoala.com/web/projects/{publicApiKey}/batch`
+</Info>
+
+The `/batch` endpoint allows you to send visitor identification, custom events, and traits from your server-side application.
+
+## Authentication
+
+<ParamField path="publicApiKey" type="string" required>
+  Your workspace's public API key, included in the URL path
+</ParamField>
+
+## Headers
+
+<ParamField path="Content-Type" type="string" required>
+  Must be `application/json`
+</ParamField>
+
+<ParamField path="User-Agent" type="string" required>
+  Your application identifier (e.g., `your-company-name/1.0.0`). **Required to prevent requests from being flagged as bot traffic.**
+</ParamField>
+
+## Request Body
+
+<ParamField path="profile_id" type="string">
+  The visitor's anonymous ID from the `ko_id` cookie. Either `profile_id` or `email` is required.
+</ParamField>
+
+<ParamField path="email" type="string">
+  The visitor's email address. Either `profile_id` or `email` is required.
+</ParamField>
+
+<ParamField path="events" type="array">
+  Array of custom events to track (up to 30 events per request)
+  
+  <Expandable title="Event Object">
+    <ParamField path="message_id" type="string">
+      Idempotency key to prevent duplicate events (optional but recommended)
+    </ParamField>
+    <ParamField path="type" type="string" required>
+      Must be `"track"`
+    </ParamField>
+    <ParamField path="event" type="string" required>
+      The event name (e.g., "Created Account", "Viewed Pricing")
+    </ParamField>
+    <ParamField path="properties" type="object">
+      Custom properties associated with the event
+    </ParamField>
+    <ParamField path="sent_at" type="string" required>
+      ISO 8601 timestamp when the event occurred
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField path="identifies" type="array">
+  Array of identification calls with visitor traits (up to 30 per request)
+  
+  <Expandable title="Identify Object">
+    <ParamField path="type" type="string" required>
+      Must be `"identify"`
+    </ParamField>
+    <ParamField path="sent_at" type="string" required>
+      ISO 8601 timestamp when the identification occurred
+    </ParamField>
+    <ParamField path="traits" type="object" required>
+      Visitor traits and properties
+      
+      <ParamField path="email" type="string">
+        Visitor's email address
+      </ParamField>
+      <ParamField path="name" type="string">
+        Visitor's full name
+      </ParamField>
+      <ParamField path="title" type="string">
+        Job title
+      </ParamField>
+      <ParamField path="$account" type="object">
+        Account-level traits
+        
+        <ParamField path="$account.group_id" type="string">
+          Unique identifier for the account
+        </ParamField>
+        <ParamField path="$account.name" type="string">
+          Company name
+        </ParamField>
+        <ParamField path="$account.domain" type="string">
+          Company domain
+        </ParamField>
+      </ParamField>
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+## Code Examples
+
+### Basic Visitor Identification
+
+Identify a visitor by email:
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "profile_id": "3e6a2c18-3b02-40c4-b8d2-1842c193d3ba",
+    "email": "person@example.com"
+  }' \
+  https://api2.getkoala.com/web/projects/your-public-api-key/batch
+```
+
+### Send Custom Events
+
+Track user actions with properties:
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "email": "user@example.com",
+    "events": [{
+      "message_id": "evt_12345",
+      "type": "track",
+      "event": "Created Account",
+      "properties": {
+        "plan": "pro",
+        "source": "website"
+      },
+      "sent_at": "2023-11-30T23:57:14.776Z"
+    }]
+  }' \
+  https://api2.getkoala.com/web/projects/your-public-api-key/batch
+```
+
+### Send Visitor Traits
+
+Enrich visitor profiles with additional data:
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "email": "user@example.org",
+    "identifies": [{
+      "type": "identify",
+      "sent_at": "2023-11-30T02:51:36.840Z",
+      "traits": {
+        "email": "user@example.org",
+        "name": "Jane Doe",
+        "title": "Product Manager",
+        "billing_plan": "pro",
+        "$account": {
+          "group_id": "acme-prod",
+          "name": "Acme Inc.",
+          "domain": "example.org"
+        }
+      }
+    }]
+  }' \
+  https://api2.getkoala.com/web/projects/your-public-api-key/batch
+```
+
+### Multiple Events and Identification
+
+Send both events and identification in a single request:
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -H "User-Agent: your-company-name/1.0.0" \
+  -d '{
+    "email": "user@example.com",
+    "events": [
+      {
+        "message_id": "evt_login_12345",
+        "type": "track",
+        "event": "Logged In",
+        "properties": {
+          "method": "email"
+        },
+        "sent_at": "2023-11-30T23:57:14.776Z"
+      },
+      {
+        "message_id": "evt_feature_12346", 
+        "type": "track",
+        "event": "Used Feature",
+        "properties": {
+          "feature_name": "dashboard"
+        },
+        "sent_at": "2023-11-30T23:58:14.776Z"
+      }
+    ],
+    "identifies": [{
+      "type": "identify",
+      "sent_at": "2023-11-30T02:51:36.840Z",
+      "traits": {
+        "last_login": "2023-11-30T23:57:14.776Z",
+        "subscription_status": "active"
+      }
+    }]
+  }' \
+  https://api2.getkoala.com/web/projects/your-public-api-key/batch
+```
+
+## Response
+
+### Success Response
+
+```json
+{
+  "status": "success"
+}
+```
+
+### Error Response
+
+```json
+{
+  "error": "Invalid request",
+  "message": "Missing required field: email or profile_id"
+}
+```
+
+## Rate Limits & Constraints
+
+<Warning>
+  - **Maximum 30 events** per request
+  - **Maximum 30 identifies** per request
+  - All data in a single request must be for the **same visitor**
+  - Either `profile_id` or `email` is **required** at the top level
+</Warning>
+
+## Working with Profile IDs
+
+If you have the Koala JavaScript SDK installed, you can read the visitor's `profile_id` from the `ko_id` cookie:
+
+```javascript
+// Node.js Express example
+app.get("/", (req, res) => {
+  let profile_id = req.cookies.ko_id;
+  if (!profile_id) {
+    profile_id = uuid.v4();
+    res.cookie("ko_id", profile_id, { 
+      domain: ".example.com" 
+    });
+  }
+  
+  // Use profile_id in API requests
+});
+```
+
+## Related Endpoints
+
+<CardGroup cols={2}>
+  <Card title="POST /accounts/batch" href="/api/accounts-batch">
+    Send account-level events and traits
+  </Card>
+  <Card title="JavaScript SDK" href="/sdk/identify">
+    Client-side visitor identification
+  </Card>
+</CardGroup>

@@ -89,6 +89,13 @@
             "sdk/track",
             "sdk/autotracking"
           ]
+        },
+        {
+          "group": "HTTP API",
+          "pages": [
+            "api/batch",
+            "api/accounts-batch"
+          ]
         }
       ]
     },
